@@ -1,0 +1,59 @@
+name: ci
+on:
+  push:
+
+jobs:
+  rspec:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+
+    env:
+      PGUSER: postgres_user
+      PGPASSWORD: postgres_password
+
+    services:
+      postgres:
+        image: postgres:14-alpine
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_USER: ${{ env.PGUSER }}
+          POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - run: sudo apt-get install -y libsndfile-dev
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+
+      - name: Setup parallel databases
+        run: bin/rails parallel:setup
+
+      - name: Precompile the assets
+        run: bin/rails assets:precompile
+
+      - name: Run parallel specs
+        run: bin/rails parallel:spec
+
+      - name: Upload capybara artifacts
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: capybara
+          path: tmp/capybara
