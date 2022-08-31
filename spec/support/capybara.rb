@@ -12,8 +12,8 @@ RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_headless
 
-    unless ViteRuby.instance.dev_server_running?
-      raise "The Vite dev server is not running. run bin/vite dev --mode=test to start it"
+    unless !ENV['CI'] && ViteRuby.instance.dev_server_running?
+      raise "The Vite dev server is not running. Run bin/vite dev --mode=test to"
     end
   end
 

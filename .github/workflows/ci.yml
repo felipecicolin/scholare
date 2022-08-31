@@ -10,6 +10,7 @@ jobs:
     env:
       PGUSER: postgres_user
       PGPASSWORD: postgres_password
+      CI: true
 
     services:
       postgres:
