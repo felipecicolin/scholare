@@ -11,7 +11,9 @@ rescue ActiveRecord::PendingMigrationError => error
   exit 1
 end
 
-Dir[Rails.root.join("spec", "support", "**", "*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].each do |f|
+  require f
+end
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
