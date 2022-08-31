@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
-gem "rails"
+ruby File.read(".ruby-version").strip
+
 gem "pg"
 gem "puma"
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "rails"
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "vite_rails"
 
 group :development do
