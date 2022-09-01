@@ -1,4 +1,4 @@
-RSpec.describe "Home" do
+RSpec.describe "Home", js: true do
   it do
     visit root_path
 
