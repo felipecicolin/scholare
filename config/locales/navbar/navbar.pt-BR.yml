@@ -1,0 +1,7 @@
+pt-BR:
+  navbar:
+    home: "Início"
+    about: "Sobre"
+    contact: "Contato"
+    login: "Entrar"
+    logout: "Sair"
