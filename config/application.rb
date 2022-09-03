@@ -21,8 +21,10 @@ Bundler.require(*Rails.groups)
 module Scholare
   class Application < Rails::Application
     config.load_defaults 7.0
-    config.i18n.load_path += Dir[Rails.root.join("config/locales/*.{yml}").to_s]
+
+    config.i18n.load_path += Dir[Rails.root.join("config/locales/**.{yml}")]
     config.i18n.default_locale = "pt-BR"
+
     config.generators.system_tests = nil
   end
 end
