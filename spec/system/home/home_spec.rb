@@ -1,7 +1,7 @@
-RSpec.describe "Home", js: true do
+RSpec.describe "Home" do
   it do
     visit root_path
 
-    expect(page).to have_content("Hello World")
+    expect(page).to have_content("Scholare")
   end
 end
