@@ -105,6 +105,9 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    goldiloader (4.2.0)
+      activerecord (>= 5.2, < 7.2)
+      activesupport (>= 5.2, < 7.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     json (2.6.2)
@@ -243,6 +246,10 @@ GEM
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.2.0)
+    view_component (2.71.0)
+      activesupport (>= 5.0.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     vite_rails (3.0.12)
       railties (>= 5.1, < 8)
       vite_ruby (~> 3.0, >= 3.2.2)
@@ -271,6 +278,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  goldiloader
   letter_opener
   parallel_tests
   pg
@@ -284,6 +292,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   tzinfo-data
+  view_component
   vite_rails
   webdrivers
 
