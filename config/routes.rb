@@ -2,4 +2,6 @@
 
 Rails.application.routes.draw do
   root "home#index"
+
+  resources authentication, only: :create
 end

@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.read(".ruby-version").strip
 
 gem "goldiloader"
+gem "jwt"
 gem "pg"
 gem "puma"
 gem "rails"
