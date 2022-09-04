@@ -17,10 +17,6 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless
   end
 
-  config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
-  end
-
   config.after(type: :system) do |example|
     if example.exception
       filename = example.location.parameterize
