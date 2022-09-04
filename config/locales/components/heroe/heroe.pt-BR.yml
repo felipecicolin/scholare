@@ -1,11 +1,11 @@
 pt-BR:
   heroe:
-    know_more: "Saiba mais"
-
     description: |
       Aqui no Scholare você pode criar provas e corrigi-las de forma rápida e fácil,
       além de poder organizar seus alunos e turmas.
 
+    know_more: "Saiba mais"
+
     start_using_it_now: "Comece a usar agora"
 
-    title: "Não quer mais levar horas criando e corrigindo provas?"
+    title: "Não quer mais passar horas criando e corrigindo provas?"
