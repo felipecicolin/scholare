@@ -18,6 +18,8 @@ require "action_view/railtie"
 
 Bundler.require(*Rails.groups)
 
+Dotenv::Railtie.load if %w[development test].include? ENV["RAILS_ENV"]
+
 module Scholare
   class Application < Rails::Application
     config.load_defaults 7.0
