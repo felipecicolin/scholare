@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     attributes:
-      user:
+      account:
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
         confirmed_at: Confirmado em
@@ -26,9 +26,7 @@ pt-BR:
         unlock_token: Token de desbloqueio
         updated_at: Atualizado em
     models:
-      user:
-        one: Usuário
-        other: Usuários
+      account: Conta
   devise:
     confirmations:
       confirmed: A sua conta foi confirmada com sucesso.
@@ -94,16 +92,17 @@ pt-BR:
     registrations:
       destroyed: Adeus! A sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.
       edit:
+        edit_account: "Editar conta"
         are_you_sure: Você tem certeza?
         cancel_my_account: Cancelar minha conta
         currently_waiting_confirmation_for_email: 'No momento esperando por: %{email}'
-        leave_blank_if_you_don_t_want_to_change_it: deixe em branco caso não queira alterá-la
+        leave_blank_if_you_don_t_want_to_change_it: Deixe em branco caso não queira alterar
         title: Editar %{resource}
         unhappy: Não está contente?
         update: Atualizar
-        we_need_your_current_password_to_confirm_your_changes: precisamos da sua senha atual para confirmar suas mudanças
+        we_need_your_current_password_to_confirm_your_changes: Precisamos da sua senha atual para confirmar suas mudanças
       new:
-        sign_up: Inscrever-se
+        sign_up: Criar conta
       signed_up: Bem vindo! Você realizou seu registro com sucesso.
       signed_up_but_inactive: Você se inscreveu com sucesso, porém nós não podemos autenticá-lo porque sua conta ainda não foi ativada.
       signed_up_but_locked: Você se inscreveu com sucesso. Porém nós não podemos autenticá-lo porque sua conta está bloqueada.
@@ -114,18 +113,19 @@ pt-BR:
     sessions:
       already_signed_out: Logout efetuado com sucesso.
       new:
-        sign_in: Login
-      signed_in: Login efetuado com sucesso.
-      signed_out: Logout efetuado com sucesso.
+        sign_in: Acessar
+        sign_in_into_my_account: Acessar minha conta
+      signed_in: Entrou com sucesso.
+      signed_out: Saiu com sucesso.
     shared:
       links:
         back: Voltar
         didn_t_receive_confirmation_instructions: Não recebeu instruções de confirmação?
         didn_t_receive_unlock_instructions: Não recebeu instruções de desbloqueio?
         forgot_your_password: Esqueceu sua senha?
-        sign_in: Login
+        sign_in: Já tem uma conta?
         sign_in_with_provider: Entrar com %{provider}
-        sign_up: Inscrever-se
+        sign_up: Ainda não tem uma conta?
       minimum_password_length:
         one: "(Mínimo de %{count} caractere)"
         other: "(Mínimo de %{count} caracteres)"

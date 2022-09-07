@@ -1,5 +1,5 @@
 pt-BR:
   nav:
-    logout: "Sair"
-    sign_in: "Entrar"
     sign_up: "Cadastrar"
+    sign_in: "Entrar"
+    sign_out: "Sair"
