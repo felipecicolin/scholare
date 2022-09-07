@@ -1,4 +1,4 @@
-<h2>Change your password</h2>
+<h1 class="mb-3"><%= t("devise.passwords.edit.change_your_password") %></h1>
 
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -6,7 +6,7 @@
   <%= f.input :reset_password_token, as: :hidden %>
   <%= f.full_error :reset_password_token %>
 
-  <div class="form-inputs">
+  <div class="form-inputs mb-3">
     <%= f.input :password,
                 label: "New password",
                 required: false,
@@ -19,7 +19,7 @@
                 input_html: { autocomplete: "new-password" } %>
   </div>
 
-  <div class="form-actions">
+  <div class="form-actions mb-3">
     <%= f.button :submit, "Change my password" %>
   </div>
 <% end %>

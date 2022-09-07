@@ -1,4 +1,4 @@
-<h1><%= t("devise.registrations.edit.title", resource: t("activerecord.models.account")) %></h1>
+<h1 class="mb-3"><%= t("devise.registrations.edit.title", resource: t("activerecord.models.account")) %></h1>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -29,5 +29,3 @@
 <% end %>
 
 <%= link_to t("devise.registrations.edit.cancel_my_account"), registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-sm btn-danger" %>
-
-<%# <%= link_to "Back", :back %>
