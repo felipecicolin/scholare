@@ -5,8 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable,
          :validatable
 
-  validates :email, format: URI::MailTo::EMAIL_REGEXP
-
   private
 
   def self.authenticate(email, password)
