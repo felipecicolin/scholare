@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     attributes:
-      account:
+      user:
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
         confirmed_at: Confirmado em
@@ -26,7 +26,7 @@ pt-BR:
         unlock_token: Token de desbloqueio
         updated_at: Atualizado em
     models:
-      account: Conta
+      user: Usuário
   devise:
     confirmations:
       confirmed: A sua conta foi confirmada com sucesso.
@@ -95,7 +95,7 @@ pt-BR:
         edit_account: "Editar conta"
         are_you_sure: Você tem certeza?
         cancel_my_account: Cancelar minha conta
-        currently_waiting_confirmation_for_email: 'No momento esperando por: %{email}'
+        currently_waiting_confirmation_for_email: 'No momento esperando pela confirmação para que seu email seja alterado para: %{email}'
         leave_blank_if_you_don_t_want_to_change_it: Deixe em branco caso não queira alterar
         title: Editar %{resource}
         unhappy: Não está contente?

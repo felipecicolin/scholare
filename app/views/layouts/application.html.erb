@@ -18,7 +18,7 @@
 
   <body>
     <%= render FlashMessages::Component.new(notice: notice, alert: alert) %>
-    <%= render Nav::Component.new(current_account: current_account) %>
+    <%= render Nav::Component.new(current_user: current_user) %>
     <%= yield %>
   </body>
 </html>

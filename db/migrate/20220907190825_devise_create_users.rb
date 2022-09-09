@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class DeviseCreateAccounts < ActiveRecord::Migration[7.0]
+class DeviseCreateUsers < ActiveRecord::Migration[7.0]
   def change
-    create_table :accounts, id: :uuid do |t|
+    create_table :users, id: :uuid do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -36,9 +36,9 @@ class DeviseCreateAccounts < ActiveRecord::Migration[7.0]
       t.timestamps null: false
     end
 
-    add_index :accounts, :email,                unique: true
-    add_index :accounts, :reset_password_token, unique: true
-    add_index :accounts, :confirmation_token,   unique: true
-    # add_index :accounts, :unlock_token,         unique: true
+    add_index :users, :email,                unique: true
+    add_index :users, :reset_password_token, unique: true
+    add_index :users, :confirmation_token,   unique: true
+    # add_index :users, :unlock_token,         unique: true
   end
 end

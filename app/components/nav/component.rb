@@ -2,8 +2,8 @@
 
 module Nav
   class Component < ViewComponent::Base
-    def initialize(current_account:)
-      @current_account = current_account
+    def initialize(current_user:)
+      @current_user = current_user
     end
   end
 end

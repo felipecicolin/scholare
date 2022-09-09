@@ -8,20 +8,19 @@
 
   <div class="form-inputs mb-3">
     <%= f.input :password,
-                label: "New password",
+                label: t("devise.passwords.edit.new_password"),
                 required: false,
                 autofocus: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
-                label: "Confirm your new password",
+                label: t("devise.passwords.edit.confirm_new_password"),
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
   </div>
 
   <div class="form-actions mb-3">
-    <%= f.button :submit, "Change my password" %>
+    <%= f.button :submit, t("devise.passwords.edit.change_my_password"), class: "btn btn-primary" %>
   </div>
 <% end %>
 
-<%= render "accounts/shared/links" %>
+<%= render "users/shared/links" %>

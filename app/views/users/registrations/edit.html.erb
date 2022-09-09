@@ -1,4 +1,4 @@
-<h1 class="mb-3"><%= t("devise.registrations.edit.title", resource: t("activerecord.models.account")) %></h1>
+<h1 class="mb-3"><%= t("devise.registrations.edit.title", resource: t("activerecord.models.user")) %></h1>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -7,7 +7,7 @@
     <%= f.input :email, required: false, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <p class="my-3"><%= t("devise.registrations.edit.currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></p>
     <% end %>
 
     <%= f.input :password,
