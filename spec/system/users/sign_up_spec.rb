@@ -1,7 +1,7 @@
 RSpec.describe "Sign Up" do
-  it "successfully signs up" do
-    visit new_user_registration_path
+  before { visit new_user_registration_path }
 
+  it "successfully signs up" do
     fill_in "E-mail", with: "example@example.com"
     fill_in "Senha", with: "example_password"
     fill_in "Confirmação da senha", with: "example_password"
@@ -19,8 +19,6 @@ RSpec.describe "Sign Up" do
   end
 
   it "tries to sign up with invalid data" do
-    visit new_user_registration_path
-
     fill_in "E-mail", with: "example"
     fill_in "Senha", with: "example_password"
     fill_in "Confirmação da senha", with: "example_password"
@@ -48,8 +46,6 @@ RSpec.describe "Sign Up" do
 
   it "tries to sign up with an already registered e-mail" do
     create(:user, email: "example@example.com")
-
-    visit new_user_registration_path
 
     fill_in "E-mail", with: "example@example.com"
     fill_in "Senha", with: "example_password"
