@@ -12,4 +12,8 @@ RSpec.describe User do
       it { is_expected.to validate_length_of(:password).is_at_least(8) }
     end
   end
+
+  describe "associations" do
+    it { is_expected.to have_many(:tests).dependent(:destroy) }
+  end
 end
