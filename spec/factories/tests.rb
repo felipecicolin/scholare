@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :test do
-    type { "math" }
+    subject { "math" }
   end
 end
