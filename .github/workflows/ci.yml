@@ -44,7 +44,7 @@ jobs:
           cache: 'npm'
 
       - name: Start vite test server
-        run:  bin/vite dev --mode=test
+        run:  bundle exec vite dev --mode=test
 
       - name: Setup parallel databases
         run: bin/rails parallel:setup
