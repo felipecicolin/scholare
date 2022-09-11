@@ -17,10 +17,10 @@ jobs:
         uses: ruby/setup-ruby@v1
 
       - name: Install required gems for linters
-        run: gem install faraday-retry rubocop-rails rubocop-rspec rubocop-performance reek eslintrb brakeman
+        run: gem install faraday-retry rubocop-rails rubocop-rspec rubocop-performance eslintrb brakeman
 
       - name: Install pronto runners
-        run: gem install pronto pronto-rubocop pronto-reek pronto-eslint pronto-brakeman
+        run: gem install pronto pronto-rubocop pronto-eslint pronto-brakeman
 
       - name: Run Pronto
         run: pronto run -f github_combined_status github_pr -c origin/${{ github.base_ref }}
