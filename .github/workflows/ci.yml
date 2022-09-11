@@ -43,6 +43,9 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
+      - name: Start vite test server
+        run:  bin/vite dev --mode=test
+
       - name: Setup parallel databases
         run: bin/rails parallel:setup
 
