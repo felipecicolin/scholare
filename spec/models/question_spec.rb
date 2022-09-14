@@ -24,5 +24,9 @@ RSpec.describe Question do
     describe "test" do
       it { is_expected.to belong_to(:test) }
     end
+
+    describe "alternatives" do
+      it { is_expected.to have_many(:alternatives).dependent(:destroy) }
+    end
   end
 end

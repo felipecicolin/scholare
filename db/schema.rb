@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_11_142747) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_223127) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "alternatives", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "body", null: false
+    t.boolean "correct", default: false, null: false
+    t.string "option", null: false
+    t.uuid "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_alternatives_on_question_id"
+  end
 
   create_table "questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "body", null: false
@@ -26,7 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_142747) do
   end
 
   create_table "tests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "subject", null: false
     t.integer "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_142747) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "alternatives", "questions"
   add_foreign_key "questions", "tests"
   add_foreign_key "tests", "users"
 end
