@@ -1,9 +1,5 @@
 RSpec.describe Question do
   describe "validations" do
-    describe "title" do
-      it { is_expected.to validate_presence_of(:title) }
-    end
-
     describe "body" do
       it { is_expected.to validate_presence_of(:body) }
     end

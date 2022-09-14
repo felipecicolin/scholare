@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_142747) do
   enable_extension "plpgsql"
 
   create_table "questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "title", null: false
     t.text "body", null: false
     t.float "value", null: false
     t.boolean "essay_question", default: false, null: false
