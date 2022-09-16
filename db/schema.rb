@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_14_223127) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_16_011445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -35,11 +35,31 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_223127) do
     t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
+  create_table "school_classes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_school_classes_on_user_id"
+  end
+
+  create_table "students", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "identifier", null: false
+    t.uuid "school_class_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_students_on_identifier", unique: true
+    t.index ["school_class_id"], name: "index_students_on_school_class_id"
+  end
+
   create_table "tests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "user_id", null: false
+    t.uuid "student_id", null: false
+    t.index ["student_id"], name: "index_tests_on_student_id"
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
@@ -62,5 +82,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_223127) do
 
   add_foreign_key "alternatives", "questions"
   add_foreign_key "questions", "tests"
+  add_foreign_key "school_classes", "users"
+  add_foreign_key "students", "school_classes"
+  add_foreign_key "tests", "students"
   add_foreign_key "tests", "users"
 end

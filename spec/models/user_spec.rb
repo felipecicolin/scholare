@@ -14,6 +14,12 @@ RSpec.describe User do
   end
 
   describe "associations" do
-    it { is_expected.to have_many(:tests).dependent(:destroy) }
+    describe "tests" do
+      it { is_expected.to have_many(:tests).dependent(:destroy) }
+    end
+
+    describe "school_classes" do
+      it { is_expected.to have_many(:school_classes).dependent(:destroy) }
+    end
   end
 end

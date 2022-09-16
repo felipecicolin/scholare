@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :validatable
 
   has_many :tests, dependent: :destroy
+  has_many :school_classes, dependent: :destroy
 end
