@@ -16,6 +16,9 @@ jobs:
       postgres:
         image: postgres:14-alpine
         ports: ["5432:5432"]
+        env:
+          POSTGRES_USER: ${{ env.PGUSER }}
+          POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
 
         options: >-
           --health-cmd pg_isready
@@ -44,10 +47,15 @@ jobs:
         run: npm install
 
       - name: Setup database
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: myapp
+
         run: bin/rails db:setup
 
       - name: Run tests
-        run: bundle exec rspec
+        run: bin/rspec
 
       - name: Upload capybara artifacts
         if: ${{ failure() }}
