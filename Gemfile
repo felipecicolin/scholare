@@ -30,7 +30,6 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "faker"
-  gem "parallel_tests"
   gem "pry-byebug"
   gem "rspec-rails"
   gem "rubocop-performance", require: false
