@@ -42,6 +42,7 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
+        run: npm install
 
       - name: Start test server
         run: bundle exec vite dev --mode=test
