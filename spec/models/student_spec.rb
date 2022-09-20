@@ -6,7 +6,14 @@ RSpec.describe Student do
 
     describe "identifier" do
       it { is_expected.to validate_presence_of(:identifier) }
-      it { is_expected.to validate_uniqueness_of(:identifier) }
+
+      it "validates uniqueness" do
+        student = create(:student)
+        secondary_student = build(:student, identifier: student.identifier)
+        secondary_student.save
+
+        expect(secondary_student.errors[:identifier]).to include("já está em uso")
+      end
     end
   end
 

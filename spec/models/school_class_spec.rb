@@ -1,4 +1,4 @@
-RSpec.describe SchoolClas do
+RSpec.describe SchoolClass do
   describe "validations" do
     describe "name" do
       it { is_expected.to validate_presence_of(:name) }
