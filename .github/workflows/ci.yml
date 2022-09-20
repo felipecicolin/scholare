@@ -48,7 +48,7 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          HOST: localhost
+          PGHOST: localhost
 
         run: bin/rails db:setup
 
