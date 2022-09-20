@@ -2,8 +2,7 @@
   "all": {
     "sourceCodeDir": "app/frontend",
     "watchAdditionalPaths": [
-      "app/frontend/**/*",
-      "app/components/**/*"
+      "app/frontend/**/*"
     ]
   },
   "development": {
