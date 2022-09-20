@@ -7,23 +7,12 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
-    env:
-      PGUSER: postgres_user
-      PGPASSWORD: postgres_password
-
     services:
       postgres:
         image: postgres:14-alpine
         ports: ["5432:5432"]
         env:
-          POSTGRES_USER: ${{ env.PGUSER }}
-          POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
-
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          POSTGRES_PASSWORD: postgres
 
     steps:
       - name: Checkout code
@@ -45,14 +34,14 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      - name: Setup test database
+      - name: Build and test with rspec
         env:
+          PG_DATABASE: postgres
+          PG_HOST: localhost
+          PG_USER: postgres
+          PG_PASSWORD: password
           RAILS_ENV: test
-          PGHOST: localhost
 
-        run: bin/rails db:setup
-
-      - name: Run tests
         run: bundle exec rspec
 
       - name: Upload capybara artifacts
