@@ -8,17 +8,14 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PGUSER: postgres_user
-      PGPASSWORD: postgres_password
-      CI: true
+      POSTGRES_USER: scholare
+      POSTGRES_DB: scholare_test
+      POSTGRES_PASSWORD: ""
 
     services:
       postgres:
         image: postgres:14-alpine
         ports: ["5432:5432"]
-        env:
-          POSTGRES_USER: ${{ env.PGUSER }}
-          POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
 
         options: >-
           --health-cmd pg_isready
@@ -46,11 +43,11 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      - name: Setup database
+      - name: Setup test database
         env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: myapp
+            RAILS_ENV: test
+            PGHOST: localhost
+            PGUSER: myapp
 
         run: bin/rails db:setup
 
