@@ -43,11 +43,11 @@ jobs:
           node-version: '16'
           cache: 'npm'
 
+      - name: Start test server
+        run: bundle exec vite dev --mode=test
+
       - name: Setup parallel databases
         run: bin/rails parallel:setup
-
-      - name: Precompile the assets
-        run: bin/rails assets:precompile
 
       - name: Run parallel specs
         run: bin/rails parallel:spec
