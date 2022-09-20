@@ -43,6 +43,7 @@ jobs:
 
       - name: Build database and run tests
         env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
           PG_DATABASE: postgres
           PG_HOST: localhost
           PG_USER: postgres
