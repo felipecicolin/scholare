@@ -16,9 +16,6 @@ jobs:
       postgres:
         image: postgres:14-alpine
         ports: ["5432:5432"]
-        env:
-          POSTGRES_USER: ${{ env.PGUSER }}
-          POSTGRES_PASSWORD: ${{ env.PGPASSWORD }}
 
         options: >-
           --health-cmd pg_isready
