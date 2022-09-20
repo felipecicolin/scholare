@@ -10,7 +10,7 @@ jobs:
     env:
       POSTGRES_USER: scholare
       POSTGRES_DB: scholare_test
-      POSTGRES_PASSWORD: ""
+      POSTGRES_PASSWORD: "postgres"
 
     services:
       postgres:
@@ -47,7 +47,7 @@ jobs:
         env:
           RAILS_ENV: test
           PGHOST: localhost
-          PGUSER: myapp
+          PGUSER: scholare
 
         run: bin/rails db:setup
 
