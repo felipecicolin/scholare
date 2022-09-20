@@ -53,7 +53,7 @@ jobs:
         run: bin/rails db:setup
 
       - name: Run tests
-        run: bin/rspec
+        run: bundle exec rspec
 
       - name: Upload capybara artifacts
         if: ${{ failure() }}
