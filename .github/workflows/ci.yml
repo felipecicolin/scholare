@@ -4,7 +4,7 @@ on:
 
 jobs:
   rspec:
-    timeout-minutes: 30
+    timeout-minutes: 15
     runs-on: ubuntu-latest
 
     env:
@@ -40,14 +40,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-          cache: 'npm'
+          node-version: "16"
+          cache: "npm"
 
       - name: Install npm dependencies
         run: npm install
-
-      - name: Start test server
-        run: bundle exec vite dev --mode=test
 
       - name: Setup parallel databases
         run: bin/rails parallel:setup
