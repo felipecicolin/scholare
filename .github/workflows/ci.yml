@@ -43,10 +43,13 @@ jobs:
           node-version: "16"
           cache: "npm"
 
+      - name: Install npm dependencies
+        run: npm install
+
       - name: Setup database
         run: bin/rails db:setup
 
-      - name: Run parallel specs
+      - name: Run tests
         run: bundle exec rspec
 
       - name: Upload capybara artifacts
