@@ -2,7 +2,6 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV["PGHOST"] || "localhost" %>
 
 development:
   <<: *default
@@ -11,7 +10,6 @@ development:
 test:
   <<: *default
   database: scholare_test
-  database: <%= ENV['DB_NAME_PREFIX'] || 'scholare_test' %><%= ENV['TEST_ENV_NUMBER'] %>
 
 production:
   <<: *default
