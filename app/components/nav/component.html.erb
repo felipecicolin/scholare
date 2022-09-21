@@ -2,18 +2,18 @@
   <header class="d-flex flex-wrap justify-content-center py-3 mb-3 border-bottom">
     <%= link_to vite_image_tag("images/logo.svg"), root_path, class: "px-2" %>
 
-    <%= link_to root_path, class: "my-2 align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" do %>
-      <span class="fs-3">Scholare</span>
+    <%= link_to root_path, class: "my-2 px-2 align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" do %>
+      <span class="fs-3 ">Scholare</span>
     <% end %>
 
     <% if @current_user %>
-      <%= link_to panel_index_path, class: "my-3 align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" do %>
+      <%= link_to root_path, class: "my-2 px-2 align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" do %>
         <span class="fs-5">
           <%= t("nav.access_panel") %>
         </span>
       <% end %>
     <% end %>
-    
+
     <ul class="nav nav-pills justify-content-center px-4">
 
       <% if @current_user %>
