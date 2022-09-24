@@ -32,5 +32,6 @@ pt-BR:
         unconfirmed_email: E-mail não confirmado
         unlock_token: Token de desbloqueio
         updated_at: Atualizado em
+
       school_class:
         name: Nome da turma
