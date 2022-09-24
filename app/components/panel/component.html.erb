@@ -8,9 +8,7 @@
         <p>
           Nesta seção você pode gerenciar as classes em que ministra aulas, podendo adicionar, editar ou removê-las a qualquer momento.
         </p>
-        <a href="#" class="btn btn-primary">
-          Gerenciar Salas
-        </a>
+        <%= link_to t("panel.manage_school_classes"), user_school_classes_path(@current_user), class: "btn btn-primary" %>
       </div>
 
     </div>
@@ -21,7 +19,7 @@
           Nesta seção você pode gerenciar os alunos pertencentes a cada classe, podendo adicionar, editar ou removê-los do sistema.
         </p>
         <a href="#" class="btn btn-primary">
-          Gerenciar Alunos
+          <%= t("panel.manage_students") %>
         </a>
       </div>
     </div>
@@ -33,11 +31,10 @@
           Nesta seção você pode gerenciar as provas que serão aplicadas em cada classe, podendo adicionar, editar ou removê-las quando necessário.
         </p>
         <a href="#" class="btn btn-primary">
-          Gerenciar Provas
+          <%= t("panel.manage_tests") %>
         </a>
       </div>
     </div>
 
   </div>
 </div>
-

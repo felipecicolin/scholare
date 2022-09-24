@@ -67,3 +67,4 @@ Naming/RescuedExceptionsVariableName:
 Lint/MissingSuper:
   Exclude:
     - 'app/services/**/*'
+    - 'app/components/**/*'

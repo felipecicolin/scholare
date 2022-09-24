@@ -13,18 +13,17 @@
 
       <div class="collapse navbar-collapse" id="navbarsExample05">
 
-        <% if @current_user %>
-          <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
+          <% if @current_user %>
             <li class="nav-item">
-            <span class="fs-5">
-              <%= link_to t("nav.access_panel"), panel_index_path, class: "nav-link active" %>
-            </span>
+              <span class="fs-5">
+                <%= link_to t("nav.access_panel"), panel_index_path, class: "nav-link active" %>
+              </span>
             </li>
-          </ul>
-        <% end %>
+          <% end %>
+        </ul>
 
         <% if @current_user %>
-
           <div class="nav-item dropdown">
             <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" type="button" aria-expanded="false">
               <%= @current_user.email %>
@@ -42,7 +41,7 @@
 
         <% else %>
 
-          <%= link_to t("nav.sign_in"), new_user_session_path, class: "btn" %>
+          <%= link_to t("nav.sign_in"), new_user_session_path, class: "btn mx-1" %>
           <%= link_to t("nav.sign_up"), new_user_registration_path, class: "btn btn-primary" %>
 
         <% end %>

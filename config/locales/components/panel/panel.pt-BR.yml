@@ -1,0 +1,5 @@
+pt-BR:
+  panel:
+    manage_school_classes: "Gerenciar Turmas"
+    manage_students: "Gerenciar Alunos"
+    manage_tests: "Gerenciar Provas"
