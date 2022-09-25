@@ -7,7 +7,7 @@
     <%= render SchoolClasses::Form::Component.new(school_class: @school_class,
                                                   url: user_school_class_path(user_id: @current_user.id, id: @school_class.id),
                                                   method: :patch,
-                                                  submit_text: t("shared.buttons.edit"),
+                                                  submit_button_text: t("shared.buttons.edit"),
                                                   current_user: @current_user) %>
   </div>
 </div>
