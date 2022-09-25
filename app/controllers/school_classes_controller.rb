@@ -4,28 +4,32 @@ class SchoolClassesController < ApplicationController
   before_action :set_school_class, only: %i[edit update destroy]
 
   def index
-    @school_classes = current_user.school_classes.all
+    school_classes = current_user.school_classes.all
+    render SchoolClasses::Index::Component.new(school_classes:, current_user:)
   end
 
   def new
-    @school_class = SchoolClass.new
+    school_class = SchoolClass.new
+    render SchoolClasses::New::Component.new(school_class:, current_user:)
   end
 
-  def edit; end
+  def edit
+    render SchoolClasses::Edit::Component.new(school_class: @school_class, current_user:)
+  end
 
   def create
-    @school_class = SchoolClass.new(school_class_params)
+    school_class = SchoolClass.new(school_class_params)
 
-    if @school_class.save
-      redirect_to user_school_classes_path(current_user), notice: "School class was successfully created."
+    if school_class.save
+      redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.created")
     else
-      render :new, status: :unprocessable_entity
+      render SchoolClasses::New::Component.new(school_class:, current_user:)
     end
   end
 
   def update
     if @school_class.update(school_class_params)
-      redirect_to user_school_classes_path(current_user), notice: "School class was successfully updated."
+      redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.updated")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -33,7 +37,7 @@ class SchoolClassesController < ApplicationController
 
   def destroy
     @school_class.destroy
-    redirect_to school_classes_url, notice: "School class was successfully destroyed."
+    redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.destroyed")
   end
 
   private
@@ -43,6 +47,6 @@ class SchoolClassesController < ApplicationController
   end
 
   def school_class_params
-    params.require(:school_class).permit(:name).with_defaults(user: current_user)
+    params.require(:school_class).permit(:name).with_defaults(user_id: current_user.id)
   end
 end

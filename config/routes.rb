@@ -5,13 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  as :user do
-    root to: "panel#index", as: :authenticated_root
-  end
-
   resources :users do
     resources :school_classes
   end
-
-  resources :panel, only: :index
 end

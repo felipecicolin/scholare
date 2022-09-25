@@ -19,7 +19,6 @@ RSpec.describe "Nav" do
 
       expect(page).to have_link("Editar conta", href: edit_user_registration_path)
       expect(page).to have_button("Sair")
-      expect(page).to have_link("Acessar Painel", href: panel_index_path)
     end
   end
 end

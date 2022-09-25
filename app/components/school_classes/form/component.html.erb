@@ -1,4 +1,4 @@
-<%= simple_form_for @school_class, url: url, method: method do |f| %>
+<%= simple_form_for @school_class, url: @url, method: @method do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -6,7 +6,9 @@
     <%= f.input :name, required: false, autofocus: true %>
   </div>
 
-  <div class="form-actions mb-3">
-    <%= f.button :submit, "cadastrar turma", class: "btn btn-primary" %>
+  <div class="form-actions">
+    <%= f.button :submit, @submit_text, class: "btn btn-primary" %>
+    <%= link_to "Voltar", :back, class: "btn btn-secondary mx-2" %>
   </div>
+
 <% end %>

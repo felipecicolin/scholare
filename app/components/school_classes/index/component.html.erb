@@ -10,15 +10,14 @@
             </td>
 
             <td class="align-middle text-end">
-              <%= link_to "Editar", edit_user_school_class_path(user_id: current_user.id, id: school_class.id), class: "text-decoration-none px-2" %>
-              <%= link_to "Remover", user_school_class_path(user_id: current_user.id, id: school_class.id), method: :delete, data: { confirm: "Tem certeza qe deseja remover essa turma?" }, class: "text-danger text-decoration-none px-2" %>
+              <%= link_to "Editar", edit_user_school_class_path(user_id: @current_user.id, id: school_class.id), class: "text-decoration-none px-2" %>
+              <%= button_to "Remover", user_school_class_path(user_id: @current_user.id, id: school_class.id), method: :delete, data: { confirm: "Tem certeza que deseja remover essa turma?" }, class: "btn text-danger text-decoration-none px-2" %>
             </td>
           </tr>
         <% end %>
 
       </tbody>
     </table>
-    <%= link_to "Incluir turma", new_user_school_class_path(user_id: current_user.id), class: "btn btn-primary" %>
+    <%= link_to "Incluir turma", new_user_school_class_path(user_id: @current_user.id), class: "btn btn-primary" %>
   </div>
 </div>
-
