@@ -1,0 +1,28 @@
+<div class="d-flex aligns-items-center justify-content-center">
+  <div class="col-lg-8 p-3 mt-4">
+    <h1 class="mb-3 text-center"><%= t("activerecord.models.school_class").pluralize %></h1>
+    <table class="table table-hover table-responsive">
+      <tbody>
+        <% @school_classes.each do |school_class| %>
+          <tr class="align-middle">
+            <td>
+              <%= school_class.name %>
+            </td>
+
+            <td class="align-middle text-end">
+              <%= link_to t("shared.buttons.edit"), edit_user_school_class_path(user_id: @current_user.id, id: school_class.id),
+                                                                                class: "text-decoration-none px-2" %>
+
+              <%= button_to t("shared.buttons.destroy"), user_school_class_path(user_id: @current_user.id, id: school_class.id),
+                                                                                method: :delete,
+                                                                                class: "btn text-danger text-decoration-none px-2" %>
+            </td>
+          </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+    <%= link_to t("shared.buttons.add"), new_user_school_class_path(user_id: @current_user.id), class: "btn btn-primary" %>
+    <%= link_to t("shared.buttons.back"), root_path, class: "btn btn-secondary mx-2" %>
+  </div>
+</div>
