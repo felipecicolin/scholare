@@ -31,7 +31,7 @@ class SchoolClassesController < ApplicationController
     if @school_class.update(school_class_params)
       redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.updated")
     else
-      render :edit, status: :unprocessable_entity
+      render SchoolClasses::Edit::Component.new(school_class: @school_class, current_user:)
     end
   end
 
