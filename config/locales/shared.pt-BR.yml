@@ -1,10 +1,16 @@
 pt-BR:
   shared:
     buttons:
-      create: "Criar"
+      create: "Cadastrar"
       update: "Atualizar"
       edit: "Editar"
       destroy: "Remover"
+      add: "Adicionar"
+      back: "Voltar"
+
+    titles:
+      new: "Cadastrar %{model}"
+      edit: "Editar %{model}"
 
     notices:
       male:

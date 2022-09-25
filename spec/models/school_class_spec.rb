@@ -12,10 +12,12 @@ RSpec.describe SchoolClass do
       end
 
       it "allows the same name for different users" do
-        first_class = create(:school_class, name: "First Class", user: create(:user))
-        second_class = build(:school_class, name: "First Class", user: create(:user))
+        create(:school_class, name: "First Class", user: create(:user))
 
-        expect(second_class).to be_valid
+        school_class = build(:school_class, name: "First Class", user: create(:user))
+        school_class.valid?
+
+        expect(school_class.errors[:name]).to be_empty
       end
     end
   end

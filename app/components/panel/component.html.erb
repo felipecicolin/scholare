@@ -1,14 +1,15 @@
 <div class="d-flex aligns-items-center justify-content-center">
   <div class="col-md-10 p-3 mt-2">
     <div class="py-5" id="hanging-icons">
-      <h1 class="mb-3 text-center">Painel</h1>
 
       <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
         <div class="col d-flex align-items-start">
           <div>
-            <h3 class="fs-2">Turmas</h3>
+            <h3 class="fs-2">
+              <%= t("activerecord.models.school_class").pluralize %>
+            </h3>
             <p>
-              Nesta seção você pode gerenciar as classes em que ministra aulas, podendo adicionar, editar ou removê-las.
+              <%= t("panel.descriptions.manage_school_classes") %>
             </p>
             <%= link_to t("panel.manage_school_classes"), user_school_classes_path(@current_user), class: "btn btn-primary" %>
           </div>
@@ -16,25 +17,25 @@
         </div>
         <div class="col d-flex align-items-start">
           <div>
-            <h3 class="fs-2">Alunos</h3>
+            <h3 class="fs-2">
+              <%= t("activerecord.models.student").pluralize %>
+            </h3>
             <p>
-              Nesta seção você pode gerenciar os alunos pertencentes a cada classe, podendo adicionar, editar ou removê-los.
+              <%= t("panel.descriptions.manage_students") %>
             </p>
-            <a href="#" class="btn btn-primary">
-              <%= t("panel.manage_students") %>
-            </a>
+            <%= link_to t("panel.manage_students"), root_path, class: "btn btn-primary" %>
           </div>
         </div>
 
         <div class="col d-flex align-items-start">
           <div>
-            <h3 class="fs-2">Provas</h3>
+            <h3 class="fs-2">
+              <%= t("activerecord.models.test").pluralize %>
+            </h3>
             <p>
-              Nesta seção você pode gerenciar as provas que serão aplicadas em cada classe, podendo adicionar, editar ou removê-las.
+              <%= t("panel.descriptions.manage_tests") %>
             </p>
-            <a href="#" class="btn btn-primary">
-              <%= t("panel.manage_tests") %>
-            </a>
+            <%= link_to t("panel.manage_tests"), root_path, class: "btn btn-primary" %>
           </div>
         </div>
       </div>
