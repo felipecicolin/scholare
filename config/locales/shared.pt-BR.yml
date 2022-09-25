@@ -1,0 +1,17 @@
+pt-BR:
+  shared:
+    buttons:
+      create: "Criar"
+      update: "Atualizar"
+      edit: "Editar"
+      destroy: "Remover"
+
+    notices:
+      male:
+        created: "Criado com sucesso"
+        updated: "Atualizado com sucesso"
+        destroyed: "Removido com sucesso"
+      female:
+        created: "Criada com sucesso"
+        updated: "Atualizada com sucesso"
+        destroyed: "Removida com sucesso"
