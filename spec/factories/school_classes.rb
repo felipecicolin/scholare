@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :school_class do
-    name { "9th grade" }
+    name { Faker::Educator.course_name }
     user
   end
 end

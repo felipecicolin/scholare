@@ -14,10 +14,10 @@ pt-BR:
 
     notices:
       male:
-        created: "Criado com sucesso"
-        updated: "Atualizado com sucesso"
-        destroyed: "Removido com sucesso"
+        created: "%{model} criado com sucesso"
+        updated: "%{model} atualizado com sucesso"
+        destroyed: "%{model} removido com sucesso"
       female:
-        created: "Criada com sucesso"
-        updated: "Atualizada com sucesso"
-        destroyed: "Removida com sucesso"
+        created: "%{model} criada com sucesso"
+        updated: "%{model} atualizada com sucesso"
+        destroyed: "%{model} removida com sucesso"

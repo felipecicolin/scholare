@@ -21,7 +21,8 @@ class SchoolClassesController < ApplicationController
     school_class = SchoolClass.new(school_class_params)
 
     if school_class.save
-      redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.created")
+      redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.created",
+                                                                    model: t("activerecord.models.school_class"))
     else
       render SchoolClasses::New::Component.new(school_class:, current_user:)
     end
@@ -29,7 +30,8 @@ class SchoolClassesController < ApplicationController
 
   def update
     if @school_class.update(school_class_params)
-      redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.updated")
+      redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.updated",
+                                                                    model: t("activerecord.models.school_class"))
     else
       render SchoolClasses::Edit::Component.new(school_class: @school_class, current_user:)
     end
@@ -37,7 +39,8 @@ class SchoolClassesController < ApplicationController
 
   def destroy
     @school_class.destroy
-    redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.destroyed")
+    redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.destroyed",
+                                                                  model: t("activerecord.models.school_class"))
   end
 
   private
