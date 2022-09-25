@@ -46,10 +46,14 @@ RSpec.describe "School Classes CRUD" do
       first_class = create(:school_class, user:, name: "First Class")
       second_class = create(:school_class, user:, name: "Second Class")
 
+      create(:school_class, name: "Other User's Class")
+
       visit user_school_classes_path(user_id: user.id)
 
       expect(page).to have_content("First Class")
       expect(page).to have_content("Second Class")
+
+      expect(page).not_to have_content("Other User's Class")
 
       expect(page).to have_link("Editar", href: edit_user_school_class_path(user_id: user.id,
                                                                             id: first_class.id))
