@@ -5,10 +5,8 @@
     </h1>
 
     <%= render Form::Component.new(resource: @school_class,
-                                   form_attributes: %i[name],
+                                   form_fields: [{ input: :name }],
                                    url: user_school_classes_path(user_id: @current_user.id),
-                                   method: :post,
-                                   submit_button_text: t("shared.buttons.create"),
-                                   back_button_url: user_school_classes_path(user_id: @current_user.id)) %>
+                                   method: :post) %>
   </div>
 </div>

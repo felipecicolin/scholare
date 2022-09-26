@@ -64,7 +64,6 @@ RSpec.describe "School Classes CRUD" do
       expect(page).to have_button("Remover", count: 2)
 
       expect(page).to have_link("Adicionar", href: new_user_school_class_path(user_id: user.id))
-      expect(page).to have_link("Voltar", href: root_path)
     end
   end
 end
