@@ -3,13 +3,17 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs mb-3">
-    <% @form_attributes.each do |attribute| %>
-      <%= f.input attribute, required: false %>
+    <% @form_fields.each do |field| %>
+      <% field.map do |type, attribute| %>
+        <% if type == :input %>
+          <%= f.input attribute, required: false %>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, @submit_button_text, class: "btn btn-primary" %>
-    <%= link_to t("shared.buttons.back"), @back_button_url, class: "btn btn-secondary mx-2" %>
+    <%= f.button :submit, submit_button_text, class: "btn btn-primary" %>
+    <%= link_to t("shared.buttons.back"), "javascript:history.back()", class: "btn btn-secondary mx-2" %>
   </div>
 <% end %>
