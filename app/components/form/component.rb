@@ -2,9 +2,9 @@
 
 module Form
   class Component < ViewComponent::Base
-    def initialize(resource:, form_attributes:, method:, url:, submit_button_text:, back_button_url:) # rubocop:disable Metrics/ParameterLists
+    def initialize(resource:, form_fields:, method:, url:, submit_button_text:, back_button_url:) # rubocop:disable Metrics/ParameterLists
       @resource = resource
-      @form_attributes = form_attributes
+      @form_fields = form_fields
       @url = url
       @method = method
       @submit_button_text = submit_button_text

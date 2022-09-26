@@ -3,8 +3,10 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs mb-3">
-    <% @form_attributes.each do |attribute| %>
-      <%= f.input attribute, required: false %>
+    <% @form_fields.each do |type, attribute| %>
+      <% if type == :input %>
+        <%= f.input attribute, required: false, autofocus: false %>
+      <% end %>
     <% end %>
   </div>
 
