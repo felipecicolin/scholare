@@ -5,11 +5,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users, except: %i[index new edit create show update destroy] do
-    resources :school_classes, except: :show
-  end
-
-  resources :students, except: :show do
-    get :find_school_classes
-  end
+  resources :school_classes
+  resources :students
 end

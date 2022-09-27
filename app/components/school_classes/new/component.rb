@@ -3,9 +3,8 @@
 module SchoolClasses
   module New
     class Component < ViewComponent::Base
-      def initialize(school_class:, current_user:)
+      def initialize(school_class:)
         @school_class = school_class
-        @current_user = current_user
       end
     end
   end
