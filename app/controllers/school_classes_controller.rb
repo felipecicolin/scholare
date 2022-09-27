@@ -28,6 +28,10 @@ class SchoolClassesController < ApplicationController
     end
   end
 
+  def show
+    school_class = current_user.school_classes.find(params[:school_class_id])
+  end
+
   def update
     if @school_class.update(school_class_params)
       redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.updated",
