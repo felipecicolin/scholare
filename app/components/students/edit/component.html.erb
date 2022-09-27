@@ -5,8 +5,8 @@
     </h1>
 
     <%= render Form::Component.new(resource: @student,
-                                   form_attributes: %i[name],
-                                   url: user_student_path(user_id: @current_user.id, id: @student.id)) %>
+                                   form_attributes: [{ input: :name }, { input: :identifier }, { select: :school_class_id }],
+                                   url: student_path(id: @student.id)) %>
   </div>
 </div>
 

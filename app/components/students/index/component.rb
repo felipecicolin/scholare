@@ -3,8 +3,8 @@
 module Students
   module Index
     class Component < ViewComponent::Base
-      def initialize(school_classes:, current_user:)
-        @school_classes = school_classes
+      def initialize(students:, current_user:)
+        @students = students
         @current_user = current_user
       end
     end
