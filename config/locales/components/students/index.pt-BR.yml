@@ -1,0 +1,4 @@
+pt-BR:
+  students:
+    index:
+      select_a_school_class: "Selecione uma turma:"

@@ -11,7 +11,7 @@
         <% end %>
 
         <% if type == :association %>
-          <%= f.association attribute, prompt: true, required: false %>
+          <%= f.association attribute, prompt: true, required: false, input_html: { class: "form-select" } %>
         <% end %>
 
       <% end %>

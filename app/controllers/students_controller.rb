@@ -5,7 +5,8 @@ class StudentsController < ApplicationController
 
   def index
     students = current_user.students
-    render Students::Index::Component.new(students:, current_user:)
+    school_classes = current_user.school_classes
+    render Students::Index::Component.new(students:, school_classes:)
   end
 
   def new
