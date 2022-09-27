@@ -1,28 +1,30 @@
 # frozen_string_literal: true
 
 class SchoolClassesController < ApplicationController
-  before_action :set_school_class, only: %i[edit update destroy]
+  before_action :set_school_class, only: %i[show edit update destroy]
 
   def index
     school_classes = current_user.school_classes.all
-    render SchoolClasses::Index::Component.new(school_classes:, current_user:)
+    render SchoolClasses::Index::Component.new(school_classes:)
   end
 
   def new
     school_class = SchoolClass.new
-    render SchoolClasses::New::Component.new(school_class:, current_user:)
+    render SchoolClasses::New::Component.new(school_class:)
   end
 
   def edit
-    render SchoolClasses::Edit::Component.new(school_class: @school_class, current_user:)
+    render SchoolClasses::Edit::Component.new(school_class: @school_class)
   end
+
+  def show; end
 
   def create
     school_class = SchoolClass.new(school_class_params)
 
     if school_class.save
-      redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.created",
-                                                                    model: t("activerecord.models.school_class"))
+      redirect_to school_classes_path, notice: t("shared.notices.female.created",
+                                                 model: t("activerecord.models.school_class"))
     else
       render SchoolClasses::New::Component.new(school_class:, current_user:)
     end
@@ -30,8 +32,8 @@ class SchoolClassesController < ApplicationController
 
   def update
     if @school_class.update(school_class_params)
-      redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.updated",
-                                                                    model: t("activerecord.models.school_class"))
+      redirect_to school_classes_path, notice: t("shared.notices.female.updated",
+                                                 model: t("activerecord.models.school_class"))
     else
       render SchoolClasses::Edit::Component.new(school_class: @school_class, current_user:)
     end
@@ -39,8 +41,8 @@ class SchoolClassesController < ApplicationController
 
   def destroy
     @school_class.destroy
-    redirect_to user_school_classes_path(current_user), notice: t("shared.notices.female.destroyed",
-                                                                  model: t("activerecord.models.school_class"))
+    redirect_to school_classes_path, notice: t("shared.notices.female.destroyed",
+                                               model: t("activerecord.models.school_class"))
   end
 
   private
