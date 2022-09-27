@@ -2,12 +2,23 @@
   <div class="col-lg-8 p-3 mt-4">
     <h1 class="mb-3 text-center"><%= t("activerecord.models.student").pluralize %></h1>
     <table class="table table-hover table-responsive">
+
+      <thead>
+        <tr>
+          <th scope="col"><%= t("activerecord.attributes.student.name") %></th>
+          <th scope="col"><%= t("activerecord.attributes.student.identifier") %></th>
+          <th/>
+        </tr>
+      </thead>
+
       <tbody>
         <% @students.each do |student| %>
+
           <tr class="align-middle">
             <td>
               <%= student.name %>
             </td>
+
             <td>
               <%= student.identifier %>
             </td>

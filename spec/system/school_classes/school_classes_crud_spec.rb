@@ -8,7 +8,7 @@ RSpec.describe "School Classes CRUD" do
       visit new_user_school_class_path(user_id: user.id)
 
       fill_in "Nome da turma", with: "9th Grade"
-      click_button "Cadastrar"
+      click_button "Cadastrar Turma"
 
       expect(page).to have_content("Turma criada com sucesso")
       expect(SchoolClass.count).to eq(1)
@@ -21,7 +21,7 @@ RSpec.describe "School Classes CRUD" do
       visit edit_user_school_class_path(user_id: user.id, id: school_class.id)
 
       fill_in "Nome da turma", with: "Updated Class"
-      click_button "Editar"
+      click_button "Atualizar Turma"
 
       expect(page).to have_content("Turma atualizada com sucesso")
       expect(SchoolClass.count).to eq(1)

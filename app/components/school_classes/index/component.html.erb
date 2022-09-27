@@ -2,6 +2,14 @@
   <div class="col-lg-8 p-3 mt-4">
     <h1 class="mb-3 text-center"><%= t("activerecord.models.school_class").pluralize %></h1>
     <table class="table table-hover table-responsive">
+
+     <thead>
+        <tr>
+          <th scope="col"><%= t("activerecord.attributes.school_class.name") %></th>
+          <th/>
+        </tr>
+      </thead>
+
       <tbody>
         <% @school_classes.each do |school_class| %>
           <tr class="align-middle">
