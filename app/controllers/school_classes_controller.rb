@@ -17,7 +17,9 @@ class SchoolClassesController < ApplicationController
     render SchoolClasses::Edit::Component.new(school_class: @school_class)
   end
 
-  def show; end
+  def show
+    @school_class
+  end
 
   def create
     school_class = SchoolClass.new(school_class_params)
@@ -28,10 +30,6 @@ class SchoolClassesController < ApplicationController
     else
       render SchoolClasses::New::Component.new(school_class:, current_user:)
     end
-  end
-
-  def show
-    school_class = current_user.school_classes.find(params[:school_class_id])
   end
 
   def update

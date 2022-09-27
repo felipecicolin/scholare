@@ -6,7 +6,6 @@
 
     <%= render Form::Component.new(resource: @school_class,
                                    form_fields: [{ input: :name }],
-                                   url: school_classes_path,
-                                   method: :post) %>
+                                   url: school_classes_path) %>
   </div>
 </div>

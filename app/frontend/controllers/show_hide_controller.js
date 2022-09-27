@@ -7,6 +7,5 @@ export default class extends Controller {
   change(event) {
     let selectedOptionId = event.target.selectedOptions[0].value;
 
-    get(`/students
   }
 }

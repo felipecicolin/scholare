@@ -9,7 +9,7 @@
         <%= select_tag :school_class_id, options_from_collection_for_select(school_classes, :id, :name), class: "form-select mb-3", data: { action: "show-hide#change" } %>
       </div>
 
-      <% if params[:school_class_id].present? %>
+      <% if school_classes.any? %>
         <table class="table table-hover table-responsive hidden" data-target="hidden-content">
 
           <thead>
