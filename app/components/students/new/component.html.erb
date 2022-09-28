@@ -5,7 +5,7 @@
     </h1>
 
     <%= render Form::Component.new(resource: @student,
-                                   form_fields: [ {input: :name} ,{ input: :identifier }, { association: :school_class }],
+                                   form_fields: [ { input: :name } ,{ input: :identifier }, { association: :school_class }],
                                    url: students_path ) %>
   </div>
 </div>
