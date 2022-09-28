@@ -7,6 +7,10 @@ module Students
         @student = student
         @current_user = current_user
       end
+
+      private
+
+      attr_reader :student, :current_user
     end
   end
 end

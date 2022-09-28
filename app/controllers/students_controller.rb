@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
 
   def new
     student = Student.new
-    render Students::New::Component.new(student:, current_user:)
+    render Students::New::Component.new(student:)
   end
 
   def edit

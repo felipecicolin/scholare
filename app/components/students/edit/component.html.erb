@@ -4,9 +4,9 @@
       <%= t("shared.titles.edit", model: t("activerecord.models.student")) %>
     </h1>
 
-    <%= render Form::Component.new(resource: @student,
+    <%= render Form::Component.new(resource: student,
                                    form_fields: [ {input: :name} ,{ input: :identifier }, { association: :school_class }],
-                                   url: student_path(id: @student.id)) %>
+                                   url: student_path(id: student.id)) %>
   </div>
 </div>
 

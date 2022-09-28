@@ -3,10 +3,13 @@
 module Students
   module New
     class Component < ViewComponent::Base
-      def initialize(student:, current_user:)
+      def initialize(student:)
         @student = student
-        @current_user = current_user
       end
+
+      private
+
+      attr_reader :student
     end
   end
 end
