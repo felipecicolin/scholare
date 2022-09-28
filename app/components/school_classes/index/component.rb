@@ -6,6 +6,8 @@ module SchoolClasses
       def initialize(school_classes:)
         @school_classes = school_classes
       end
+
+      attr_reader :school_classes
     end
   end
 end
