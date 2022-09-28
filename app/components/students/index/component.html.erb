@@ -1,0 +1,57 @@
+<div class="d-flex aligns-items-center justify-content-center">
+  <div class="col-lg-8 p-3 mt-4">
+    <h1 class="mb-3 text-center"><%= t("activerecord.models.student").pluralize %></h1>
+
+    <div class="col-md-4 mb-3">
+      <div class="form-inputs">
+        <%= search_form_for search do |f| %>
+          <%= f.collection_select :school_class_id_eq, current_user.school_classes.order(:name), :id, :name, { include_blank: t("students.index.select_a_school_class") }, { class: "form-select", onchange: "this.form.submit()" } %>
+        <% end %>
+      </div>
+    </div>
+
+    <table class="table table-hover table-responsive">
+
+      <thead>
+        <tr>
+          <th scope="col"><%= t("activerecord.attributes.student.name") %></th>
+          <th scope="col"><%= t("activerecord.attributes.student.identifier") %></th>
+          <th scope="col"><%= t("activerecord.attributes.student.school_class") %></th>
+          <th/>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% students.each do |student| %>
+
+          <tr class="align-middle">
+            <td>
+              <%= student.name %>
+            </td>
+
+            <td>
+              <%= student.identifier %>
+            </td>
+
+            <td>
+              <%= student.school_class.name %>
+            </td>
+
+            <td class="align-middle text-end">
+              <%= link_to t("shared.buttons.edit"), edit_student_path(id: student.id),
+                                                                      class: "text-decoration-none px-2" %>
+
+              <%= button_to t("shared.buttons.destroy"), student_path(id: student.id),
+                                                                      method: :delete,
+                                                                      class: "btn text-danger text-decoration-none px-2" %>
+            </td>
+          </tr>
+
+        <% end %>
+      </tbody>
+
+    </table>
+    <%= link_to t("shared.buttons.add"), new_student_path, class: "btn btn-primary" %>
+    <%= link_to t("shared.buttons.back"), root_path, class: "btn btn-secondary mx-2" %>
+  </div>
+</div>

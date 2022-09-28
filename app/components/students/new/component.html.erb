@@ -1,0 +1,11 @@
+<div class="d-flex aligns-items-center justify-content-center">
+  <div class="col-lg-8 p-3 mt-4">
+    <h1 class="text-center">
+      <%= t("shared.titles.new", model: t("activerecord.models.student")) %>
+    </h1>
+
+    <%= render Form::Component.new(resource: student,
+                                   form_fields: [ { input: :name } ,{ input: :identifier }, { association: :school_class }],
+                                   url: students_path ) %>
+  </div>
+</div>

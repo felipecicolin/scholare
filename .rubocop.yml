@@ -32,20 +32,15 @@ RSpec/MessageSpies:
 
 RSpec/MultipleExpectations:
   Exclude:
-    - spec/features/**/*.rb
     - spec/system/**/*.rb
-    - spec/views/**/*.rb
 
 RSpec/ExampleLength:
   CountAsOne: ['array', 'hash', 'heredoc']
   Exclude:
-    - spec/features/**/*.rb
     - spec/system/**/*.rb
 
 RSpec/DescribeClass:
   Exclude:
-    - spec/views/**/*.rb
-    - spec/features/**/*.rb
     - spec/system/**/*.rb
 
 RSpec/ImplicitSubject:

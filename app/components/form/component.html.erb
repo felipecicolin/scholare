@@ -1,19 +1,25 @@
-<%= simple_form_for @resource, url: @url, method: @method do |f| %>
+<%= simple_form_for resource, url: url, method: post_or_patch do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs mb-3">
-    <% @form_fields.each do |field| %>
+    <% form_fields.each do |field| %>
       <% field.map do |type, attribute| %>
+
         <% if type == :input %>
           <%= f.input attribute, required: false %>
         <% end %>
+
+        <% if type == :association %>
+          <%= f.association attribute, prompt: true, required: false, input_html: { class: "form-select" } %>
+        <% end %>
+
       <% end %>
     <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, submit_button_text, class: "btn btn-primary" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
     <%= link_to t("shared.buttons.back"), "javascript:history.back()", class: "btn btn-secondary mx-2" %>
   </div>
 <% end %>

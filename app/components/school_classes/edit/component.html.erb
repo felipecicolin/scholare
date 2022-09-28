@@ -4,9 +4,8 @@
       <%= t("shared.titles.edit", model: t("activerecord.models.school_class")) %>
     </h1>
 
-    <%= render Form::Component.new(resource: @school_class,
+    <%= render Form::Component.new(resource: school_class,
                                    form_fields: [{ input: :name }],
-                                   url: school_class_path(id: @school_class.id),
-                                   method: :patch) %>
+                                   url: school_class_path(id: school_class.id)) %>
   </div>
 </div>

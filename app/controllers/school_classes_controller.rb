@@ -4,7 +4,7 @@ class SchoolClassesController < ApplicationController
   before_action :set_school_class, only: %i[show edit update destroy]
 
   def index
-    school_classes = current_user.school_classes.all
+    school_classes = current_user.school_classes.all.order(:name)
     render SchoolClasses::Index::Component.new(school_classes:)
   end
 
@@ -17,7 +17,9 @@ class SchoolClassesController < ApplicationController
     render SchoolClasses::Edit::Component.new(school_class: @school_class)
   end
 
-  def show; end
+  def show
+    @school_class
+  end
 
   def create
     school_class = SchoolClass.new(school_class_params)

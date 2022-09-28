@@ -35,3 +35,8 @@ pt-BR:
 
       school_class:
         name: Nome da turma
+
+      student:
+        name: Nome do aluno
+        identifier: Identificador do aluno
+        school_class: Turma
