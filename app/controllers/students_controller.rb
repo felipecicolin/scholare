@@ -4,9 +4,9 @@ class StudentsController < ApplicationController
   before_action :set_student, only: %i[show edit update destroy]
 
   def index
-    students_search = current_user.students.ransack(params[:q])
-    students = students_search.result(distinct: true)
-    render Students::Index::Component.new(students:, students_search:, current_user:)
+    search = current_user.students.ransack(params[:q])
+    students = search.result(distinct: true)
+    render Students::Index::Component.new(students:, search:, current_user:)
   end
 
   def new
