@@ -2,3 +2,5 @@ pt-BR:
   students:
     index:
       select_a_school_class: "Selecione uma turma:"
+    alert:
+      no_school_classes: "Você deve ter pelo menos uma turma cadastrada para acessar essa página."
