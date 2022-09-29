@@ -51,7 +51,7 @@ jobs:
           RAILS_ENV: test
 
         run: |
-          bin/rails db:prepare
+          bin/rails db:schema:load
           bundle exec rspec
 
       - name: Upload capybara artifacts
