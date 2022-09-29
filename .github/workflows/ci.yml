@@ -41,11 +41,11 @@ jobs:
       - name: Install npm dependencies
         run: npm install
 
-      - name: Rubocop
+      - name: rubocop
         run: bundle exec rubocop
 
       - name: Build database and run tests
-        needs: [Rubocop]
+        needs: rubocop
         env:
           DATABASE_URL: postgres://postgres:password@localhost:5432/postgres
           PG_DATABASE: postgres
