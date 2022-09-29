@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StudentsController < ApplicationController
-  before_action :set_student, only: %i[show edit update destroy]
+  before_action :set_student, only: %i[edit update destroy]
 
   def index
     search = current_user.students.ransack(params[:q])
@@ -16,10 +16,6 @@ class StudentsController < ApplicationController
 
   def edit
     render Students::Edit::Component.new(student: @student, current_user:)
-  end
-
-  def show
-    @student
   end
 
   def create

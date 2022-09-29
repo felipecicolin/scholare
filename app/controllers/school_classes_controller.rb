@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SchoolClassesController < ApplicationController
-  before_action :set_school_class, only: %i[show edit update destroy]
+  before_action :set_school_class, only: %i[edit update destroy]
 
   def index
     school_classes = current_user.school_classes.all.order(:name)
@@ -17,10 +17,6 @@ class SchoolClassesController < ApplicationController
     render SchoolClasses::Edit::Component.new(school_class: @school_class)
   end
 
-  def show
-    @school_class
-  end
-
   def create
     school_class = SchoolClass.new(school_class_params)
 
@@ -28,7 +24,7 @@ class SchoolClassesController < ApplicationController
       redirect_to school_classes_path, notice: t("shared.notices.female.created",
                                                  model: t("activerecord.models.school_class"))
     else
-      render SchoolClasses::New::Component.new(school_class:, current_user:)
+      render SchoolClasses::New::Component.new(school_class:)
     end
   end
 
@@ -37,7 +33,7 @@ class SchoolClassesController < ApplicationController
       redirect_to school_classes_path, notice: t("shared.notices.female.updated",
                                                  model: t("activerecord.models.school_class"))
     else
-      render SchoolClasses::Edit::Component.new(school_class: @school_class, current_user:)
+      render SchoolClasses::Edit::Component.new(school_class: @school_class)
     end
   end
 
