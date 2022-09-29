@@ -18,6 +18,10 @@ RSpec.describe Student do
   end
 
   describe "associations" do
+    describe "user" do
+      it { is_expected.to belong_to(:user) }
+    end
+
     describe "school_class" do
       it { is_expected.to belong_to(:school_class) }
     end

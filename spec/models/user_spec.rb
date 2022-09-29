@@ -23,7 +23,7 @@ RSpec.describe User do
     end
 
     describe "students" do
-      it { is_expected.to have_many(:students).through(:school_classes).dependent(:destroy) }
+      it { is_expected.to have_many(:students).dependent(:destroy) }
     end
   end
 end

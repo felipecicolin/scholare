@@ -25,7 +25,7 @@ RSpec.describe "School Classes CRUD" do
 
       expect(page).to have_content("Turma atualizada com sucesso")
       expect(SchoolClass.count).to eq(1)
-      expect(SchoolClass.first.name).to eq("Updated Class")
+      expect(school_class.reload.name).to eq("Updated Class")
     end
   end
 
@@ -52,16 +52,12 @@ RSpec.describe "School Classes CRUD" do
 
       expect(page).to have_content("First Class")
       expect(page).to have_content("Second Class")
-
       expect(page).not_to have_content("Other User's Class")
 
       expect(page).to have_link("Editar", href: edit_school_class_path(id: first_class.id))
-
       expect(page).to have_link("Editar", href: edit_school_class_path(id: second_class.id))
-
-      expect(page).to have_button("Remover", count: 2)
-
       expect(page).to have_link("Adicionar", href: new_school_class_path)
+      expect(page).to have_button("Remover", count: 2)
     end
   end
 end

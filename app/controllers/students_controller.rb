@@ -29,7 +29,7 @@ class StudentsController < ApplicationController
       redirect_to students_path, notice: t("shared.notices.male.created",
                                            model: t("activerecord.models.student"))
     else
-      render Students::New::Component.new(student:, current_user:)
+      render Students::New::Component.new(student:)
     end
   end
 
@@ -55,6 +55,6 @@ class StudentsController < ApplicationController
   end
 
   def student_params
-    params.require(:student).permit(:name, :identifier, :school_class_id)
+    params.require(:student).permit(:name, :identifier, :school_class_id).with_defaults(user_id: current_user.id)
   end
 end
