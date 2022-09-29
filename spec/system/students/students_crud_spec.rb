@@ -9,6 +9,12 @@ RSpec.describe "Students CRUD" do
     it "successfully creates a new Student" do
       visit new_student_path
 
+      click_button "Cadastrar Aluno"
+
+      expect(page).to have_content("Nome do aluno não pode ficar em branco")
+      expect(page).to have_content("Identificador do aluno não pode ficar em branco")
+      expect(page).to have_content("Turma é obrigatório(a)")
+
       fill_in "Nome do aluno", with: "John Doe"
       fill_in "Identificador do aluno", with: "12345"
       select "First Class", from: "Turma"
@@ -28,6 +34,14 @@ RSpec.describe "Students CRUD" do
                                  identifier: "12345")
 
       visit edit_student_path(id: student.id)
+
+      fill_in "Nome do aluno", with: ""
+      fill_in "Identificador do aluno", with: ""
+
+      click_button "Atualizar Aluno"
+
+      expect(page).to have_content("Nome do aluno não pode ficar em branco")
+      expect(page).to have_content("Identificador do aluno não pode ficar em branco")
 
       fill_in "Nome do aluno", with: "Updated John Doe"
       fill_in "Identificador do aluno", with: "54321"

@@ -24,8 +24,8 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
   gem "simplecov", require: false
+  gem "webdrivers"
 end
 
 group :development, :test do
