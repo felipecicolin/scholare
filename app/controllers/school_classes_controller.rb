@@ -24,7 +24,7 @@ class SchoolClassesController < ApplicationController
       redirect_to school_classes_path, notice: t("shared.notices.female.created",
                                                  model: t("activerecord.models.school_class"))
     else
-      render SchoolClasses::New::Component.new(school_class:, current_user:)
+      render SchoolClasses::New::Component.new(school_class:)
     end
   end
 

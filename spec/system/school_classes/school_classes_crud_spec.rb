@@ -7,6 +7,9 @@ RSpec.describe "School Classes CRUD" do
     it "successfully creates a new School Class" do
       visit new_school_class_path
 
+      click_button "Cadastrar Turma"
+      expect(page).to have_content("Nome da turma não pode ficar em branco")
+
       fill_in "Nome da turma", with: "9th Grade"
       click_button "Cadastrar Turma"
 
