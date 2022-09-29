@@ -10,6 +10,7 @@ AllCops:
     - db/**/*
     - tmp/**/*
     - node_modules/**/*
+    - vendor/**/*
   DisplayCopNames: true
   DisplayStyleGuide: true
   CacheRootDirectory: tmp
