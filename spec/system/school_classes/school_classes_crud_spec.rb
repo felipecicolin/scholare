@@ -23,6 +23,11 @@ RSpec.describe "School Classes CRUD" do
       school_class = create(:school_class, user:, name: "Example Class")
       visit edit_school_class_path(id: school_class.id)
 
+      fill_in "Nome da turma", with: ""
+      click_button "Atualizar Turma"
+
+      expect(page).to have_content("Nome da turma não pode ficar em branco")
+
       fill_in "Nome da turma", with: "Updated Class"
       click_button "Atualizar Turma"
 

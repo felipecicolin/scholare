@@ -33,7 +33,7 @@ class SchoolClassesController < ApplicationController
       redirect_to school_classes_path, notice: t("shared.notices.female.updated",
                                                  model: t("activerecord.models.school_class"))
     else
-      render SchoolClasses::Edit::Component.new(school_class: @school_class, current_user:)
+      render SchoolClasses::Edit::Component.new(school_class: @school_class)
     end
   end
 
