@@ -1,4 +1,4 @@
-<%= render CenterContent::Component.new(width: 8) do %>
+<%= render CenterContent::Component.new(width: 5) do %>
   <h1 class="mb-3 text-center"><%= t("devise.confirmations.new.resend_confirmation_instructions") %></h1>
 
   <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
