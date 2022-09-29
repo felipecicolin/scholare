@@ -1,7 +1,7 @@
 RSpec.describe "Students CRUD" do
   let(:user) { create(:user, school_classes: [first_class, second_class]) }
-  let(:first_class) { create(:school_class, name: "Class 1") }
-  let(:second_class) { create(:school_class, name: "Class 2") }
+  let(:first_class) { create(:school_class, name: "First Class") }
+  let(:second_class) { create(:school_class, name: "Second Class") }
 
   before { sign_in user }
 
@@ -11,7 +11,7 @@ RSpec.describe "Students CRUD" do
 
       fill_in "Nome do aluno", with: "John Doe"
       fill_in "Identificador do aluno", with: "12345"
-      select "Class 1", from: "Turma"
+      select "First Class", from: "Turma"
 
       click_on "Cadastrar Aluno"
 
@@ -23,7 +23,7 @@ RSpec.describe "Students CRUD" do
   describe "Student edition" do
     it "successfully updates a Student" do
       student = create(:student, school_class: first_class,
-                                 user: user,
+                                 user:,
                                  name: "John Doe",
                                  identifier: "12345")
 
@@ -31,7 +31,7 @@ RSpec.describe "Students CRUD" do
 
       fill_in "Nome do aluno", with: "Updated John Doe"
       fill_in "Identificador do aluno", with: "54321"
-      select "Class 2", from: "Turma"
+      select "Second Class", from: "Turma"
 
       click_button "Atualizar Aluno"
 
@@ -58,25 +58,49 @@ RSpec.describe "Students CRUD" do
 
   describe "Students List" do
     it "successfully lists all current user's Students" do
-      first_student = create(:student, user:, name: "First Student")
-      second_student = create(:student, user:, name: "Second Student")
+      first_student = create(:student, user:, name: "First Student", school_class: first_class)
+      second_student = create(:student, user:, name: "Second Student", school_class: second_class)
 
-      create(:student, name: "Other User's Student")
+      create(:student, name: "Other User's Student", school_class: create(:school_class, name: "Other Class"))
 
       visit students_path
 
       expect(page).to have_content("First Student")
+      expect(page).to have_content("First Class")
       expect(page).to have_content("Second Student")
+      expect(page).to have_content("Second Class")
 
-      expect(page).not_to have_content("Other User's Class")
+      expect(page).not_to have_content("Other User's Student")
+      expect(page).not_to have_content("Other Class")
 
       expect(page).to have_link("Editar", href: edit_student_path(id: first_student.id))
-
       expect(page).to have_link("Editar", href: edit_student_path(id: second_student.id))
-
-      expect(page).to have_button("Remover", count: 2)
-
       expect(page).to have_link("Adicionar", href: new_student_path)
+      expect(page).to have_button("Remover", count: 2)
+    end
+  end
+
+  describe "Students filtering" do
+    it "successfully filters Students by School Class" do
+      create(:student, user:, name: "First Student", school_class: first_class)
+      create(:student, user:, name: "Second Student", school_class: second_class)
+
+      visit students_path
+
+      select "First Class", from: "q_school_class_id_eq"
+
+      expect(page).to have_selector("tr", text: "First Student")
+      expect(page).not_to have_selector("tr", text: "Second Student")
+
+      select "Second Class", from: "q_school_class_id_eq"
+
+      expect(page).not_to have_selector("tr", text: "First Student")
+      expect(page).to have_selector("tr", text: "Second Student")
+
+      select "Selecione uma turma:", from: "q_school_class_id_eq"
+
+      expect(page).to have_selector("tr", text: "First Student")
+      expect(page).to have_selector("tr", text: "Second Student")
     end
   end
 end
