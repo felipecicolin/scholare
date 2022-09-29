@@ -1,12 +1,9 @@
-<div class="d-flex aligns-items-center justify-content-center">
-  <div class="col-lg-8 p-3 mt-4">
-    <h1 class="text-center">
-      <%= t("shared.titles.edit", model: t("activerecord.models.student")) %>
-    </h1>
+<%= render CenterContent::Component.new(width: 8) do %>
+  <h1 class="text-center">
+    <%= t("shared.titles.edit", model: t("activerecord.models.student")) %>
+  </h1>
 
-    <%= render Form::Component.new(resource: student,
-                                   form_fields: [ { input: :name } ,{ input: :identifier }, { association: :school_class }],
-                                   url: student_path(id: student.id)) %>
-  </div>
-</div>
-
+  <%= render Form::Component.new(resource: student,
+                                  form_fields: [ { input: :name } ,{ input: :identifier }, { association: :school_class }],
+                                  url: student_path(id: student.id)) %>
+<% end %>
