@@ -1,44 +1,38 @@
-RSpec.describe "Password Resetting" do
+RSpec.describe "User Editing" do
   let(:user) { create(:user) }
 
-  it "requests a password resetting e-mail" do
-    visit new_user_password_path
-
-    click_button "Enviar instruções para redefinição da senha"
-
-    expect(page).to have_content("Por favor, verifique os problemas abaixo:")
-    expect(page).to have_content("E-mail não pode ficar em branco")
-
-    fill_in "E-mail", with: user.email
-    click_button "Enviar instruções para redefinição da senha"
-
-    expect(page).to have_content("Dentro de minutos, você receberá um e-mail com as " \
-                                 "instruções de redefinição da sua senha.")
+  before do
+    sign_in user
+    visit edit_user_registration_path
   end
 
-  it "resets the password" do
-    raw_token, encrypted_token = Devise.token_generator.generate(
-      User,
-      :reset_password_token
-    )
+  it "successfully edits the user's password" do
+    fill_in "Senha", with: "new_password"
+    fill_in "Confirmação da senha", with: "new_password"
+    fill_in "Senha atual", with: user.password
 
-    user.update(reset_password_token: encrypted_token, reset_password_sent_at: Time.current)
+    click_button "Atualizar"
 
-    visit edit_user_password_path(reset_password_token: raw_token)
+    expect(page).to have_content("A sua conta foi atualizada com sucesso.")
+  end
 
-    fill_in "Nova senha", with: "new_password"
-    fill_in "Confirme sua nova senha", with: "password"
+  it "successfully updates the user's e-mail" do
+    fill_in "E-mail", with: "email@example.com"
+    fill_in "Senha atual", with: user.password
 
-    click_button "Alterar minha senha"
+    click_button "Atualizar"
 
-    expect(page).to have_content("Por favor, verifique os problemas abaixo:")
-    expect(page).to have_content("Confirmação da senha não é igual a Senha")
+    expect(page).to have_content("Sua conta foi atualizada com sucesso, mas nós precisamos " \
+                                 "verificar o novo endereço de email. Por favor, verifique seu e-mail " \
+                                 "e clique no link de confirmação para finalizar confirmando o seu novo e-mail.")
+  end
 
-    fill_in "Nova senha", with: "new_password"
-    fill_in "Confirme sua nova senha", with: "new_password"
+  it "tries to edit user without confirming the current password" do
+    fill_in "Senha", with: "new_password"
+    fill_in "Confirmação da senha", with: "new_password"
 
-    click_button "Alterar minha senha"
+    click_button "Atualizar"
 
-    expect(page).to have_content("A sua senha foi alterada com sucesso. Você está autenticado.")
+    expect(page).to have_content("Senha atual não pode ficar em branco")
   end
 end
