@@ -50,6 +50,7 @@ jobs:
           PG_PASSWORD: password
           RAILS_ENV: test
           COVERAGE: 1
+          CI: 1
 
         run: |
           bin/rails db:schema:load
