@@ -29,8 +29,8 @@ group :test do
 end
 
 group :development, :test do
-  gem "factory_bot_rails"
   gem "dotenv-rails"
+  gem "factory_bot_rails"
   gem "faker"
   gem "pry-byebug"
   gem "rspec-rails"
