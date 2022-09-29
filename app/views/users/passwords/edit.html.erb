@@ -1,31 +1,28 @@
-<div class="d-flex aligns-items-center justify-content-center">
-  <div class="col-lg-8 p-3 mt-4">
+<%= render CenterContent::Component.new(width: 8) do %>
+  <h1 class="mb-3 text-center"><%= t("devise.passwords.edit.change_your_password") %></h1>
 
-    <h1 class="mb-3 text-center"><%= t("devise.passwords.edit.change_your_password") %></h1>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
+    <%= f.input :reset_password_token, as: :hidden %>
+    <%= f.full_error :reset_password_token %>
 
-      <%= f.input :reset_password_token, as: :hidden %>
-      <%= f.full_error :reset_password_token %>
+    <div class="form-inputs mb-3">
+      <%= f.input :password,
+                  label: t("devise.passwords.edit.new_password"),
+                  required: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  label: t("devise.passwords.edit.confirm_new_password"),
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+    </div>
 
-      <div class="form-inputs mb-3">
-        <%= f.input :password,
-                    label: t("devise.passwords.edit.new_password"),
-                    required: false,
-                    autofocus: true,
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    label: t("devise.passwords.edit.confirm_new_password"),
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-      </div>
+    <div class="form-actions mb-3">
+      <%= f.button :submit, t("devise.passwords.edit.change_my_password"), class: "btn btn-primary" %>
+    </div>
+  <% end %>
 
-      <div class="form-actions mb-3">
-        <%= f.button :submit, t("devise.passwords.edit.change_my_password"), class: "btn btn-primary" %>
-      </div>
-    <% end %>
-
-    <%= render "users/shared/links" %>
-  </div>
-</div>
+  <%= render "users/shared/links" %>
+<% end %>

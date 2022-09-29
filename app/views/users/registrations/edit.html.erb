@@ -1,36 +1,33 @@
-<div class="d-flex aligns-items-center justify-content-center">
-  <div class="col-lg-8 p-3 mt-4">
+<%= render CenterContent::Component.new(width: 8) do %>
+  <h1 class="mb-3 text-center"><%= t("devise.registrations.edit.title", resource: t("activerecord.models.user")) %></h1>
 
-    <h1 class="mb-3 text-center"><%= t("devise.registrations.edit.title", resource: t("activerecord.models.user")) %></h1>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
+    <div class="form-inputs mb-3">
+      <%= f.input :email, required: false, autofocus: true %>
 
-      <div class="form-inputs mb-3">
-        <%= f.input :email, required: false, autofocus: true %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p class="my-3"><%= t("devise.registrations.edit.currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></p>
+      <% end %>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p class="my-3"><%= t("devise.registrations.edit.currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></p>
-        <% end %>
+      <%= f.input :password,
+                  placeholder: t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it"),
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :current_password,
+                  placeholder: t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes"),
+                  required: false,
+                  input_html: { autocomplete: "current-password" } %>
+    </div>
 
-        <%= f.input :password,
-                    placeholder: t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it"),
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :current_password,
-                    placeholder: t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes"),
-                    required: false,
-                    input_html: { autocomplete: "current-password" } %>
-      </div>
+    <div class="form-actions mb-3">
+      <%= f.button :submit, t("devise.registrations.edit.update"), class: "btn btn-primary" %>
+    </div>
+  <% end %>
 
-      <div class="form-actions mb-3">
-        <%= f.button :submit, t("devise.registrations.edit.update"), class: "btn btn-primary" %>
-      </div>
-    <% end %>
-
-    <%= link_to t("devise.registrations.edit.cancel_my_account"), registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-sm btn-danger" %>
-  </div>
-</div>
+  <%= button_to t("devise.registrations.edit.cancel_my_account"), registration_path(resource_name), method: :delete, class: "btn btn-sm btn-danger" %>
+<% end %>

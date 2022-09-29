@@ -1,28 +1,26 @@
-<div class="d-flex aligns-items-center justify-content-center">
-  <div class="col-lg-8 p-3 mt-4">
-    <h1 class="mb-3 text-center"><%= t("devise.registrations.new.sign_up") %></h1>
+<%= render CenterContent::Component.new(width: 8) do %>
+  <h1 class="mb-3 text-center"><%= t("devise.registrations.new.sign_up") %></h1>
 
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
 
-      <div class="form-inputs mb-3">
-        <%= f.input :email,
-                    required: false,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" } %>
-        <%= f.input :password,
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-      </div>
+    <div class="form-inputs mb-3">
+      <%= f.input :email,
+                  required: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %>
+      <%= f.input :password,
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  required: false,
+                  input_html: { autocomplete: "new-password" } %>
+    </div>
 
-      <div class="form-actions mb-3">
-        <%= f.button :submit, t("devise.registrations.new.sign_up"), class: "btn btn-primary" %>
-      </div>
-    <% end %>
+    <div class="form-actions mb-3">
+      <%= f.button :submit, t("devise.registrations.new.sign_up"), class: "btn btn-primary" %>
+    </div>
+  <% end %>
 
-    <%= render "users/shared/links" %>
-  </div>
-</div>
+  <%= render "users/shared/links" %>
+<% end %>
