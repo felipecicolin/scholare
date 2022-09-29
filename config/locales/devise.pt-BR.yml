@@ -62,7 +62,7 @@ pt-BR:
       updated: A sua senha foi alterada com sucesso. Você está autenticado.
       updated_not_active: Sua senha foi alterada com sucesso.
     registrations:
-      destroyed: Adeus! A sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.
+      destroyed: A sua conta foi cancelada com sucesso.
       edit:
         edit_account: "Editar conta"
         are_you_sure: Você tem certeza?
