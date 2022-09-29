@@ -2,11 +2,11 @@ require "capybara/rails"
 require "selenium-webdriver"
 require "webdrivers/chromedriver"
 
-Webdrivers.install_dir = File.expand_path("~/.webdrivers/#{ENV.fetch('TEST_ENV_NUMBER', nil)}")
+Webdrivers.install_dir = File.expand_path("~/.webdrivers/")
 
 Capybara.default_max_wait_time = 10
 Capybara.server = :puma, { Silent: true }
-Capybara.server_port = 9887 + ENV["TEST_ENV_NUMBER"].to_i
+Capybara.server_port = 9887
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
@@ -15,6 +15,7 @@ RSpec.configure do |config|
 
   config.before(:each, type: :system, js: true) do
     driven_by :selenium_chrome_headless
+    Capybara.page.driver.browser.manage.window.resize_to(1366, 768)
   end
 
   config.after(type: :system) do |example|

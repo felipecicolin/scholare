@@ -25,7 +25,7 @@ RSpec.describe "School Classes CRUD" do
 
       expect(page).to have_content("Turma atualizada com sucesso")
       expect(SchoolClass.count).to eq(1)
-      expect(SchoolClass.first.name).to eq("Updated Class")
+      expect(school_class.reload.name).to eq("Updated Class")
     end
   end
 

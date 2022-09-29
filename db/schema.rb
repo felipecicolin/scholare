@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_25_143447) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_28_235318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -50,8 +50,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_143447) do
     t.uuid "school_class_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "user_id", null: false
     t.index ["identifier"], name: "index_students_on_identifier", unique: true
     t.index ["school_class_id"], name: "index_students_on_school_class_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
   end
 
   create_table "tests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -85,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_143447) do
   add_foreign_key "questions", "tests"
   add_foreign_key "school_classes", "users"
   add_foreign_key "students", "school_classes"
+  add_foreign_key "students", "users"
   add_foreign_key "tests", "students"
   add_foreign_key "tests", "users"
 end
