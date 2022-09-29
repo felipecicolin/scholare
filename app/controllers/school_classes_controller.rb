@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SchoolClassesController < ApplicationController
-  before_action :set_school_class, only: %i[show edit update destroy]
+  before_action :set_school_class, only: %i[edit update destroy]
 
   def index
     school_classes = current_user.school_classes.all.order(:name)
@@ -15,10 +15,6 @@ class SchoolClassesController < ApplicationController
 
   def edit
     render SchoolClasses::Edit::Component.new(school_class: @school_class)
-  end
-
-  def show
-    @school_class
   end
 
   def create

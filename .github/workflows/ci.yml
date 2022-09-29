@@ -49,10 +49,18 @@ jobs:
           PG_USER: postgres
           PG_PASSWORD: password
           RAILS_ENV: test
+          COVERAGE: 1
 
         run: |
           bin/rails db:schema:load
           bundle exec rspec
+
+      - name: Upload simplecov results
+          if: ${{ failure() }}
+          uses: actions/upload-artifact@v3
+          with:
+            name: coverage
+            path: coverage/
 
       - name: Upload capybara artifacts
         if: ${{ failure() }}
