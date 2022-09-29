@@ -56,11 +56,11 @@ jobs:
           bundle exec rspec
 
       - name: Upload simplecov results
-          if: ${{ failure() }}
-          uses: actions/upload-artifact@v3
-          with:
-            name: coverage
-            path: coverage/
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage/
 
       - name: Upload capybara artifacts
         if: ${{ failure() }}
