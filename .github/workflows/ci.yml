@@ -77,8 +77,7 @@ jobs:
     name: "Dependabot"
     needs: [CI]
     runs-on: ubuntu-latest
-    if: ${{ github.actor == "dependabot[bot]" && github.event_name == "pull_request"}}
-    steps:
+    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --merge "$PR_URL"
         env:
