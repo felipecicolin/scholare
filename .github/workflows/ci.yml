@@ -3,7 +3,7 @@ on:
   push:
 
 jobs:
-  CI:
+  ci:
     timeout-minutes: 15
     runs-on: ubuntu-latest
 
@@ -75,11 +75,11 @@ jobs:
 
   dependabot:
     name: "Dependabot"
-    needs: [CI]
+    needs: ci
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
-    - name: Enable auto-merge for Dependabot PRs
-      run: gh pr merge --auto --merge "$PR_URL"
-      env:
-        PR_URL: ${{github.event.pull_request.html_url}}
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
+      - name: Enable auto-merge for Dependabot PRs
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
