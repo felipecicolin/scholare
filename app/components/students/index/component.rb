@@ -3,14 +3,12 @@
 module Students
   module Index
     class Component < ViewComponent::Base
-      require "pagy/extras/bootstrap"
-
       include Ransack::Helpers::FormHelper
       include Pagy::Frontend
 
-      def initialize(search_query:, current_user:, pagy:, students:)
+      def initialize(search_query:, school_classes:, pagy:, students:)
         @search_query = search_query
-        @school_classes = current_user.school_classes.order(:name)
+        @school_classes = school_classes.order(:name)
         @pagy = pagy
         @students = students.order(:name)
       end

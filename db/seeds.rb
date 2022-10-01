@@ -1,5 +1,5 @@
 user = User.create(
-  email: "felipe@scholare.com",
+  email: "dev@scholare.com",
   password: "scholare123",
   password_confirmation: "scholare123",
   confirmed_at: Time.current

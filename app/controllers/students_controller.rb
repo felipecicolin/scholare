@@ -7,8 +7,9 @@ class StudentsController < ApplicationController
   def index
     search_query = current_user.students.ransack(params[:q])
     search_result = search_query.result(distinct: true)
-    pagy, students = pagy(search_result, items: 5)
-    render Students::Index::Component.new(search_query:, current_user:, pagy:, students:)
+    school_classes = current_user.school_classes
+    pagy, students = pagy(search_result)
+    render Students::Index::Component.new(search_query:, school_classes:, pagy:, students:)
   end
 
   def new
