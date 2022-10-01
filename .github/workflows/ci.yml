@@ -73,15 +73,11 @@ jobs:
           name: capybara
           path: tmp/capybara
 
-name: automerge
-on: pull_request
-
-jobs:
   dependabot:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     needs: ci
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
 
     steps:
       - name: Dependabot auto-merge
