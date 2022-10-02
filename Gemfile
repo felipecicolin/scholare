@@ -18,6 +18,7 @@ gem "view_component"
 gem "vite_rails"
 
 group :development do
+  gem "bullet"
   gem "better_errors"
   gem "letter_opener"
 end
