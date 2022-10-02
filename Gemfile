@@ -19,6 +19,7 @@ gem "vite_rails"
 
 group :development do
   gem "better_errors"
+  gem "bullet"
   gem "letter_opener"
 end
 
