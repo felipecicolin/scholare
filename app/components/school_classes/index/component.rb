@@ -3,11 +3,14 @@
 module SchoolClasses
   module Index
     class Component < ViewComponent::Base
-      def initialize(school_classes:)
+      include Pagy::Frontend
+
+      def initialize(school_classes:, pagy:)
         @school_classes = school_classes
+        @pagy = pagy
       end
 
-      attr_reader :school_classes
+      attr_reader :school_classes, :pagy
     end
   end
 end

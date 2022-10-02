@@ -68,4 +68,18 @@ RSpec.describe "School Classes CRUD" do
       expect(page).to have_button("Remover", count: 2)
     end
   end
+
+  describe "Students pagination" do
+    it "successfully paginates Students" do
+      create_list(:school_class, 7, user:)
+
+      visit school_classes_path
+
+      expect(page).to have_selector("tr", count: 6)
+
+      click_on "Próximo"
+
+      expect(page).to have_selector("tr", count: 3)
+    end
+  end
 end

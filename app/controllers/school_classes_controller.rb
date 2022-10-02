@@ -4,8 +4,8 @@ class SchoolClassesController < ApplicationController
   before_action :set_school_class, only: %i[edit update destroy]
 
   def index
-    school_classes = current_user.school_classes.all.order(:name)
-    render SchoolClasses::Index::Component.new(school_classes:)
+    pagy, school_classes = pagy(current_user.school_classes)
+    render SchoolClasses::Index::Component.new(school_classes:, pagy:)
   end
 
   def new

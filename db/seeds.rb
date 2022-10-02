@@ -5,7 +5,7 @@ user = User.create(
   confirmed_at: Time.current
 )
 
-5.times do
+7.times do
   SchoolClass.create(
     name: Faker::Educator.course,
     user: user
