@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def index
     if user_signed_in?
-      render Panel::Component.new(current_user:)
+      render Panel::Component.new
     else
       render Heroe::Component.new
     end

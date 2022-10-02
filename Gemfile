@@ -7,6 +7,7 @@ ruby File.read(".ruby-version").strip
 
 gem "devise"
 gem "goldiloader"
+gem "pagy"
 gem "pg"
 gem "puma"
 gem "rails"

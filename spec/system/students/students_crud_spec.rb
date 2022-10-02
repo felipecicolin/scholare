@@ -117,4 +117,18 @@ RSpec.describe "Students CRUD" do
       expect(page).to have_selector("tr", text: "Second Student")
     end
   end
+
+  describe "Students pagination" do
+    it "successfully paginates Students" do
+      create_list(:student, 7, user:, school_class: first_class)
+
+      visit students_path
+
+      expect(page).to have_selector("tr", count: 6)
+
+      click_on "Próximo"
+
+      expect(page).to have_selector("tr", count: 3)
+    end
+  end
 end

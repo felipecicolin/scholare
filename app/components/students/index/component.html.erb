@@ -3,8 +3,8 @@
 
   <div class="col-md-4 mb-3">
     <div class="form-inputs">
-      <%= search_form_for search do |f| %>
-        <%= f.collection_select :school_class_id_eq, current_user.school_classes.order(:name), :id, :name, { include_blank: t("students.index.select_a_school_class") }, { class: "form-select", onchange: "this.form.submit()" } %>
+      <%= search_form_for search_query do |f| %>
+        <%= f.collection_select :school_class_id_eq, school_classes, :id, :name, { include_blank: t("students.index.select_a_school_class") }, { class: "form-select", onchange: "this.form.submit()" } %>
       <% end %>
     </div>
   </div>
@@ -45,11 +45,14 @@
                                                                     class: "btn text-danger text-decoration-none px-2" %>
           </td>
         </tr>
-
       <% end %>
     </tbody>
-
   </table>
+
+  <div class="d-flex justify-content-center py-2">
+    <%== pagy_bootstrap_nav(pagy) %>
+  </div>
+
   <%= link_to t("shared.buttons.add"), new_student_path, class: "btn btn-primary" %>
   <%= link_to t("shared.buttons.back"), root_path, class: "btn btn-secondary mx-2" %>
 <% end %>
