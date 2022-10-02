@@ -6,5 +6,7 @@ module FlashMessages
       @notice = notice
       @alert = alert
     end
+
+    attr_reader :notice, :alert
   end
 end
