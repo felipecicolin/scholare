@@ -5,12 +5,12 @@ module Students
     class Component < ViewComponent::Base
       def initialize(student:, current_user:)
         @student = student
-        @current_user = current_user
+        @school_classes = current_user.school_classes.order(:name)
       end
 
       private
 
-      attr_reader :student, :current_user
+      attr_reader :student, :school_classes
     end
   end
 end

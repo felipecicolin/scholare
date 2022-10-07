@@ -6,9 +6,9 @@ module Students
       include Ransack::Helpers::FormHelper
       include Pagy::Frontend
 
-      def initialize(search_query:, school_classes:, pagy:, students:)
+      def initialize(search_query:, pagy:, students:, current_user:)
         @search_query = search_query
-        @school_classes = school_classes.order(:name)
+        @school_classes = current_user.school_classes.order(:name)
         @pagy = pagy
         @students = students.order(:name)
       end
