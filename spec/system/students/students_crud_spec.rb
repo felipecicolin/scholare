@@ -94,7 +94,7 @@ RSpec.describe "Students CRUD" do
     end
   end
 
-  describe "Students filtering", js: true do
+  describe "Students filtering" do
     it "successfully filters Students by School Class" do
       create(:student, user:, name: "First Student", school_class: first_class)
       create(:student, user:, name: "Second Student", school_class: second_class)

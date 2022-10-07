@@ -48,6 +48,8 @@ RSpec.describe "Sign in and out" do
 
     visit root_path
 
+    find_button(user.email).click
+
     click_button "Sair"
 
     expect(page).to have_content("Saiu com sucesso.")
