@@ -7,14 +7,13 @@ class StudentsController < ApplicationController
   def index
     search_query = current_user.students.ransack(params[:q])
     search_result = search_query.result(distinct: true)
-    school_classes = current_user.school_classes
     pagy, students = pagy(search_result)
-    render Students::Index::Component.new(search_query:, school_classes:, pagy:, students:)
+    render Students::Index::Component.new(search_query:, pagy:, students:, current_user:)
   end
 
   def new
     student = Student.new
-    render Students::New::Component.new(student:)
+    render Students::New::Component.new(student:, current_user:)
   end
 
   def edit
@@ -28,7 +27,7 @@ class StudentsController < ApplicationController
       redirect_to students_path, notice: t("shared.notices.male.created",
                                            model: t("activerecord.models.student"))
     else
-      render Students::New::Component.new(student:)
+      render Students::New::Component.new(student:, current_user:)
     end
   end
 

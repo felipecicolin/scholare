@@ -3,7 +3,5 @@
     <%= t("shared.titles.new", model: t("activerecord.models.student")) %>
   </h1>
 
-  <%= render Form::Component.new(resource: student,
-                                  form_fields: [ { input: :name } ,{ input: :identifier }, { association: :school_class }],
-                                  url: students_path ) %>
+  <%= render Students::Form::Component.new(resource: student, school_classes:) %>
 <% end %>
