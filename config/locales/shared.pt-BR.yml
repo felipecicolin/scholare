@@ -21,3 +21,6 @@ pt-BR:
         created: "%{model} criada com sucesso"
         updated: "%{model} atualizada com sucesso"
         destroyed: "%{model} removida com sucesso"
+
+    messages:
+      no_records: "Não há nenhum registro"
