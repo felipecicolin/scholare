@@ -111,7 +111,7 @@ RSpec.describe "Students CRUD" do
       expect(page).not_to have_selector("tr", text: "First Student")
       expect(page).to have_selector("tr", text: "Second Student")
 
-      select "Filtrar por turma:", from: "q_school_class_id_eq"
+      select "Encontre os seus alunos por turma:", from: "q_school_class_id_eq"
 
       expect(page).to have_selector("tr", text: "First Student")
       expect(page).to have_selector("tr", text: "Second Student")

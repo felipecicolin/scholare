@@ -1,7 +1,7 @@
 <%= render CenterContent::Component.new(width: 8) do %>
   <h1 class="mb-3 text-center"><%= t("activerecord.models.student").pluralize %></h1>
 
-  <div class="col-md-3 mb-3">
+  <div class="col-md-5 mb-3">
     <div class="form-inputs">
       <%= search_form_for search_query do |f| %>
         <%= f.collection_select :school_class_id_eq, school_classes, :id, :name, { include_blank: t("students.index.filter_by_school_class") }, { class: "form-select", onchange: "this.form.submit()" } %>
