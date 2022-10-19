@@ -26,5 +26,13 @@ RSpec.describe SchoolClass do
     describe "user" do
       it { is_expected.to belong_to(:user) }
     end
+
+    describe "students" do
+      it { is_expected.to have_many(:students).dependent(:destroy) }
+    end
+
+    describe "tests" do
+      it { is_expected.to have_many(:tests).dependent(:destroy) }
+    end
   end
 end

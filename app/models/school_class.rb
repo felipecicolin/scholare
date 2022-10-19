@@ -4,6 +4,7 @@ class SchoolClass < ApplicationRecord
   belongs_to :user
 
   has_many :students, dependent: :destroy
+  has_many :tests, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
 end

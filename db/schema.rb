@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_28_235318) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_19_222753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -62,6 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_235318) do
     t.datetime "updated_at", null: false
     t.uuid "user_id", null: false
     t.uuid "student_id", null: false
+    t.uuid "school_class_id", null: false
+    t.index ["school_class_id"], name: "index_tests_on_school_class_id"
     t.index ["student_id"], name: "index_tests_on_student_id"
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
@@ -88,6 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_235318) do
   add_foreign_key "school_classes", "users"
   add_foreign_key "students", "school_classes"
   add_foreign_key "students", "users"
+  add_foreign_key "tests", "school_classes"
   add_foreign_key "tests", "students"
   add_foreign_key "tests", "users"
 end
