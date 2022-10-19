@@ -67,6 +67,14 @@ RSpec.describe "School Classes CRUD" do
       expect(page).to have_link("Adicionar", href: new_school_class_path)
       expect(page).to have_button("Remover", count: 2)
     end
+
+    context "when there are no School Classes" do
+      it "shows an info message" do
+        visit school_classes_path
+
+        expect(page).to have_content("Não há nenhum registro")
+      end
+    end
   end
 
   describe "Students pagination" do
