@@ -92,6 +92,14 @@ RSpec.describe "Students CRUD" do
       expect(page).to have_link("Adicionar", href: new_student_path)
       expect(page).to have_button("Remover", count: 2)
     end
+
+    context "when there are no Students" do
+      it "shows an info message" do
+        visit students_path
+
+        expect(page).to have_content("Não há nenhum registro")
+      end
+    end
   end
 
   describe "Students filtering" do
@@ -111,7 +119,7 @@ RSpec.describe "Students CRUD" do
       expect(page).not_to have_selector("tr", text: "First Student")
       expect(page).to have_selector("tr", text: "Second Student")
 
-      select "Selecione uma turma:", from: "q_school_class_id_eq"
+      select "Encontre os seus alunos por turma:", from: "q_school_class_id_eq"
 
       expect(page).to have_selector("tr", text: "First Student")
       expect(page).to have_selector("tr", text: "Second Student")
