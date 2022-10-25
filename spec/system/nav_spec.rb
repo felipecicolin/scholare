@@ -15,7 +15,7 @@ RSpec.describe "Nav" do
 
       visit root_path
 
-      find("button", text: user.email).click
+      click_button user.email
 
       expect(page).to have_link("Editar conta", href: edit_user_registration_path)
       expect(page).to have_button("Sair")
