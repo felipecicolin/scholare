@@ -1,0 +1,66 @@
+<%= render CenterContent::Component.new(width: 8) do %>
+  <h1 class="mb-3 text-center"><%= t("activerecord.models.test").pluralize %></h1>
+
+  <div class="col-md-5 mb-3">
+    <div class="form-inputs">
+      <%= search_form_for search_query do |f| %>
+        <%= f.collection_select :school_class_id_eq, school_classes, :id, :name, { include_blank: t("tests.index.filter_by_school_class") }, { class: "form-select", onchange: "this.form.submit()" } %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if tests.any? %>
+    <table class="table table-hover table-responsive">
+
+      <thead>
+        <tr>
+          <th scope="col"><%= t("activerecord.attributes.test.name") %></th>
+          <th scope="col"><%= t("activerecord.attributes.test.identifier") %></th>
+          <th scope="col"><%= t("activerecord.attributes.test.school_class") %></th>
+          <th/>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% tests.each do |test| %>
+
+          <tr class="align-middle">
+            <td>
+              <%= test.name %>
+            </td>
+
+            <td>
+              <%= test.identifier %>
+            </td>
+
+            <td>
+              <%= test.school_class.name %>
+            </td>
+
+            <td class="align-middle text-end">
+              <%= link_to t("shared.buttons.edit"), edit_test_path(id: test.id),
+                                                                      class: "text-decoration-none px-2" %>
+
+              <%= button_to t("shared.buttons.destroy"), test_path(id: test.id),
+                                                                      method: :delete,
+                                                                      class: "btn text-danger text-decoration-none px-2" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center py-2">
+      <%== pagy_bootstrap_nav(pagy) %>
+    </div>
+  <% end %>
+
+  <% if tests.empty? %>
+    <div class="alert alert-info">
+      <%= t("shared.messages.no_records") %>
+    </div>
+  <% end %>
+
+  <%= link_to t("shared.buttons.add"), new_test_path, class: "btn btn-primary" %>
+  <%= link_to t("shared.buttons.back"), "javascript:history.back()", class: "btn btn-secondary mx-2" %>
+<% end %>
