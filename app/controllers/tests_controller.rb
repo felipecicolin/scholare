@@ -59,6 +59,9 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(:name, :identifier, :school_class_id).with_defaults(user_id: current_user.id)
+    params.require(:test).permit(:name, :test_date, :school_class_id,
+                                 questions_attributes: %i[id body value essay_question]).with_defaults(
+                                   user_id: current_user.id
+                                 )
   end
 end

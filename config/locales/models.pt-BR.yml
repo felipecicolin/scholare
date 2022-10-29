@@ -40,3 +40,11 @@ pt-BR:
         name: Nome do aluno
         identifier: Identificador do aluno
         school_class: Turma
+
+      test:
+        name: Nome da prova
+        test_date: Data da prova
+        school_class: Turma
+
+      question:
+        body: Enunciado
