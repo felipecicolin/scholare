@@ -45,6 +45,8 @@ pt-BR:
         name: Nome da prova
         test_date: Data da prova
         school_class: Turma
+        value: Valor da prova
 
       question:
         body: Enunciado
+        value: Valor da questão

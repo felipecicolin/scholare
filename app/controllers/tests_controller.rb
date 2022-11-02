@@ -13,6 +13,8 @@ class TestsController < ApplicationController
 
   def new
     test = Test.new
+    test.questions.build
+
     render SchoolTests::New::Component.new(test:, current_user:)
   end
 
@@ -59,9 +61,7 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(:name, :test_date, :school_class_id,
-                                 questions_attributes: %i[id body value essay_question]).with_defaults(
-                                   user_id: current_user.id
-                                 )
+    params.require(:test).permit(:name, :test_date, :value, :school_class_id,
+      questions_attributes: %i[id body value]).with_defaults(user: current_user)
   end
 end
