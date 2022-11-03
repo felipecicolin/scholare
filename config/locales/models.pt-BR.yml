@@ -50,3 +50,8 @@ pt-BR:
       question:
         body: Enunciado
         value: Valor da questão
+
+      alternative:
+        body: Enunciado
+        value: Valor da alternativa
+        correct: Correta?

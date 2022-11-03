@@ -13,6 +13,12 @@
       <%= f.simple_fields_for :questions do |q| %>
         <%= q.input :body, required: false, input_html: { class: "form-control" } %>
         <%= q.input :value, required: false, input_html: { class: "form-control" } %>
+
+
+        <%= q.simple_fields_for :alternatives do |a| %>
+          <%= a.input :body, required: false, input_html: { class: "form-control" } %>
+          <%= a.input :correct, required: false, input_html: { class: "form-control" } %>
+        <% end %>
       <% end %>
     </div>
 
