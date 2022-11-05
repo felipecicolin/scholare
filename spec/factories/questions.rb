@@ -1,8 +1,6 @@
 FactoryBot.define do
   factory :question do
     body { Faker::Lorem.paragraph }
-    value { 1.0 }
-    school_class
-    student
+    value { Faker::Number.decimal(l_digits: 1) }
   end
 end

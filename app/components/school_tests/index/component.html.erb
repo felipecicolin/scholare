@@ -15,8 +15,9 @@
       <thead>
         <tr>
           <th scope="col"><%= t("activerecord.attributes.test.name") %></th>
-          <th scope="col"><%= t("activerecord.attributes.test.identifier") %></th>
+          <th scope="col"><%= t("activerecord.attributes.test.test_date") %></th>
           <th scope="col"><%= t("activerecord.attributes.test.school_class") %></th>
+          <th scope="col"><%= t("activerecord.attributes.test.value") %></th>
           <th/>
         </tr>
       </thead>
@@ -24,17 +25,21 @@
       <tbody>
         <% tests.each do |test| %>
 
-          <tr class="align-middle">
+          <tr class="align-middle text-center">
             <td>
               <%= test.name %>
             </td>
 
             <td>
-              <%= test.identifier %>
+              <%= test.test_date.strftime("%d/%m/%Y") %>
             </td>
 
             <td>
               <%= test.school_class.name %>
+            </td>
+
+            <td>
+              <%= test.value %>
             </td>
 
             <td class="align-middle text-end">
@@ -62,5 +67,5 @@
   <% end %>
 
   <%= link_to t("shared.buttons.add"), new_test_path, class: "btn btn-primary" %>
-  <%= link_to t("shared.buttons.back"), "javascript:history.back()", class: "btn btn-secondary mx-2" %>
+  <%= link_to t("shared.buttons.back"), :back, class: "btn btn-secondary mx-2" %>
 <% end %>

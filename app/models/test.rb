@@ -2,7 +2,7 @@
 
 class Test < ApplicationRecord
   belongs_to :user
-  belongs_to :student
+  belongs_to :student, optional: true
   belongs_to :school_class
 
   has_many :questions, dependent: :destroy
