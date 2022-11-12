@@ -142,6 +142,7 @@ pt-BR:
       restrict_dependent_destroy:
         has_one: Não é possível excluir o registro pois existe um %{record} dependente
         has_many: Não é possível excluir o registro pois existem %{record} dependentes
+      must_be_in_the_future: deve estar no futuro
 
     template:
       body: 'Por favor, verifique o(s) seguinte(s) campo(s):'

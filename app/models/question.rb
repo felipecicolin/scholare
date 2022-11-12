@@ -7,6 +7,4 @@ class Question < ApplicationRecord
 
   validates :body, :value, presence: true
   validates :value, numericality: { greater_than: 0 }
-
-  accepts_nested_attributes_for :alternatives, allow_destroy: true
 end
