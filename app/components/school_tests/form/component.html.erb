@@ -1,4 +1,4 @@
-<%= render CenterContent::Component.new(width: 12) do %>
+<%= render CenterContent::Component.new(width: 9) do %>
   <%= simple_form_for resource do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -7,19 +7,8 @@
       <%= f.input :name, required: false %>
       <%= f.association :school_class, prompt: true, required: false, input_html: { class: "form-select" }, collection: school_classes %>
 
-      <%= f.input :test_date, as: :date, required: false, input_html: { class: "form-control" } %>
+      <%= f.input :test_date, required: false %>
       <%= f.input :value, required: false, input_html: { class: "form-control" } %>
-
-      <%= f.simple_fields_for :questions do |q| %>
-        <%= q.input :body, required: false, input_html: { class: "form-control" } %>
-        <%= q.input :value, required: false, input_html: { class: "form-control" } %>
-
-
-        <%= q.simple_fields_for :alternatives do |a| %>
-          <%= a.input :body, required: false, input_html: { class: "form-control" } %>
-          <%= a.input :correct, required: false, input_html: { class: "form-control" } %>
-        <% end %>
-      <% end %>
     </div>
 
     <%= render FormActions::Component.new(form_object: f) %>

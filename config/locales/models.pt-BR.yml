@@ -6,6 +6,7 @@ pt-BR:
       student: Aluno
       test: Prova
       question: Questão
+      alternative: Alternativa
 
     attributes:
       user:

@@ -28,7 +28,7 @@ class TestsController < ApplicationController
     test = Test.new(test_params)
 
     if test.save
-      redirect_to tests_path, notice: t("shared.notices.male.created",
+      redirect_to tests_path, notice: t("shared.notices.female.created",
                                         model: t("activerecord.models.test"))
     else
       render SchoolTests::New::Component.new(test:, current_user:)
@@ -37,7 +37,7 @@ class TestsController < ApplicationController
 
   def update
     if @test.update(test_params)
-      redirect_to tests_path, notice: t("shared.notices.male.updated",
+      redirect_to tests_path, notice: t("shared.notices.female.updated",
                                         model: t("activerecord.models.test"))
     else
       render SchoolTests::Edit::Component.new(test: @test, current_user:)
@@ -46,7 +46,7 @@ class TestsController < ApplicationController
 
   def destroy
     @test.destroy
-    redirect_to tests_path, notice: t("shared.notices.male.destroyed",
+    redirect_to tests_path, notice: t("shared.notices.female.destroyed",
                                       model: t("activerecord.models.test"))
   end
 
