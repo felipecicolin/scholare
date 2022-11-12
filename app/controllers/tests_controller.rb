@@ -2,7 +2,7 @@
 
 class TestsController < ApplicationController
   before_action :handle_school_classes_missing
-  before_action :set_test, only: %i[show edit update destroy]
+  before_action :set_test, only: %i[edit update destroy]
 
   def index
     search_query = current_user.tests.ransack(params[:q])
@@ -11,11 +11,8 @@ class TestsController < ApplicationController
     render SchoolTests::Index::Component.new(search_query:, pagy:, tests:, current_user:)
   end
 
-  def show; end
-
   def new
     test = Test.new
-    test.questions.build.alternatives.build
 
     render SchoolTests::New::Component.new(test:, current_user:)
   end
@@ -61,10 +58,6 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(
-      :name, :test_date, :value, :school_class_id,
-      questions_attributes: [:id, :body, :value,
-                             { alternatives_attributes: %i[id body correct] }]
-    ).with_defaults(user: current_user)
+    params.require(:test).permit(:name, :test_date, :value, :school_class_id).with_defaults(user: current_user)
   end
 end

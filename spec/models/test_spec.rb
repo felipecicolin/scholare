@@ -24,6 +24,29 @@ RSpec.describe Test do
     describe "test_date" do
       it { is_expected.to validate_presence_of(:test_date) }
     end
+
+    describe "ensure_test_date_is_in_the_future" do
+      it do
+        test = build(:test, test_date: Time.zone.tomorrow)
+        test.validate
+
+        expect(test.errors[:test_date]).not_to include("deve estar no futuro")
+      end
+
+      it do
+        test = build(:test, test_date: Time.zone.today)
+        test.validate
+
+        expect(test.errors[:test_date]).to include("deve estar no futuro")
+      end
+
+      it do
+        test = build(:test, test_date: Time.zone.yesterday)
+        test.validate
+
+        expect(test.errors[:test_date]).to include("deve estar no futuro")
+      end
+    end
   end
 
   describe "associations" do
