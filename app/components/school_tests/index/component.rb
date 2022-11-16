@@ -2,8 +2,7 @@
 
 module SchoolTests
   module Index
-    class Component < ViewComponent::Base
-      include Ransack::Helpers::FormHelper
+    class Component < ApplicationComponent
       include Pagy::Frontend
 
       def initialize(search_query:, pagy:, tests:, current_user:)
