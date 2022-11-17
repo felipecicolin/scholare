@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :school_classes, except: [:show]
   resources :students, except: [:show]
+  resources :tests, except: [:show]
 end

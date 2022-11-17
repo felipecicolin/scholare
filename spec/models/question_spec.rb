@@ -12,12 +12,6 @@ RSpec.describe Question do
       it { is_expected.not_to allow_value(0).for(:value) }
       it { is_expected.not_to allow_value(-1).for(:value) }
     end
-
-    describe "essay_question" do
-      it { is_expected.to allow_value(true).for(:essay_question) }
-      it { is_expected.to allow_value(false).for(:essay_question) }
-      it { is_expected.not_to allow_value(nil).for(:essay_question) }
-    end
   end
 
   describe "associations" do
