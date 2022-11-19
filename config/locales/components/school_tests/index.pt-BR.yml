@@ -1,0 +1,6 @@
+pt-BR:
+  tests:
+    index:
+      filter_by_school_class: "Encontre suas provas por turma:"
+    alert:
+      no_school_classes: "Você deve ter pelo menos uma turma cadastrada para acessar essa página."

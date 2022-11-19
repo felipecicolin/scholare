@@ -1,0 +1,7 @@
+<%= render CenterContent::Component.new(width: 8) do %>
+  <h1 class="text-center">
+    <%= t("shared.titles.new", model: t("activerecord.models.test")) %>
+  </h1>
+
+  <%= render SchoolTests::Form::Component.new(resource: test, school_classes:) %>
+<% end %>

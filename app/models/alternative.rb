@@ -3,8 +3,6 @@
 class Alternative < ApplicationRecord
   belongs_to :question
 
-  validates :option, :body, presence: true
-  validates :option, inclusion: { in: %w[A B C D E] }
-
+  validates :body, presence: true
   validates :correct, inclusion: { in: [true, false] }
 end
