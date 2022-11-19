@@ -7,7 +7,7 @@ RSpec.describe "Home" do
 
       expect(page).to have_link("Gerenciar Turmas", href: school_classes_path)
       expect(page).to have_link("Gerenciar Alunos", href: students_path)
-      expect(page).to have_link("Gerenciar Provas", href: root_path)
+      expect(page).to have_link("Gerenciar Provas", href: tests_path)
 
       expect(page).to have_content("Nesta seção você pode gerenciar as turmas em que ministra " \
                                    "aulas, podendo adicionar, editar ou removê-las.")

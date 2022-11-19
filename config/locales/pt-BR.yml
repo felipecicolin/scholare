@@ -129,6 +129,7 @@ pt-BR:
       present: deve ficar em branco
       required: é obrigatório(a)
       taken: já está em uso
+      must_be_in_the_future: deve estar no futuro
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'
