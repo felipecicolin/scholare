@@ -46,7 +46,7 @@ RSpec.describe "School Tests CRUD" do
 
       visit edit_test_path(id: test.id)
 
-      fill_in "Nome da prova", with: "Math Test"
+      fill_in "Nome da prova", with: ""
 
       select "Second Class", from: "Turma"
 
@@ -55,6 +55,12 @@ RSpec.describe "School Tests CRUD" do
       select "2027", from: "test_test_date_1i"
 
       fill_in "Valor da prova", with: "10"
+
+      click_button "Atualizar Prova"
+
+      expect(page).to have_content("Nome da prova não pode ficar em branco")
+
+      fill_in "Nome da prova", with: "Math Test"
 
       click_button "Atualizar Prova"
 
