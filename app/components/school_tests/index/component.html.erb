@@ -51,8 +51,8 @@
                                                                    method: :delete,
                                                                    class: "btn text-danger text-decoration-none mx-1" %>
 
-              <%= link_to "Gerenciar questões", test_questions_path(test_id: test.id),
-                                                                    class: "btn btn-sm btn-primary mx-1" %>
+              <%= link_to t("tests.index.manage_questions"), test_questions_path(test_id: test.id),
+                                                                                 class: "btn btn-sm btn-primary mx-1" %>
 
 
             </td>
