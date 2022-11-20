@@ -15,6 +15,10 @@ RSpec.describe Question do
   end
 
   describe "associations" do
+    describe "user" do
+      it { is_expected.to belong_to(:user) }
+    end
+
     describe "test" do
       it { is_expected.to belong_to(:test) }
     end

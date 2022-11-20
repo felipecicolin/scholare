@@ -51,6 +51,7 @@ pt-BR:
       question:
         body: Enunciado
         value: Valor da questão
+        test: Prova
 
       alternative:
         body: Enunciado

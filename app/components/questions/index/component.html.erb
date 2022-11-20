@@ -1,0 +1,58 @@
+<%= render CenterContent::Component.new(width: 10) do %>
+  <h1 class="mb-3 text-center"><%= t("activerecord.models.question").pluralize %></h1>
+
+  <% if questions.any? %>
+    <table class="table table-hover table-responsive-sm">
+
+      <thead>
+        <tr>
+          <th scope="col"><%= t("activerecord.attributes.question.body") %></th>
+          <th class="text-center" scope="col"><%= t("activerecord.attributes.question.value") %></th>
+          <th class="text-center" scope="col"><%= t("activerecord.attributes.question.test") %></th>
+          <th/>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% questions.each do |question| %>
+
+          <tr class="align-middle">
+            <td>
+              <%= question.body.truncate(70) %>
+            </td>
+
+            <td class="text-center">
+              <%= question.value %>
+            </td>
+
+            <td class="text-center">
+              <%= question.test.name %>
+            </td>
+
+            <td class="align-middle text-end">
+              <%= link_to t("shared.buttons.view_and_edit"), edit_test_question_path(id: question.id),
+                                                                            class: "text-decoration-none px-2" %>
+
+              <%= button_to t("shared.buttons.destroy"), test_question_path(id: question.id),
+                                                                            method: :delete,
+                                                                            class: "btn text-danger text-decoration-none px-2" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center py-2">
+      <%== pagy_bootstrap_nav(pagy) %>
+    </div>
+  <% end %>
+
+  <% if questions.empty? %>
+    <div class="alert alert-info">
+      <%= t("shared.messages.no_records") %>
+    </div>
+  <% end %>
+
+  <%= link_to t("shared.buttons.add"), new_test_question_path(test_id: params[:test_id]), class: "btn btn-primary" %>
+  <%= link_to t("shared.buttons.back"), "javascript:history.back()", class: "btn btn-secondary mx-2" %>
+<% end %>

@@ -18,6 +18,10 @@ RSpec.describe User do
       it { is_expected.to have_many(:tests).dependent(:destroy) }
     end
 
+    describe "questions" do
+      it { is_expected.to have_many(:questions).dependent(:destroy) }
+    end
+
     describe "school_classes" do
       it { is_expected.to have_many(:school_classes).dependent(:destroy) }
     end
