@@ -9,7 +9,7 @@ class Student < ApplicationRecord
   validates :name, presence: true
   validates :identifier, presence: true, uniqueness: true
 
-  ransacker :school_class_id do
-    Arel.sql("\"students\".\"school_class_id\"::varchar")
-  end
+  # ransacker :school_class_id do
+  #   Arel.sql("\"students\".\"school_class_id\"::varchar")
+  # end
 end

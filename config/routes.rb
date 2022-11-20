@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :school_classes, except: [:show]
-  resources :students, except: [:show]
-  resources :tests, except: [:show]
+  resources :school_classes, except: :show
+  resources :students, except: :show
+
+  resources :tests, except: :show do
+    resources :questions, except: :show
+  end
 end
