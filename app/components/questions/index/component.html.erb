@@ -30,7 +30,7 @@
             </td>
 
             <td class="align-middle text-end">
-              <%= link_to t("shared.buttons.edit"), edit_test_question_path(id: question.id),
+              <%= link_to t("shared.buttons.view_and_edit"), edit_test_question_path(id: question.id),
                                                                             class: "text-decoration-none px-2" %>
 
               <%= button_to t("shared.buttons.destroy"), test_question_path(id: question.id),
