@@ -1,6 +1,0 @@
-pt-BR:
-  questions:
-    index:
-      filter_by_test: "Encontre suas questões por prova:"
-    alert:
-      no_tests: "Você deve ter pelo menos uma prova cadastrada para acessar essa página."

@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :handle_school_tests_missing
   before_action :set_question, only: %i[edit update destroy]
 
   def index
-    search_query = current_user.questions.ransack(params[:q])
-    search_result = search_query.result(distinct: true)
-    pagy, questions = pagy(search_result)
-    render Questions::Index::Component.new(search_query:, pagy:, questions:, current_user:)
+    test_questions = current_user.questions.where(test_id: params[:test_id])
+    pagy, questions = pagy(test_questions)
+    render Questions::Index::Component.new(pagy:, questions:, current_user:)
   end
 
   def new
@@ -47,10 +45,6 @@ class QuestionsController < ApplicationController
   end
 
   private
-
-  def handle_school_tests_missing
-    redirect_to root_path, alert: t("questions.alert.no_school_classes") unless current_user.tests.any?
-  end
 
   def set_question
     @question = current_user.questions.find(params[:id])
