@@ -74,7 +74,8 @@ RSpec.describe "Questions CRUD" do
       expect(page).to have_content("1.0")
       expect(page).to have_content("Example Test")
 
-      expect(page).to have_link("Visualizar/Editar", href: edit_test_question_path(test_id: school_test.id, id: question.id))
+      expect(page).to have_link("Visualizar/Editar",
+                                href: edit_test_question_path(test_id: school_test.id, id: question.id))
       expect(page).to have_link("Adicionar", href: new_test_question_path(test_id: school_test.id))
       expect(page).to have_button("Remover")
     end
