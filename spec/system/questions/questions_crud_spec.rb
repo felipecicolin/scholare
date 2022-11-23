@@ -48,8 +48,6 @@ RSpec.describe "Questions CRUD" do
       expect(page).to have_content("Enunciado não pode ficar em branco")
       expect(page).to have_content("Valor da questão não pode ficar em branco e Valor da questão não é um número")
 
-      save_and_open_screenshot
-      
       fill_in "Enunciado", with: "How many apples are there in the basket?"
       fill_in "Valor da questão", with: "1"
 
