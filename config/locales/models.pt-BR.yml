@@ -54,6 +54,6 @@ pt-BR:
         test: Prova
 
       alternative:
-        body: Enunciado
+        body: Alternativa
         value: Valor da alternativa
         correct: Correta?

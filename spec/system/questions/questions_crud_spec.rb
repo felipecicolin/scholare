@@ -13,9 +13,19 @@ RSpec.describe "Questions CRUD" do
 
       expect(page).to have_content("Enunciado não pode ficar em branco")
       expect(page).to have_content("Valor da questão não pode ficar em branco e Valor da questão não é um número")
+      expect(page).to have_content("Deve haver pelo menos uma alternativa correta")
+      expect(page).to have_content("Alternativa não pode ficar em branco", count: 5)
 
       fill_in "Enunciado", with: "How many apples are there in the basket?"
       fill_in "Valor da questão", with: "1"
+
+      fill_in "question_alternatives_attributes_0_body", with: "First alternative"
+      fill_in "question_alternatives_attributes_1_body", with: "Second alternative"
+      fill_in "question_alternatives_attributes_2_body", with: "Third alternative"
+      fill_in "question_alternatives_attributes_3_body", with: "Fourth alternative"
+      fill_in "question_alternatives_attributes_4_body", with: "Fifth alternative"
+
+      check "question_alternatives_attributes_0_correct"
 
       click_on "Cadastrar Questão"
 
@@ -38,6 +48,8 @@ RSpec.describe "Questions CRUD" do
       expect(page).to have_content("Enunciado não pode ficar em branco")
       expect(page).to have_content("Valor da questão não pode ficar em branco e Valor da questão não é um número")
 
+      save_and_open_screenshot
+      
       fill_in "Enunciado", with: "How many apples are there in the basket?"
       fill_in "Valor da questão", with: "1"
 
