@@ -5,6 +5,21 @@
   <div class="form-inputs mb-3">
     <%= f.input :body, required: false, input_html: { style: "height: 125px" } %>
     <%= f.input :value, required: false %>
+
+    <h4 class="mt-3">
+      <%= t("activerecord.models.alternative").pluralize %>
+    </h4>
+
+    <%= f.simple_fields_for :alternatives do |a| %>
+
+      <div class="d-flex flex-column my-4">
+        <%= label_tag :alternative, a.object.option, class: "my-2" %>
+        <%= a.input :body, required: false, label: false %>
+        <%= a.input :correct, as: :boolean, required: false %>
+      </div>
+
+      <%= a.hidden_field :option %>
+    <% end %>
   </div>
 
   <%= render FormActions::Component.new(form_object: f) %>

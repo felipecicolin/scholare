@@ -12,6 +12,23 @@ RSpec.describe Question do
       it { is_expected.not_to allow_value(0).for(:value) }
       it { is_expected.not_to allow_value(-1).for(:value) }
     end
+
+    describe "at_least_one_correct_alternative_is_required" do
+      it do
+        question = build(:question, alternatives: [])
+        question.validate
+        expect(question.errors[:base]).to include("Deve haver pelo menos uma alternativa correta")
+      end
+    end
+
+    describe "only_one_correct_alternative_is_permitted" do
+      it do
+        question = build(:question,
+                         alternatives: [build(:alternative, correct: true), build(:alternative, correct: true)])
+        question.validate
+        expect(question.errors[:base]).to include("Só é permitido uma alternativa correta")
+      end
+    end
   end
 
   describe "associations" do

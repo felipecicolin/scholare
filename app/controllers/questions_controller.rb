@@ -11,6 +11,11 @@ class QuestionsController < ApplicationController
 
   def new
     question = Question.new
+
+    %w[A B C D E].each do |option|
+      question.alternatives.build(option:)
+    end
+
     render Questions::New::Component.new(question:, current_user:)
   end
 
@@ -51,7 +56,8 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:body, :value, :test_id).with_defaults(user_id: current_user.id,
-                                                                            test_id: params[:test_id])
+    params.require(:question).permit(:body, :value, alternatives_attributes: %i[id body correct option]).with_defaults(
+      user_id: current_user.id, test_id: params[:test_id]
+    )
   end
 end

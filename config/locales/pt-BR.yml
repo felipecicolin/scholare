@@ -143,6 +143,8 @@ pt-BR:
       restrict_dependent_destroy:
         has_one: Não é possível excluir o registro pois existe um %{record} dependente
         has_many: Não é possível excluir o registro pois existem %{record} dependentes
+      at_least_one_correct_alternative_is_required: Deve haver pelo menos uma alternativa correta
+      only_one_correct_alternative_is_permitted: Só é permitido uma alternativa correta
 
     template:
       body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
