@@ -6,7 +6,7 @@
     <div class="form-inputs mb-3">
       <%= f.input :name, required: false %>
       <%= f.association :school_class, prompt: true, required: false, input_html: { class: "form-select" }, collection: school_classes %>
-      <%= f.input :test_date, required: false %>
+      <%= f.input :test_date, required: false, input_html: { class: "form-select me-2" } %>
       <%= f.input :value, required: false, input_html: { class: "form-control" } %>
     </div>
 

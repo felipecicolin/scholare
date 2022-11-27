@@ -4,7 +4,7 @@ class Student < ApplicationRecord
   belongs_to :school_class
   belongs_to :user
 
-  has_many :tests, dependent: :nullify
+  has_many :tests, through: :school_class
 
   validates :name, presence: true
   validates :identifier, presence: true, uniqueness: true

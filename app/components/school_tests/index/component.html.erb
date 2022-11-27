@@ -42,17 +42,17 @@
               <%= test.value %>
             </td>
 
-            <td class="align-middle d-flex justify-content-center align-items-center">
+            <td class="align-middle">
 
               <%= link_to t("shared.buttons.edit"), edit_test_path(id: test.id),
-                                                                   class: "text-decoration-none mx-1" %>
+                                                                   class: "btn text-primary text-decoration-none" %>
 
               <%= button_to t("shared.buttons.destroy"), test_path(id: test.id),
                                                                    method: :delete,
-                                                                   class: "btn text-danger text-decoration-none mx-1" %>
+                                                                   class: "btn text-danger text-decoration-none" %>
 
               <%= link_to t("tests.index.manage_questions"), test_questions_path(test_id: test.id),
-                                                                                 class: "btn btn-sm btn-primary mx-1" %>
+                                                                                 class: "btn text-primary text-decoration-none" %>
 
 
             </td>

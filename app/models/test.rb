@@ -2,10 +2,10 @@
 
 class Test < ApplicationRecord
   belongs_to :user
-  belongs_to :student, optional: true
   belongs_to :school_class
 
   has_many :questions, dependent: :destroy
+  has_many :students, through: :school_class
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :value, presence: true, numericality: { greater_than: 0 }
