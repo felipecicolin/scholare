@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Pdf
-  class ApplicationController < ActionController::Base
+  class ApplicationPdfController < ActionController::Base
     layout false
 
     before_action :authenticate_user!
