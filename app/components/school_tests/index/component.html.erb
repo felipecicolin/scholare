@@ -1,4 +1,4 @@
-<%= render CenterContent::Component.new(width: 10) do %>
+<%= render CenterContent::Component.new(width: 9) do %>
   <h1 class="mb-3 text-center"><%= t("activerecord.models.test").pluralize %></h1>
 
   <div class="col-md-5 mb-3">
@@ -10,7 +10,7 @@
   </div>
 
   <% if tests.any? %>
-    <table class="table table-hover table-responsive">
+    <table class="table table-hover table-responsive table-sm">
 
       <thead>
         <tr>
@@ -42,7 +42,7 @@
               <%= test.value %>
             </td>
 
-            <td class="align-middle">
+            <td class="text-center">
 
               <%= link_to t("shared.buttons.edit"), edit_test_path(id: test.id),
                                                                    class: "btn text-primary text-decoration-none" %>
@@ -53,6 +53,10 @@
 
               <%= link_to t("tests.index.manage_questions"), test_questions_path(test_id: test.id),
                                                                                  class: "btn text-primary text-decoration-none" %>
+
+              <%= button_to "Gerar prova", test_pdf_test_path(test_id: test.id, id: test.id, format: :pdf),
+                                                              method: :get,
+                                                              class: "btn text-primary text-decoration-none" %>
 
 
             </td>

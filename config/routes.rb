@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :questions, except: :show
 
     namespace :pdf do
-      resources :tests, only: :index
+      resources :tests, only: :show
     end
   end
 end
