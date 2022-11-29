@@ -4,7 +4,7 @@
     "vite-plugin-ruby": "^3.1.2"
   },
   "dependencies": {
-    "@hotwired/stimulus": "^3.1.1",
+    "@hotwired/stimulus": "^3.2.0",
     "sass": "^1.56.1"
   }
 }
