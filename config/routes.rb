@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
   resources :tests, except: :show do
     resources :questions, except: :show
+  end
 
-    namespace :pdf do
-      resources :tests, only: :show
-    end
+  namespace :pdf do
+    resources :tests, only: :index
   end
 end

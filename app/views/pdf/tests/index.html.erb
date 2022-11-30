@@ -1,0 +1,15 @@
+<h1><%= @test.name %></h1>
+<h2><%= @test.test_date.strftime("%d/%m/%Y") %></h2>
+
+<% @test.questions.each do |question| %>
+  <h3><%= question.body %></h3>
+
+    <div>
+      <% question.alternatives.each do |alternative| %>
+        <p><%= alternative.option %></p>
+        <p><%= alternative.body %></p>
+      <% end %>
+    </div>
+<% end %>
+
+

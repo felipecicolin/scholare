@@ -1,4 +1,4 @@
-<%= render CenterContent::Component.new(width: 9) do %>
+<%= render CenterContent::Component.new(width: 11) do %>
   <h1 class="mb-3 text-center"><%= t("activerecord.models.test").pluralize %></h1>
 
   <div class="col-md-5 mb-3">
@@ -14,10 +14,10 @@
 
       <thead>
         <tr>
-          <th scope="col"><%= t("activerecord.attributes.test.name") %></th>
-          <th scope="col"><%= t("activerecord.attributes.test.test_date") %></th>
+          <th class="text-center" scope="col"><%= t("activerecord.attributes.test.name") %></th>
+          <th class="text-center" scope="col"><%= t("activerecord.attributes.test.test_date") %></th>
           <th class="text-center" scope="col"><%= t("activerecord.attributes.test.school_class") %></th>
-          <th scope="col"><%= t("activerecord.attributes.test.value") %></th>
+          <th class="text-center" scope="col"><%= t("activerecord.attributes.test.value") %></th>
           <th/>
         </tr>
       </thead>
@@ -34,31 +34,30 @@
               <%= test.test_date.strftime("%d/%m/%Y") %>
             </td>
 
-            <td>
+            <td class="text-center">
               <%= test.school_class.name %>
             </td>
 
-            <td class="align-middle text-center">
+            <td class="text-center">
               <%= test.value %>
             </td>
 
-            <td class="text-center">
+            <td class="text-center d-flex justify-content-end align-items-center flex-nowrap">
 
               <%= link_to t("shared.buttons.edit"), edit_test_path(id: test.id),
-                                                                   class: "btn text-primary text-decoration-none" %>
+                                                                   class: "text-primary text-decoration-none mx-2" %>
 
               <%= button_to t("shared.buttons.destroy"), test_path(id: test.id),
                                                                    method: :delete,
-                                                                   class: "btn text-danger text-decoration-none" %>
+                                                                   class: "btn text-danger text-decoration-none mx-2" %>
 
               <%= link_to t("tests.index.manage_questions"), test_questions_path(test_id: test.id),
-                                                                                 class: "btn text-primary text-decoration-none" %>
+                                                                                 class: "text-primary text-decoration-none mx-2" %>
 
-              <%= button_to "Gerar prova", test_pdf_test_path(test_id: test.id, id: test.id, format: :pdf),
-                                                              method: :get,
-                                                              class: "btn text-primary text-decoration-none" %>
-
-
+              <%= link_to "Gerar prova", pdf_tests_path(test_id: test.id),
+                                                        method: :get,
+                                                        class: "text-primary text-decoration-none mx-2",
+                                                        target: "_blank" %>
             </td>
           </tr>
         <% end %>

@@ -7,7 +7,7 @@ user = User.create!(
 
 7.times do
   SchoolClass.create!(
-    name: Faker::Educator.course,
+    name: Faker::Educator.unique.course,
     user: user
   )
 end
