@@ -14,7 +14,15 @@ class Question < ApplicationRecord
   validate :at_least_one_correct_alternative_is_required
   validate :only_one_correct_alternative_is_permitted
 
+  before_create :set_number
+
+  default_scope { order(:number) }
+
   private
+
+  def set_number
+    self.number = test.questions.count + 1
+  end
 
   def at_least_one_correct_alternative_is_required
     return if alternatives.any?(&:correct)

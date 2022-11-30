@@ -4,15 +4,15 @@ module Pdf
   class TestsController < ApplicationController
     def index # rubocop:disable Metrics/AbcSize
       test = current_user.tests.find(params[:test_id])
-      pdf = Prawn::Document.new(page_size: "A4")
+      pdf = Prawn::Document.new(page_size: "A4", title: "Test #{test.id}")
 
-      pdf.text test.name, align: :center, size: 26, style: :bold
-      pdf.text test.test_date.strftime("%d/%m/%Y"), align: :center, size: 10
+      pdf.text test.name, align: :center, size: 22, style: :bold
+      pdf.text test.test_date.strftime("%d/%m/%Y"), align: :center, size: 13
 
       pdf.move_down 20
 
       test.questions.each do |question|
-        pdf.text question.body
+        pdf.text "<b>#{question.number}.</b> #{question.body}", inline_format: true, size: 12
 
         pdf.move_down 15
 
