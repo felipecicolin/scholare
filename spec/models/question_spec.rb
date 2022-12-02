@@ -8,8 +8,6 @@ RSpec.describe Question do
       let(:user) { create(:user) }
       let(:test) { create(:school_test, user:) }
 
-      it { is_expected.to validate_presence_of(:number) }
-
       it "is unique scoped to test" do
         create(:question, user:, test:, number: 1)
         question = build(:question, user:, test:, number: 1)
@@ -63,11 +61,24 @@ RSpec.describe Question do
   describe "callbacks" do
     describe "set_number" do
       it do
-        test = create(:school_test, questions: [build_list(:question, 2), { user: create(:user) }])
-
+        test = create(:school_test)
         question = create(:question, test:)
-        # expect(question.number).to eq(3)
+
+        expect(question.number).to eq(1)
       end
+    end
+
+    describe "normalize_test_questions_numbers" do
+      let(:test) { create(:school_test) }
+
+      let!(:question1) { create(:question, test:, number: 1) }
+      let!(:question2) { create(:question, test:, number: 2) }
+      let!(:question3) { create(:question, test:, number: 3) }
+
+      before { question2.destroy }
+
+      it { expect(question1.reload.number).to eq(1) }
+      it { expect(question3.reload.number).to eq(2) }
     end
   end
 end
