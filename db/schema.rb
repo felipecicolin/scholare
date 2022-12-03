@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_20_181502) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_30_010138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_181502) do
     t.datetime "updated_at", null: false
     t.uuid "test_id", null: false
     t.uuid "user_id", null: false
+    t.integer "number", null: false
     t.index ["test_id"], name: "index_questions_on_test_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
@@ -57,17 +58,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_181502) do
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
+  create_table "test_grade", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "test_id", null: false
+    t.uuid "student_id", null: false
+    t.integer "grade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_test_grade_on_student_id"
+    t.index ["test_id"], name: "index_test_grade_on_test_id"
+  end
+
   create_table "tests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "user_id", null: false
-    t.uuid "student_id"
     t.uuid "school_class_id", null: false
     t.string "name", null: false
     t.date "test_date", null: false
     t.index ["school_class_id"], name: "index_tests_on_school_class_id"
-    t.index ["student_id"], name: "index_tests_on_student_id"
     t.index ["user_id", "name"], name: "index_tests_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
@@ -95,7 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_181502) do
   add_foreign_key "school_classes", "users"
   add_foreign_key "students", "school_classes"
   add_foreign_key "students", "users"
+  add_foreign_key "test_grade", "students"
+  add_foreign_key "test_grade", "tests"
   add_foreign_key "tests", "school_classes"
-  add_foreign_key "tests", "students"
   add_foreign_key "tests", "users"
 end

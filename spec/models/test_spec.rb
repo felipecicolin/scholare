@@ -55,7 +55,7 @@ RSpec.describe Test do
     end
 
     describe "student" do
-      it { is_expected.to belong_to(:student).optional }
+      it { is_expected.to have_many(:students).through(:school_class) }
     end
 
     describe "school_class" do

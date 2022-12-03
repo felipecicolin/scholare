@@ -6,15 +6,31 @@ class Question < ApplicationRecord
 
   has_many :alternatives, dependent: :destroy
 
-  accepts_nested_attributes_for :alternatives
-
   validates :body, :value, presence: true
   validates :value, numericality: { greater_than: 0 }
 
   validate :at_least_one_correct_alternative_is_required
   validate :only_one_correct_alternative_is_permitted
 
+  before_create :set_number
+  after_destroy :normalize_test_questions_numbers
+
+  accepts_nested_attributes_for :alternatives
+
+  default_scope { order(:number) }
+
   private
+
+  def set_number
+    self.number = test.questions.count + 1
+  end
+
+  def normalize_test_questions_numbers
+    test.questions.where("number > ?", number).find_each do |question|
+      question.update(number: question.number - 1)
+      question.save
+    end
+  end
 
   def at_least_one_correct_alternative_is_required
     return if alternatives.any?(&:correct)

@@ -6,10 +6,10 @@ pt-BR:
 
     descriptions:
       manage_school_classes: |
-        Nesta seção você pode gerenciar as turmas em que ministra aulas, podendo adicionar, editar ou removê-las.
+        Nesta seção você pode gerenciar as turmas em que ministra aulas
 
       manage_students: |
-        Nesta seção você pode gerenciar os alunos pertencentes a cada classe, podendo adicionar, editar ou removê-los.
+        Nesta seção você pode gerenciar os alunos pertencentes a cada turma
 
       manage_tests: |
-        Nesta seção você pode gerenciar as provas que serão aplicadas em cada classe, podendo adicionar, editar ou removê-las.
+        Nesta seção você pode gerenciar as provas que serão aplicadas em cada turma
