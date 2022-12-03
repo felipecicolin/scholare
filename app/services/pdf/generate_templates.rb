@@ -5,6 +5,7 @@ module Pdf
     def initialize(test)
       @pdf = Prawn::Document.new(page_size: "A4")
       @test = test
+      @qr_code = ->(student) { QrCode::GenerateQrCode.call(@test, student) }
     end
 
     def call
@@ -20,6 +21,7 @@ module Pdf
         @pdf.move_down 45
         draw_questions
         draw_feedback_corners
+        draw_qr_code(student)
         @pdf.start_new_page
       end
     end
@@ -91,6 +93,12 @@ module Pdf
     def draw_bottom_left_corners
       @pdf.stroke_line [0, @pdf.cursor + 10], [0, @pdf.cursor + 55]
       @pdf.stroke_line [-3, @pdf.cursor + 10], [45, @pdf.cursor + 10]
+    end
+
+    def draw_qr_code(student)
+      @pdf.bounding_box([180, 693], width: 165, height: 165) do
+        @pdf.image StringIO.new(@qr_code.call(student).to_s), width: 165, height: 165
+      end
     end
   end
 end

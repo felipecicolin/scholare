@@ -6,4 +6,8 @@ class Alternative < ApplicationRecord
   validates :body, presence: true
   validates :correct, inclusion: { in: [true, false] }
   validates :option, inclusion: { in: %w[A B C D E] }
+
+  default_scope { order(:option) }
+
+  scope :correct, -> { where(correct: true) }
 end
