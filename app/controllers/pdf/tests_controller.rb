@@ -7,7 +7,9 @@ module Pdf
 
       pdf = Pdf::GenerateTest.call(test)
 
-      send_data(pdf.render, filename: "#{test.name}.pdf", type: "application/pdf", disposition: "inline")
+      send_data(pdf.render, filename: "#{test.name}.pdf",
+                            type: "application/pdf",
+                            disposition: "inline")
     end
   end
 end
