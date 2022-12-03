@@ -58,9 +58,9 @@
                                                                          class: "text-primary text-decoration-none mx-2",
                                                                          target: "_blank" %>
 
-              <%= link_to t("tests.index.generate_answers"), pdf_answers_path(test_id: test.id),
-                                                                              class: "text-primary text-decoration-none mx-2",
-                                                                              target: "_blank" %>
+              <%= link_to t("tests.index.generate_answers"), pdf_feedbacks_path(test_id: test.id),
+                                                                                class: "text-primary text-decoration-none mx-2",
+                                                                                target: "_blank" %>
             </td>
           </tr>
         <% end %>

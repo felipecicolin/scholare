@@ -14,6 +14,6 @@ Rails.application.routes.draw do
 
   namespace :pdf do
     resources :tests, only: :index
-    resources :answers, only: :index
+    resources :feedbacks, only: :index
   end
 end

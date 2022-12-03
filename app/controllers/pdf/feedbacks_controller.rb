@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Pdf
-  class AnswersController < ApplicationController
+  class FeedbacksController < ApplicationController
     before_action :set_test, only: :index
 
     def index
@@ -29,7 +29,7 @@ module Pdf
 
     def draw_questions
       @test.questions.each do |question|
-        @pdf.draw_text question.number, at: [15, @pdf.cursor], size: 13
+        @pdf.draw_text question.number, at: [10, @pdf.cursor], size: 13
 
         @pdf.bounding_box([5, @pdf.cursor], width: 30, height: 30) do
           draw_questions_letters
@@ -44,7 +44,7 @@ module Pdf
 
       %w[A B C D E].each do |letter|
         @pdf.draw_text letter, size: 12, style: :bold, at: [@pdf.bounds.left + base_spacing, @pdf.cursor]
-        base_spacing += 20
+        base_spacing += 25
       end
     end
 
@@ -53,18 +53,16 @@ module Pdf
 
       5.times do
         @pdf.stroke_circle [@pdf.bounds.left + base_spacing, @pdf.cursor], 9
-        base_spacing += 20
+        base_spacing += 25
       end
     end
 
     def draw_feedback_corners
       @pdf.line_width = 6
-
       draw_top_left_corners
       draw_top_right_corners
       draw_bottom_left_corners
       draw_bottom_right_corners
-
       @pdf.line_width = 0
     end
 
