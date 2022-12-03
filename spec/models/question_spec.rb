@@ -4,19 +4,6 @@ RSpec.describe Question do
       it { is_expected.to validate_presence_of(:body) }
     end
 
-    describe "number" do
-      let(:user) { create(:user) }
-      let(:test) { create(:school_test, user:) }
-
-      it "is unique scoped to test" do
-        create(:question, user:, test:, number: 1)
-        question = build(:question, user:, test:, number: 1)
-
-        question.valid?
-        expect(question.errors[:number]).to include("já está em uso")
-      end
-    end
-
     describe "value" do
       it { is_expected.to validate_presence_of(:value) }
       it { is_expected.to validate_numericality_of(:value).is_greater_than(0) }

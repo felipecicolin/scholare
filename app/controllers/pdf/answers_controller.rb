@@ -2,70 +2,94 @@
 
 module Pdf
   class AnswersController < ApplicationController
-    def index # rubocop:disable Metrics/AbcSize
-      test = current_user.tests.find(params[:test_id])
-      pdf = Prawn::Document.new(page_size: "A4")
+    before_action :set_test, only: :index
 
-      test.students.each do |student|
-        pdf.text "#{I18n.t('activerecord.attributes.student.name')}: #{student.name}", size: 14
-        pdf.text "#{I18n.t('activerecord.attributes.student.identifier')}: #{student.identifier}", size: 14
-
-        pdf.move_down 35
-
-        render_all_the_questions(pdf, test)
-        render_all_the_corners(pdf, test)
-
-        pdf.start_new_page
-      end
-
-      send_data(pdf.render,
-                filename: "#{test.name}.pdf",
-                type: "application/pdf",
-                disposition: "inline")
+    def index
+      @pdf = Prawn::Document.new(page_size: "A4")
+      draw_feedbacks
+      send_data(@pdf.render, filename: "#{@test.name}.pdf", type: "application/pdf", disposition: "inline")
     end
 
-    def render_all_the_questions(pdf, test)
-      test.questions.each do |question|
-        pdf.draw_text question.number, at: [15, pdf.cursor], size: 13
+    private
 
-        pdf.bounding_box([5, pdf.cursor], width: 30, height: 30) do
-          pdf.draw_text "A", size: 12, style: :bold, at: [pdf.bounds.left + 30, pdf.cursor]
-          pdf.draw_text "B", size: 12, style: :bold, at: [pdf.bounds.left + 50, pdf.cursor]
-          pdf.draw_text "C", size: 12, style: :bold, at: [pdf.bounds.left + 70, pdf.cursor]
-          pdf.draw_text "D", size: 12, style: :bold, at: [pdf.bounds.left + 90, pdf.cursor]
-          pdf.draw_text "E", size: 12, style: :bold, at: [pdf.bounds.left + 110, pdf.cursor]
+    def draw_feedbacks
+      @test.students.each do |student|
+        draw_student_name_and_identifier(student)
+        @pdf.move_down 35
+        draw_questions
+        draw_feedback_corners
+        @pdf.start_new_page
+      end
+    end
 
-          pdf.move_up 4
+    def draw_student_name_and_identifier(student)
+      @pdf.text "#{I18n.t('activerecord.attributes.student.name')}: #{student.name}", size: 14
+      @pdf.text "#{I18n.t('activerecord.attributes.student.identifier')}: #{student.identifier}", size: 14
+    end
 
-          pdf.stroke_circle [pdf.bounds.left + 34, pdf.cursor], 9
-          pdf.stroke_circle [pdf.bounds.left + 54, pdf.cursor], 9
-          pdf.stroke_circle [pdf.bounds.left + 74, pdf.cursor], 9
-          pdf.stroke_circle [pdf.bounds.left + 94, pdf.cursor], 9
-          pdf.stroke_circle [pdf.bounds.left + 114, pdf.cursor], 9
+    def draw_questions
+      @test.questions.each do |question|
+        @pdf.draw_text question.number, at: [15, @pdf.cursor], size: 13
+
+        @pdf.bounding_box([5, @pdf.cursor], width: 30, height: 30) do
+          draw_questions_letters
+          @pdf.move_up 4
+          draw_questions_circles
         end
       end
     end
 
-    def render_all_the_corners(pdf, test)
-      pdf.line_width = 5
+    def draw_questions_letters
+      base_spacing = 30
 
-      pdf.bounding_box([4.4, 726], width: 40, height: 0) { pdf.stroke_bounds }
+      %w[A B C D E].each do |letter|
+        @pdf.draw_text letter, size: 12, style: :bold, at: [@pdf.bounds.left + base_spacing, @pdf.cursor]
+        base_spacing += 20
+      end
+    end
 
-      pdf.bounding_box([7, 726], width: 0, height: 40) { pdf.stroke_bounds }
+    def draw_questions_circles
+      base_spacing = 34
 
-      pdf.bounding_box([102.5, 726], width: 40, height: 0) { pdf.stroke_bounds }
+      5.times do
+        @pdf.stroke_circle [@pdf.bounds.left + base_spacing, @pdf.cursor], 9
+        base_spacing += 20
+      end
+    end
 
-      pdf.bounding_box([140, 726], width: 0, height: 40) { pdf.stroke_bounds }
+    def draw_feedback_corners
+      @pdf.line_width = 6
 
-      pdf.bounding_box([140, test.questions.count * 121], width: 0, height: 40) { pdf.stroke_bounds }
+      draw_top_left_corners
+      draw_top_right_corners
+      draw_bottom_left_corners
+      draw_bottom_right_corners
 
-      pdf.bounding_box([102.5, test.questions.count * 113], width: 40, height: 0) { pdf.stroke_bounds }
+      @pdf.line_width = 0
+    end
 
-      pdf.bounding_box([7, test.questions.count * 121], width: 0, height: 40) { pdf.stroke_bounds }
+    def draw_top_left_corners
+      @pdf.stroke_line [0, 700], [0, 730]
+      @pdf.stroke_line [0, 730], [30, 730]
+    end
 
-      pdf.bounding_box([4.6, test.questions.count * 113], width: 40, height: 0) { pdf.stroke_bounds }
+    def draw_top_right_corners
+      @pdf.stroke_line [117, 730], [150, 730]
+      @pdf.stroke_line [150, 730], [150, 700]
+    end
 
-      pdf.line_width = 0
+    def draw_bottom_right_corners
+      @pdf.stroke_line [150, @pdf.cursor], [150, @pdf.cursor + 30]
+      @pdf.stroke_line [117, @pdf.cursor], [150, @pdf.cursor]
+    end
+
+    def draw_bottom_left_corners
+      @pdf.stroke_line [0, @pdf.cursor], [0, @pdf.cursor + 30]
+      @pdf.stroke_line [0, @pdf.cursor], [30, @pdf.cursor]
+    end
+
+    def set_test
+      @test = current_user.tests.find(params[:test_id])
     end
   end
 end

@@ -8,7 +8,6 @@ class Question < ApplicationRecord
 
   validates :body, :value, presence: true
   validates :value, numericality: { greater_than: 0 }
-  validates :number, uniqueness: { scope: :test_id }
 
   validate :at_least_one_correct_alternative_is_required
   validate :only_one_correct_alternative_is_permitted
