@@ -7,7 +7,7 @@ module Pdf
 
       pdf = Pdf::GenerateTemplates.call(test)
 
-      send_data(pdf.render, filename: "template - #{test.name}.pdf",
+      send_data(pdf.render, filename: "Template - #{test.name}.pdf",
                             type: "application/pdf",
                             disposition: "inline")
     end
