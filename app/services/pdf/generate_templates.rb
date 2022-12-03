@@ -54,11 +54,14 @@ module Pdf
 
     def draw_questions_circles
       base_spacing = 34
+      @pdf.line_width = 1.6
 
       5.times do
         @pdf.stroke_circle [@pdf.bounds.left + base_spacing, @pdf.cursor], 9
         base_spacing += 25
       end
+
+      @pdf.line_width = 0
     end
 
     def draw_feedback_corners
