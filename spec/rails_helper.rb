@@ -6,6 +6,7 @@ if ENV["COVERAGE"]
     minimum_coverage line: 100, branch: 100
 
     add_filter "/services/pdf/"
+    add_filter "/services/qr_code/"
   end
 end
 
