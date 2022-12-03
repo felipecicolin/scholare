@@ -1,28 +1,32 @@
 # frozen_string_literal: true
 
 module Pdf
-  class FeedbacksController < ApplicationController
-    before_action :set_test, only: :index
-
-    def index
+  class GenerateTemplates < ApplicationService
+    def initialize(test)
       @pdf = Prawn::Document.new(page_size: "A4")
-      draw_feedbacks
-      send_data(@pdf.render, filename: "#{@test.name}.pdf", type: "application/pdf", disposition: "inline")
+      @test = test
+    end
+
+    def call
+      generate_templates
+      @pdf
     end
 
     private
 
-    def draw_feedbacks
+    def generate_templates
       @test.students.each do |student|
-        draw_student_name_and_identifier(student)
-        @pdf.move_down 35
+        draw_test_and_student_informations(student)
+        @pdf.move_down 45
         draw_questions
         draw_feedback_corners
         @pdf.start_new_page
       end
     end
 
-    def draw_student_name_and_identifier(student)
+    def draw_test_and_student_informations(student)
+      @pdf.text "#{I18n.t('activerecord.attributes.test.name')}: #{@test.name}", size: 14
+      @pdf.text "#{I18n.t('activerecord.attributes.student.school_class')}: #{student.school_class.name}", size: 14
       @pdf.text "#{I18n.t('activerecord.attributes.student.name')}: #{student.name}", size: 14
       @pdf.text "#{I18n.t('activerecord.attributes.student.identifier')}: #{student.identifier}", size: 14
     end
@@ -67,27 +71,23 @@ module Pdf
     end
 
     def draw_top_left_corners
-      @pdf.stroke_line [0, 700], [0, 730]
-      @pdf.stroke_line [0, 730], [30, 730]
+      @pdf.stroke_line [0, 650], [0, 693]
+      @pdf.stroke_line [0, 690], [45, 690]
     end
 
     def draw_top_right_corners
-      @pdf.stroke_line [117, 730], [150, 730]
-      @pdf.stroke_line [150, 730], [150, 700]
+      @pdf.stroke_line [111, 690], [163, 690]
+      @pdf.stroke_line [160, 690], [160, 650]
     end
 
     def draw_bottom_right_corners
-      @pdf.stroke_line [150, @pdf.cursor], [150, @pdf.cursor + 30]
-      @pdf.stroke_line [117, @pdf.cursor], [150, @pdf.cursor]
+      @pdf.stroke_line [160, @pdf.cursor + 10], [160, @pdf.cursor + 55]
+      @pdf.stroke_line [110, @pdf.cursor + 10], [163, @pdf.cursor + 10]
     end
 
     def draw_bottom_left_corners
-      @pdf.stroke_line [0, @pdf.cursor], [0, @pdf.cursor + 30]
-      @pdf.stroke_line [0, @pdf.cursor], [30, @pdf.cursor]
-    end
-
-    def set_test
-      @test = current_user.tests.find(params[:test_id])
+      @pdf.stroke_line [0, @pdf.cursor + 10], [0, @pdf.cursor + 55]
+      @pdf.stroke_line [-3, @pdf.cursor + 10], [45, @pdf.cursor + 10]
     end
   end
 end
