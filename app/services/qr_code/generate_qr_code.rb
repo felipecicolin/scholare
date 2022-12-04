@@ -21,7 +21,7 @@ module QrCode
     end
 
     def qr_code_content
-      "#{[@student.identifier]};#{[@test.id]};#{[@questions.count]};#{@correct_alternatives};#{@questions_values}"
+      "#{[@student.id]};#{[@test.id]};#{[@questions.count]};#{@correct_alternatives};#{@questions_values}"
     end
 
     def create_correct_alternatives_list

@@ -29,5 +29,9 @@ RSpec.describe Student do
     describe "tests" do
       it { is_expected.to have_many(:tests).through(:school_class) }
     end
+
+    describe "test_grades" do
+      it { is_expected.to have_many(:test_grades).dependent(:destroy) }
+    end
   end
 end

@@ -5,6 +5,7 @@ class Student < ApplicationRecord
   belongs_to :user
 
   has_many :tests, through: :school_class
+  has_many :test_grades, dependent: :destroy
 
   validates :name, presence: true
   validates :identifier, presence: true, uniqueness: true

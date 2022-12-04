@@ -16,4 +16,8 @@ Rails.application.routes.draw do
     resources :tests, only: :index
     resources :templates, only: :index
   end
+
+  namespace :api do
+    resources :test_grades, only: :create
+  end
 end

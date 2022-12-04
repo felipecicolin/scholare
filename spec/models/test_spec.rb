@@ -65,5 +65,9 @@ RSpec.describe Test do
     describe "questions" do
       it { is_expected.to have_many(:questions).dependent(:destroy) }
     end
+
+    describe "test_grades" do
+      it { is_expected.to have_many(:test_grades).dependent(:destroy) }
+    end
   end
 end
