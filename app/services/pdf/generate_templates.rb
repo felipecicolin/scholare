@@ -22,7 +22,7 @@ module Pdf
         draw_questions
         draw_feedback_corners
         draw_qr_code(student)
-        @pdf.start_new_page
+        @pdf.start_new_page unless student == @test.students.last
       end
     end
 

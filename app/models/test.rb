@@ -6,6 +6,7 @@ class Test < ApplicationRecord
 
   has_many :questions, dependent: :destroy
   has_many :students, through: :school_class
+  has_many :test_grades, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :value, presence: true, numericality: { greater_than: 0 }
