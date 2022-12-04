@@ -3,10 +3,11 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby File.read(".ruby-version").strip
+ruby "3.1.2"
 
 gem "devise"
 gem "goldiloader"
+gem "matrix"
 gem "pagy"
 gem "pg"
 gem "prawn"

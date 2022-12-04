@@ -315,6 +315,7 @@ DEPENDENCIES
   faker
   goldiloader
   letter_opener
+  matrix
   pagy
   pg
   prawn
