@@ -1,6 +1,7 @@
 RSpec.describe Pdf::TemplatesController do
   before do
-    test = create(:school_test)
+    test = create(:school_test, questions: [create(:question)])
+
     sign_in test.user
     get pdf_templates_path(test_id: test.id)
   end

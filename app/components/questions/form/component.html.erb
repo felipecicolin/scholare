@@ -22,5 +22,5 @@
     <% end %>
   </div>
 
-  <%= render FormActions::Component.new(form_object: f) %>
+  <%= render FormActions::Component.new(form_object: f, back_path: test_questions_path(test_id: params[:test_id])) %>
 <% end %>

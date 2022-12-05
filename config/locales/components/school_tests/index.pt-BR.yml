@@ -6,4 +6,4 @@ pt-BR:
       generate_test: "Gerar prova"
       generate_answers: "Gerar gabarito"
     alert:
-      no_school_classes: "Você deve ter pelo menos uma turma cadastrada para acessar essa página."
+      no_students: "Você deve ter pelo menos um aluno cadastrado para acessar essa página."

@@ -4,5 +4,6 @@ FactoryBot.define do
     value { Faker::Number.decimal(l_digits: 1) }
     alternatives { build_list(:alternative, 1) }
     user
+    test { create(:school_test, user:) }
   end
 end

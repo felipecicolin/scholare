@@ -1,0 +1,4 @@
+pt-BR:
+  pdfs:
+    alert:
+      no_questions: "Você deve adicionar questões para gerar a prova ou o gabarito."
