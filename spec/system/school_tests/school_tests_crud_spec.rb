@@ -4,7 +4,11 @@ RSpec.describe "School Tests CRUD" do
   let(:first_class) { create(:school_class, name: "First Class") }
   let(:second_class) { create(:school_class, name: "Second Class") }
 
-  before { sign_in user }
+  before do
+    sign_in user
+    create(:student, user:, school_class: first_class)
+    create(:student, user:, school_class: second_class)
+  end
 
   describe "Test creation" do
     it "successfully creates a new Test" do

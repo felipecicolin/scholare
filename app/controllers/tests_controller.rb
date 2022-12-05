@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TestsController < ApplicationController
-  before_action :handle_school_classes_missing
+  before_action :handle_students_missing
   before_action :set_test, only: %i[edit update destroy]
 
   def index
@@ -49,8 +49,8 @@ class TestsController < ApplicationController
 
   private
 
-  def handle_school_classes_missing
-    redirect_to root_path, alert: t("tests.alert.no_school_classes") unless current_user.school_classes.any?
+  def handle_students_missing
+    redirect_to root_path, alert: t("tests.alert.no_students") unless current_user.students.any?
   end
 
   def set_test

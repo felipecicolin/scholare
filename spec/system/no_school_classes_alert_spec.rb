@@ -7,9 +7,5 @@ RSpec.describe "No school classes alert" do
     visit students_path
 
     expect(page).to have_content("Você deve ter pelo menos uma turma cadastrada para acessar essa página.")
-
-    visit tests_path
-
-    expect(page).to have_content("Você deve ter pelo menos uma turma cadastrada para acessar essa página.")
   end
 end

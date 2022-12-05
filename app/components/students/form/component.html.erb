@@ -8,5 +8,5 @@
     <%= f.association :school_class, prompt: true, required: false, input_html: { class: "form-select" }, collection: school_classes %>
   </div>
 
-  <%= render FormActions::Component.new(form_object: f) %>
+  <%= render FormActions::Component.new(form_object: f, back_path: students_path) %>
 <% end %>
