@@ -22,7 +22,7 @@ RSpec.describe "Home" do
       visit root_path
 
       expect(page).to have_link("Scholare", href: root_path)
-      expect(page).to have_link("Comece a usar agora", href: root_path)
+      expect(page).to have_link("Comece a usar agora", href: new_user_session_path)
       expect(page).to have_link("Saiba mais", href: root_path)
 
       expect(page).to have_content("Não quer mais passar horas criando e corrigindo provas?")
