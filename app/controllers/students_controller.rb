@@ -5,29 +5,28 @@ class StudentsController < ApplicationController
   before_action :set_student, only: %i[edit update destroy]
 
   def index
-    search_query = current_user.students.ransack(params[:q])
-    search_result = search_query.result(distinct: true)
-    pagy, students = pagy(search_result)
-    render Students::Index::Component.new(search_query:, pagy:, students:, current_user:)
+    @school_classes = current_user.school_classes.order(:name)
+    @search_query = current_user.students.ransack(params[:q])
+    search_result = @search_query.result(distinct: true)
+    @pagy, @students = pagy(search_result)
   end
 
   def new
-    student = Student.new
-    render Students::New::Component.new(student:, current_user:)
+    @student = Student.new
   end
 
   def edit
-    render Students::Edit::Component.new(student: @student, current_user:)
+    @school_classes = current_user.school_classes.order(:name)
   end
 
   def create
-    student = Student.new(student_params)
+    @student = Student.new(student_params)
 
-    if student.save
+    if @student.save
       redirect_to students_path, notice: t("shared.notices.male.created",
                                            model: t("activerecord.models.student"))
     else
-      render Students::New::Component.new(student:, current_user:)
+      render :new
     end
   end
 
@@ -36,7 +35,7 @@ class StudentsController < ApplicationController
       redirect_to students_path, notice: t("shared.notices.male.updated",
                                            model: t("activerecord.models.student"))
     else
-      render Students::Edit::Component.new(student: @student, current_user:)
+      render :edit
     end
   end
 

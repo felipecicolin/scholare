@@ -3,13 +3,13 @@
 
   <div class="col-md-5 mb-3">
     <div class="form-inputs">
-      <%= search_form_for search_query do |f| %>
-        <%= f.collection_select :school_class_id_eq, school_classes, :id, :name, { include_blank: t("students.index.filter_by_school_class") }, { class: "form-select", onchange: "this.form.submit()" } %>
+      <%= search_form_for @search_query do |f| %>
+        <%= f.collection_select :school_class_id_eq, @school_classes, :id, :name, { include_blank: t("students.index.filter_by_school_class") }, { class: "form-select", onchange: "this.form.submit()" } %>
       <% end %>
     </div>
   </div>
 
-  <% if students.any? %>
+  <% if @students.any? %>
     <table class="table table-hover table-responsive">
 
       <thead>
@@ -22,7 +22,7 @@
       </thead>
 
       <tbody>
-        <% students.each do |student| %>
+        <% @students.each do |student| %>
 
           <tr class="align-middle">
             <td>
@@ -51,11 +51,11 @@
     </table>
 
     <div class="d-flex justify-content-center py-2">
-      <%== pagy_bootstrap_nav(pagy) %>
+      <%== pagy_bootstrap_nav(@pagy) %>
     </div>
   <% end %>
 
-  <% if students.empty? %>
+  <% if @students.empty? %>
     <div class="alert alert-info">
       <%= t("shared.messages.no_records") %>
     </div>
