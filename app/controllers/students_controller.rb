@@ -15,9 +15,7 @@ class StudentsController < ApplicationController
     @student = Student.new
   end
 
-  def edit
-    @school_classes = current_user.school_classes.order(:name)
-  end
+  def edit; end
 
   def create
     @student = Student.new(student_params)
