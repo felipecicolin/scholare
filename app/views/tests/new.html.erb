@@ -3,5 +3,5 @@
     <%= t("shared.titles.new", model: t("activerecord.models.test")) %>
   </h1>
 
-  <%= render SchoolTests::Form::Component.new(resource: test, school_classes:) %>
+  <%= render "form" %>
 <% end %>
