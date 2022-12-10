@@ -6,7 +6,7 @@ module SchoolClasses
       include Pagy::Frontend
 
       def initialize(school_classes:, pagy:)
-        @school_classes = school_classes.order(:name)
+        @school_classes = school_classes
         @pagy = pagy
       end
 
