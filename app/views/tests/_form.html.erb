@@ -1,11 +1,11 @@
 <%= render CenterContent::Component.new(width: 9) do %>
-  <%= simple_form_for resource do |f| %>
+  <%= simple_form_for @test do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs mb-3">
       <%= f.input :name, required: false %>
-      <%= f.association :school_class, prompt: true, required: false, input_html: { class: "form-select" }, collection: school_classes %>
+      <%= f.association :school_class, prompt: true, required: false, input_html: { class: "form-select" }, collection: current_user.school_classes %>
       <%= f.input :test_date, required: false, input_html: { class: "form-select me-2" } %>
       <%= f.input :value, required: false, input_html: { class: "form-control" } %>
     </div>
