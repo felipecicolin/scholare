@@ -5,7 +5,7 @@ module Questions
     class Component < ViewComponent::Base
       def initialize(question:, current_user:)
         @question = question
-        @tests = current_user.tests.order(:name)
+        @tests = current_user.tests
       end
 
       private
