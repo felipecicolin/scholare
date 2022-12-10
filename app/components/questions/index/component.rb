@@ -6,7 +6,7 @@ module Questions
       include Pagy::Frontend
 
       def initialize(pagy:, questions:, current_user:)
-        @tests = current_user.tests.order(:name)
+        @tests = current_user.tests
         @pagy = pagy
         @questions = questions.order(:test_id, :body)
       end

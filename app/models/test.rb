@@ -13,6 +13,8 @@ class Test < ApplicationRecord
   validates :test_date, presence: true
   validate :ensure_test_date_is_in_the_future
 
+  default_scope { order(:name) }
+
   private
 
   def ensure_test_date_is_in_the_future

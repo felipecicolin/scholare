@@ -8,9 +8,9 @@ module SchoolTests
 
       def initialize(search_query:, pagy:, tests:, current_user:)
         @search_query = search_query
-        @school_classes = current_user.school_classes.order(:name)
+        @school_classes = current_user.school_classes
         @pagy = pagy
-        @tests = tests.order(:name)
+        @tests = tests
       end
 
       private

@@ -5,7 +5,7 @@ module SchoolTests
     class Component < ViewComponent::Base
       def initialize(test:, current_user:)
         @test = test
-        @school_classes = current_user.school_classes.order(:name)
+        @school_classes = current_user.school_classes
       end
 
       private
