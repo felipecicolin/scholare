@@ -5,7 +5,6 @@ class StudentsController < ApplicationController
   before_action :set_student, only: %i[edit update destroy]
 
   def index
-    @school_classes = current_user.school_classes.order(:name)
     @search_query = current_user.students.ransack(params[:q])
     search_result = @search_query.result(distinct: true)
     @pagy, @students = pagy(search_result)
