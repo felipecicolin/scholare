@@ -5,6 +5,6 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
-    "sass": "^1.58.3"
+    "sass": "^1.59.3"
   }
 }
