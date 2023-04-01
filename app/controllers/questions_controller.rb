@@ -5,32 +5,27 @@ class QuestionsController < ApplicationController
 
   def index
     test_questions = current_user.questions.where(test_id: params[:test_id])
-    pagy, questions = pagy(test_questions)
-    render Questions::Index::Component.new(pagy:, questions:, current_user:)
+    @pagy, @questions = pagy(test_questions)
   end
 
   def new
-    question = Question.new
+    @question = Question.new
 
     %w[A B C D E].each do |option|
-      question.alternatives.build(option:)
+      @question.alternatives.build(option:)
     end
-
-    render Questions::New::Component.new(question:, current_user:)
   end
 
-  def edit
-    render Questions::Edit::Component.new(question: @question, current_user:)
-  end
+  def edit; end
 
   def create
-    question = Question.new(question_params)
+    @question = Question.new(question_params)
 
-    if question.save
+    if @question.save
       redirect_to test_questions_path(test_id: params[:test_id]), notice: t("shared.notices.female.created",
                                                                             model: t("activerecord.models.question"))
     else
-      render Questions::New::Component.new(question:, current_user:)
+      render :new
     end
   end
 
@@ -39,7 +34,7 @@ class QuestionsController < ApplicationController
       redirect_to test_questions_path(test_id: params[:test_id]), notice: t("shared.notices.female.updated",
                                                                             model: t("activerecord.models.question"))
     else
-      render Questions::Edit::Component.new(question: @question, current_user:)
+      render :edit
     end
   end
 
