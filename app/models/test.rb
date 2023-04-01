@@ -15,6 +15,10 @@ class Test < ApplicationRecord
 
   default_scope { order(:name) }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    ["school_class_id"]
+  end
+
   private
 
   def ensure_test_date_is_in_the_future
