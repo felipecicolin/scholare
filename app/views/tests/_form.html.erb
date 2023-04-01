@@ -15,9 +15,9 @@
     </div>
 
     <%= render FormActions::Component.new(form_object: f, back_path: tests_path) %>
+  <% end %>
 
-    <% unless @test.new_record? %>
-      <%= button_to t("shared.buttons.destroy"), test_path(id: @test.id), method: :delete, class: "btn btn-danger mt-4" %>
-    <% end %>
+  <% unless @test.new_record? %>
+    <%= button_to t("shared.buttons.destroy"), test_path(id: @test.id), method: :delete, class: "btn btn-danger mt-3" %>
   <% end %>
 <% end %>
