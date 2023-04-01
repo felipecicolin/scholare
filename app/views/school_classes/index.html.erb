@@ -1,7 +1,7 @@
 <%= render CenterContent::Component.new(width: 8) do %>
   <h1 class="mb-3 text-center"><%= t("activerecord.models.school_class").pluralize %></h1>
 
-    <% if school_classes.any? %>
+    <% if @school_classes.any? %>
       <table class="table table-hover table-responsive">
         <thead>
           <tr>
@@ -12,7 +12,7 @@
 
         <tbody>
 
-          <% school_classes.each do |school_class| %>
+          <% @school_classes.each do |school_class| %>
             <tr class="align-middle">
               <td>
                 <%= school_class.name %>
@@ -33,12 +33,12 @@
       </table>
 
       <div class="d-flex justify-content-center py-2">
-        <%== pagy_bootstrap_nav(pagy) %>
+        <%== pagy_bootstrap_nav(@pagy) %>
       </div>
     <% end %>
 
 
-  <% if school_classes.empty? %>
+  <% if @school_classes.empty? %>
     <div class="alert alert-info">
       <%= t("shared.messages.no_records") %>
     </div>
