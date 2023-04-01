@@ -4,27 +4,23 @@ class SchoolClassesController < ApplicationController
   before_action :set_school_class, only: %i[edit update destroy]
 
   def index
-    pagy, school_classes = pagy(current_user.school_classes)
-    render SchoolClasses::Index::Component.new(school_classes:, pagy:)
+    @pagy, @school_classes = pagy(current_user.school_classes)
   end
 
   def new
-    school_class = SchoolClass.new
-    render SchoolClasses::New::Component.new(school_class:)
+    @school_class = SchoolClass.new
   end
 
-  def edit
-    render SchoolClasses::Edit::Component.new(school_class: @school_class)
-  end
+  def edit; end
 
   def create
-    school_class = SchoolClass.new(school_class_params)
+    @school_class = SchoolClass.new(school_class_params)
 
-    if school_class.save
+    if @school_class.save
       redirect_to school_classes_path, notice: t("shared.notices.female.created",
                                                  model: t("activerecord.models.school_class"))
     else
-      render SchoolClasses::New::Component.new(school_class:)
+      render :new
     end
   end
 
@@ -33,7 +29,7 @@ class SchoolClassesController < ApplicationController
       redirect_to school_classes_path, notice: t("shared.notices.female.updated",
                                                  model: t("activerecord.models.school_class"))
     else
-      render SchoolClasses::Edit::Component.new(school_class: @school_class)
+      render :edit
     end
   end
 
