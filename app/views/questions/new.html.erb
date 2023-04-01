@@ -3,5 +3,5 @@
     <%= t("shared.titles.new", model: t("activerecord.models.question")) %>
   </h1>
 
-  <%= render Questions::Form::Component.new(resource: question, tests:, url: test_questions_path(test_id: params[:test_id]), method: :post) %>
+  <%= render "form", url: test_questions_path(test_id: params[:test_id]) %>
 <% end %>
