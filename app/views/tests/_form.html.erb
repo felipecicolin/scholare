@@ -6,10 +6,14 @@
     <div class="form-inputs mb-3">
       <%= f.input :name, required: false %>
       <%= f.association :school_class, prompt: true, required: false, input_html: { class: "form-select" }, collection: current_user.school_classes %>
-      <%= f.input :test_date, required: false, input_html: { class: "form-select me-2" } %>
+      <%= f.input :test_date, required: false, input_html: { class: "form-control" } %>
       <%= f.input :value, required: false, input_html: { class: "form-control" } %>
     </div>
 
     <%= render FormActions::Component.new(form_object: f, back_path: tests_path) %>
+  <% end %>
+
+  <% unless @test.new_record? %>
+    <%= button_to t("shared.buttons.destroy"), test_path(id: @test.id), method: :delete, class: "btn btn-danger mt-3" %>
   <% end %>
 <% end %>

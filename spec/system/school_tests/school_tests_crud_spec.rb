@@ -81,8 +81,8 @@ RSpec.describe "School Tests CRUD" do
 
   describe "Test deletion" do
     it "successfully deletes a Test" do
-      create(:school_test, user:)
-      visit tests_path
+      test = create(:school_test, user:)
+      visit edit_test_path(id: test.id)
       click_on "Remover"
 
       expect(page).to have_content("Prova removida com sucesso")
@@ -99,22 +99,19 @@ RSpec.describe "School Tests CRUD" do
 
       visit tests_path
 
-      expect(page).to have_content("First Test")
+      expect(page).to have_link("First Test", href: edit_test_path(id: first_test.id))
+      expect(page).to have_link("Second Test", href: edit_test_path(id: second_test.id))
+
       expect(page).to have_content("First Class")
-      expect(page).to have_content("Second Test")
       expect(page).to have_content("Second Class")
 
       expect(page).not_to have_content("Other User's Test")
       expect(page).not_to have_content("Other Class")
 
-      expect(page).to have_link("Editar", href: edit_test_path(id: first_test.id))
       expect(page).to have_link("Gerenciar questões", href: test_questions_path(test_id: first_test.id))
-
-      expect(page).to have_link("Editar", href: edit_test_path(id: second_test.id))
       expect(page).to have_link("Gerenciar questões", href: test_questions_path(test_id: second_test.id))
 
       expect(page).to have_link("Adicionar", href: new_test_path)
-      expect(page).to have_button("Remover", count: 2)
     end
 
     context "when there are no Tests" do
