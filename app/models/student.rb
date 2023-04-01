@@ -11,4 +11,8 @@ class Student < ApplicationRecord
   validates :identifier, presence: true, uniqueness: true
 
   default_scope { order(:name) }
+
+  def self.ransackable_attributes(_auth_object = nil)
+    ["school_class_id"]
+  end
 end
