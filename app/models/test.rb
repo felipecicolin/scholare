@@ -13,6 +13,8 @@ class Test < ApplicationRecord
   validates :test_date, presence: true
   validate :ensure_test_date_is_in_the_future
 
+  accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
+
   default_scope { order(:name) }
 
   def self.ransackable_attributes(_auth_object = nil)

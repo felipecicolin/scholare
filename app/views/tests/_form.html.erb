@@ -1,5 +1,5 @@
 <%= render CenterContent::Component.new(width: 9) do %>
-  <%= simple_form_for @test do |f| %>
+  <%= simple_form_for @test, data: { controller: "nested-form", nested_form_wrapper_selector_value: ".nested-form-wrapper" } do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -8,6 +8,20 @@
       <%= f.association :school_class, prompt: true, required: false, input_html: { class: "form-select" }, collection: current_user.school_classes %>
       <%= f.input :test_date, required: false, input_html: { class: "form-control" } %>
       <%= f.input :value, required: false, input_html: { class: "form-control" } %>
+
+      <template data-nested-form-target="template">
+        <%= f.simple_fields_for :questions, Question.new, child_index: "NEW_RECORD" do |question_fields| %>
+          <%= render "question_form", f: question_fields %>
+        <% end %>
+      </template>
+
+      <%= f.simple_fields_for :questions do |question_fields| %>
+        <%= render "question_form", f: question_fields %>
+      <% end %>
+
+      <div data-nested-form-target="target"></div>
+
+      <button class="btn btn-primary" type="button" data-action="nested-form#add">Adicionar questão</button>
     </div>
 
     <%= render FormActions::Component.new(form_object: f, back_path: tests_path) %>

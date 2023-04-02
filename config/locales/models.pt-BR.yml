@@ -43,10 +43,10 @@ pt-BR:
         school_class: Turma
 
       test:
-        name: Nome da prova
-        test_date: Data da prova
+        name: Nome
+        test_date: Data
         school_class: Turma
-        value: Valor da prova
+        value: Valor
 
       question:
         body: Enunciado

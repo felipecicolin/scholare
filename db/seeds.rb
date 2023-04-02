@@ -5,7 +5,7 @@ user = User.create!(
   confirmed_at: Time.current
 )
 
-7.times do
+4.times do
   SchoolClass.create!(
     name: Faker::Educator.unique.course,
     user: user
@@ -13,7 +13,7 @@ user = User.create!(
 end
 
 SchoolClass.all.each do |school_class|
-  15.times do
+  7.times do
     Student.create!(
       name: Faker::Name.name,
       identifier: Faker::Number.unique.number(digits: 10),
@@ -32,18 +32,18 @@ SchoolClass.all.each do |school_class|
 end
 
 Test.all.each do |test|
-  10.times do
+  5.times do
     Question.create!(
       body: Faker::Lorem.paragraph(sentence_count: 5),
       value: 1,
       test: test,
       user: user,
       alternatives: [
-        Alternative.new(body: Faker::Lorem.paragraph, correct: true, option: "A"),
-        Alternative.new(body: Faker::Lorem.paragraph, correct: false, option: "B"),
-        Alternative.new(body: Faker::Lorem.paragraph, correct: false, option: "C"),
-        Alternative.new(body: Faker::Lorem.paragraph, correct: false, option: "D"),
-        Alternative.new(body: Faker::Lorem.paragraph, correct: false, option: "E")
+        Alternative.new(body: Faker::Lorem.paragraph, correct: true),
+        Alternative.new(body: Faker::Lorem.paragraph, correct: false),
+        Alternative.new(body: Faker::Lorem.paragraph, correct: false),
+        Alternative.new(body: Faker::Lorem.paragraph, correct: false),
+        Alternative.new(body: Faker::Lorem.paragraph, correct: false)
       ]
     )
   end

@@ -16,12 +16,12 @@ RSpec.describe "School Tests CRUD" do
 
       click_button "Cadastrar Prova"
 
-      expect(page).to have_content("Nome da prova não pode ficar em branco")
+      expect(page).to have_content("Nome não pode ficar em branco")
       expect(page).to have_content("Turma é obrigatório(a)")
-      expect(page).to have_content("Data da prova deve estar no futuro")
-      expect(page).to have_content("Valor da prova não pode ficar em branco e Valor da prova não é um número")
+      expect(page).to have_content("Data deve estar no futuro")
+      expect(page).to have_content("Valor não pode ficar em branco e Valor não é um número")
 
-      fill_in "Nome da prova", with: "Math Test"
+      fill_in "Nome", with: "Math Test"
 
       select "First Class", from: "Turma"
 
@@ -31,7 +31,7 @@ RSpec.describe "School Tests CRUD" do
       select "dezembro", from: "test_test_date_2i"
       select "2027", from: "test_test_date_1i"
 
-      fill_in "Valor da prova", with: "10"
+      fill_in "Valor", with: "10"
 
       click_on "Cadastrar Prova"
 
@@ -50,7 +50,7 @@ RSpec.describe "School Tests CRUD" do
 
       visit edit_test_path(id: test.id)
 
-      fill_in "Nome da prova", with: ""
+      fill_in "Nome", with: ""
 
       select "Second Class", from: "Turma"
 
@@ -58,13 +58,13 @@ RSpec.describe "School Tests CRUD" do
       select "dezembro", from: "test_test_date_2i"
       select "2027", from: "test_test_date_1i"
 
-      fill_in "Valor da prova", with: "10"
+      fill_in "Valor", with: "10"
 
       click_button "Atualizar Prova"
 
-      expect(page).to have_content("Nome da prova não pode ficar em branco")
+      expect(page).to have_content("Nome não pode ficar em branco")
 
-      fill_in "Nome da prova", with: "Math Test"
+      fill_in "Nome", with: "Math Test"
 
       click_button "Atualizar Prova"
 
