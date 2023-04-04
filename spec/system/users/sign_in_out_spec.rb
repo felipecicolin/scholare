@@ -50,7 +50,7 @@ RSpec.describe "Sign in and out" do
 
     find_button(user.email).click
 
-    click_button "Sair"
+    click_link "Sair"
 
     expect(page).to have_content("Saiu com sucesso.")
   end

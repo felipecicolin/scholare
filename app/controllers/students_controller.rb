@@ -23,7 +23,7 @@ class StudentsController < ApplicationController
       redirect_to students_path, notice: t("shared.notices.male.created",
                                            model: t("activerecord.models.student"))
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +32,7 @@ class StudentsController < ApplicationController
       redirect_to students_path, notice: t("shared.notices.male.updated",
                                            model: t("activerecord.models.student"))
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

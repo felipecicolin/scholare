@@ -25,7 +25,7 @@ class QuestionsController < ApplicationController
       redirect_to test_questions_path(test_id: params[:test_id]), notice: t("shared.notices.female.created",
                                                                             model: t("activerecord.models.question"))
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
       redirect_to test_questions_path(test_id: params[:test_id]), notice: t("shared.notices.female.updated",
                                                                             model: t("activerecord.models.question"))
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
