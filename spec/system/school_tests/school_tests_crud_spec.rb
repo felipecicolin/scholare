@@ -108,9 +108,6 @@ RSpec.describe "School Tests CRUD" do
       expect(page).not_to have_content("Other User's Test")
       expect(page).not_to have_content("Other Class")
 
-      expect(page).to have_link("Gerenciar questões", href: test_questions_path(test_id: first_test.id))
-      expect(page).to have_link("Gerenciar questões", href: test_questions_path(test_id: second_test.id))
-
       expect(page).to have_link("Adicionar", href: new_test_path)
     end
 

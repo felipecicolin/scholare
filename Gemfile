@@ -25,6 +25,7 @@ group :development do
   gem "better_errors"
   gem "bullet"
   gem "letter_opener"
+  gem "ruby-lsp", require: false
 end
 
 group :test do
