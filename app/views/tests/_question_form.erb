@@ -1,4 +1,3 @@
-<br/>
 <div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -23,7 +22,7 @@
   <% end %>
 
   <button class="btn btn-danger mb-3" type="button" data-action="nested-form#remove">
-    Remover questão
+    <i class="bi bi-x-lg"></i>
   </button>
 
   <%= f.hidden_field :_destroy %>

@@ -21,7 +21,11 @@
 
       <div data-nested-form-target="target"></div>
 
-      <button class="btn btn-primary" type="button" data-action="nested-form#add">Adicionar questão</button>
+      <button class="btn btn-success" type="button" data-action="nested-form#add">
+        <i class="bi bi-plus-circle">
+          Nova questão
+        </i>
+      </button>
     </div>
 
     <%= render FormActions::Component.new(form_object: f, back_path: tests_path) %>
