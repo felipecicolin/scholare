@@ -1,6 +1,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: db
+  username: postgres
+  password: postgres
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -12,7 +15,7 @@ test:
   database: scholare_test
 
 production:
-  <<: *default
-  database: scholare_production
-  username: scholare
-  password: <%= ENV["SCHOLARE_DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
