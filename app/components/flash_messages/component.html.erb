@@ -1,6 +1,17 @@
 <% if notice %>
-  <div class="alert alert-success"><%= notice %></div>
+  <div class="alert alert-success">
+    <div class="d-flex justify-content-between">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
 <% end %>
+
 <% if alert %>
-  <div class="alert alert-danger"><%= alert %></div>
+  <div class="alert alert-danger">
+    <div class="d-flex justify-content-between">
+      <%= alert %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
 <% end %>

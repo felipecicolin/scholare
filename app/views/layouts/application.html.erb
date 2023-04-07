@@ -20,11 +20,11 @@
   <body class="min-vh-100 d-flex flex-column">
 
     <header>
-      <%= render FlashMessages::Component.new(notice:, alert:) %>
       <%= render Nav::Component.new(current_user:) %>
     </header>
 
     <main class="container m-auto">
+      <%= render FlashMessages::Component.new(notice:, alert:) %>
       <%= yield %>
     </main>
 

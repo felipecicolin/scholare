@@ -23,7 +23,7 @@ class TestsController < ApplicationController
       redirect_to tests_path, notice: t("shared.notices.female.created",
                                         model: t("activerecord.models.test"))
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +32,7 @@ class TestsController < ApplicationController
       redirect_to tests_path, notice: t("shared.notices.female.updated",
                                         model: t("activerecord.models.test"))
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -20,7 +20,7 @@ class SchoolClassesController < ApplicationController
       redirect_to school_classes_path, notice: t("shared.notices.female.created",
                                                  model: t("activerecord.models.school_class"))
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class SchoolClassesController < ApplicationController
       redirect_to school_classes_path, notice: t("shared.notices.female.updated",
                                                  model: t("activerecord.models.school_class"))
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
