@@ -9,13 +9,9 @@ Capybara.server = :puma, { Silent: true }
 Capybara.server_port = 9887
 
 Capybara.register_driver :headless_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.args << "--headless"
-  options.args << "--disable-gpu"
-  options.args << "--no-sandbox"
-  options.args << "--window-size=1920,1080"
-  options.args << "--disable-dev-shm-usage"
-
+  options = Selenium::WebDriver::Chrome::Options.new(
+    args: %w[headless no-sandbox disable-site-isolation-trials window-size=1920,1080]
+  )
   Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
 end
 
