@@ -13,7 +13,6 @@ class Question < ApplicationRecord
   validate :only_one_correct_alternative_is_permitted
 
   before_validation :set_user
-  before_validation :add_option_to_alternative
 
   before_create :set_number
 
@@ -24,12 +23,6 @@ class Question < ApplicationRecord
   default_scope { order(:number) }
 
   private
-
-  def add_option_to_alternative
-    %w[A B C D E].each_with_index do |option, index|
-      alternatives[index].option = option if alternatives[index].option.blank?
-    end
-  end
 
   def set_number
     self.number = test.questions.count + 1

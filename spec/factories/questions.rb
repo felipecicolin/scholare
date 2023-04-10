@@ -5,15 +5,14 @@ FactoryBot.define do
 
     alternatives do
       [
-        build(:alternative, correct: true),
-        build(:alternative, correct: false),
-        build(:alternative, correct: false),
-        build(:alternative, correct: false),
-        build(:alternative, correct: false)
+        build(:alternative, correct: true, option: "A"),
+        build(:alternative, correct: false, option: "B"),
+        build(:alternative, correct: false, option: "C"),
+        build(:alternative, correct: false, option: "D"),
+        build(:alternative, correct: false, option: "E")
       ]
     end
 
-    test { create(:school_test, user:) }
-    user
+    test { create(:school_test) }
   end
 end

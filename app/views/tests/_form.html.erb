@@ -3,7 +3,7 @@
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <div class="form-inputs mb-3">
+    <div class="form-inputs mb-4">
       <%= f.input :name, required: false %>
       <%= f.association :school_class, prompt: true, required: false, input_html: { class: "form-select" }, collection: current_user.school_classes %>
       <%= f.input :test_date, required: false, input_html: { class: "form-control" } %>
@@ -23,18 +23,20 @@
 
       <button class="btn btn-success" type="button" data-action="nested-form#add">
         <i class="bi bi-plus-circle">
-          Nova questão
+          <%= t("tests.new.new_question") %>
         </i>
       </button>
     </div>
 
      <div class="form-actions">
+      <hr/>
       <%= f.button :submit, class: "btn btn-primary" %>
-      <%= link_to t("shared.buttons.back"), tests_path, class: "btn btn-secondary mx-2" %>
-    </div>
-  <% end %>
 
-  <% unless @test.new_record? %>
-    <%= link_to t("shared.buttons.destroy"), test_path(id: @test.id), class: "btn btn-danger mt-3", data: { turbo_method: "delete" } %>
+      <% unless @test.new_record? %>
+        <%= link_to t("tests.new.destroy_test"), test_path(id: @test.id), class: "btn btn-danger mx-2", data: { turbo_method: "delete" } %>
+      <% end %>
+
+      <%= link_to t("shared.buttons.back"), tests_path, class: "btn btn-secondary" %>
+    </div>
   <% end %>
 <% end %>
