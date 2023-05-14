@@ -1,4 +1,6 @@
 RSpec.describe Question do
+  subject { create(:question, test: create(:school_test)) }
+
   describe "validations" do
     describe "body" do
       it { is_expected.to validate_presence_of(:body) }
@@ -33,11 +35,21 @@ RSpec.describe Question do
 
   describe "associations" do
     describe "user" do
-      it { is_expected.to belong_to(:user) }
+      it do
+        test = create(:school_test)
+        question = create(:question, test:)
+
+        expect(question.user).to eq(test.user)
+      end
     end
 
     describe "test" do
-      it { is_expected.to belong_to(:test) }
+      it do
+        test = create(:school_test)
+        question = create(:question, test:)
+
+        expect(question.test).to eq(test)
+      end
     end
 
     describe "alternatives" do
@@ -52,6 +64,15 @@ RSpec.describe Question do
         question = create(:question, test:)
 
         expect(question.number).to eq(1)
+      end
+    end
+
+    describe "set_user" do
+      it do
+        test = create(:school_test)
+        question = create(:question, test:)
+
+        expect(question.user).to eq(test.user)
       end
     end
 

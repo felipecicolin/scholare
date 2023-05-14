@@ -39,11 +39,11 @@ Test.all.each do |test|
       test: test,
       user: user,
       alternatives: [
-        Alternative.new(body: Faker::Lorem.paragraph, correct: true),
-        Alternative.new(body: Faker::Lorem.paragraph, correct: false),
-        Alternative.new(body: Faker::Lorem.paragraph, correct: false),
-        Alternative.new(body: Faker::Lorem.paragraph, correct: false),
-        Alternative.new(body: Faker::Lorem.paragraph, correct: false)
+        Alternative.new(body: Faker::Lorem.paragraph, correct: true, option: "A"),
+        Alternative.new(body: Faker::Lorem.paragraph, correct: false, option: "B"),
+        Alternative.new(body: Faker::Lorem.paragraph, correct: false, option: "C"),
+        Alternative.new(body: Faker::Lorem.paragraph, correct: false, option: "D"),
+        Alternative.new(body: Faker::Lorem.paragraph, correct: false, option: "E")
       ]
     )
   end
