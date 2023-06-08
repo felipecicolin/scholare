@@ -79,14 +79,14 @@ RSpec.describe Question do
     describe "normalize_test_questions_numbers" do
       let(:test) { create(:school_test) }
 
-      let!(:question1) { create(:question, test:, number: 1) }
-      let!(:question2) { create(:question, test:, number: 2) }
-      let!(:question3) { create(:question, test:, number: 3) }
+      let!(:first_question) { create(:question, test:, number: 1) }
+      let!(:second_question) { create(:question, test:, number: 2) }
+      let!(:third_question) { create(:question, test:, number: 3) }
 
-      before { question2.destroy }
+      before { second_question.destroy }
 
-      it { expect(question1.reload.number).to eq(1) }
-      it { expect(question3.reload.number).to eq(2) }
+      it { expect(first_question.reload.number).to eq(1) }
+      it { expect(third_question.reload.number).to eq(2) }
     end
   end
 end

@@ -13,6 +13,6 @@ FactoryBot.define do
       ]
     end
 
-    test { create(:school_test) }
+    test factory: :school_test
   end
 end
