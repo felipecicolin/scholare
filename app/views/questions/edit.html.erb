@@ -1,7 +1,0 @@
-<%= render CenterContent::Component.new(width: 8) do %>
-  <h1 class="text-center">
-    <%= t("shared.titles.edit", model: t("activerecord.models.question")) %>
-  </h1>
-
-  <%= render "form", url: test_question_path(id: @question.id) %>
-<% end %>

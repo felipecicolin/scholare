@@ -1,6 +1,6 @@
 RSpec.describe Pdf::TestsController do
   before do
-    test = create(:school_test, questions: [create(:question)])
+    test = create(:school_test, questions: create_list(:question, 1))
 
     sign_in test.user
     get pdf_tests_path(test_id: test.id)

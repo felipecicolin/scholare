@@ -8,9 +8,7 @@ Rails.application.routes.draw do
   resources :school_classes, except: :show
   resources :students, except: :show
 
-  resources :tests, except: :show do
-    resources :questions, except: :show
-  end
+  resources :tests, except: :show
 
   namespace :pdf do
     resources :tests, only: :index

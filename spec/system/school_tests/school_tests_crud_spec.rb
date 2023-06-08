@@ -16,12 +16,12 @@ RSpec.describe "School Tests CRUD" do
 
       click_button "Cadastrar Prova"
 
-      expect(page).to have_content("Nome da prova não pode ficar em branco")
+      expect(page).to have_content("Nome não pode ficar em branco")
       expect(page).to have_content("Turma é obrigatório(a)")
-      expect(page).to have_content("Data da prova deve estar no futuro")
-      expect(page).to have_content("Valor da prova não pode ficar em branco e Valor da prova não é um número")
+      expect(page).to have_content("Data deve estar no futuro")
+      expect(page).to have_content("Valor não pode ficar em branco e Valor não é um número")
 
-      fill_in "Nome da prova", with: "Math Test"
+      fill_in "Nome", with: "Math Test"
 
       select "First Class", from: "Turma"
 
@@ -31,12 +31,40 @@ RSpec.describe "School Tests CRUD" do
       select "dezembro", from: "test_test_date_2i"
       select "2027", from: "test_test_date_1i"
 
-      fill_in "Valor da prova", with: "10"
+      fill_in "Valor", with: "10"
+
+      find(".bi-plus-circle").click
+
+      click_on "Cadastrar Prova"
+
+      expect(page).to have_content("Enunciado não pode ficar em branco")
+      expect(page).to have_content("Valor da questão não pode ficar em branco e Valor da questão não é um número")
+      expect(page).to have_content("Deve haver pelo menos uma alternativa correta")
+      expect(page).to have_content("Alternativa não pode ficar em branco", count: 5)
+
+      fill_in "Enunciado", with: "How many apples are there in the basket?"
+      fill_in "Valor da questão", with: "1"
+
+      fill_in "A", with: "First alternative"
+      fill_in "B", with: "Second alternative"
+      fill_in "C", with: "Third alternative"
+      fill_in "D", with: "Fourth alternative"
+      fill_in "E", with: "Fifth alternative"
+
+      check "Correta?", match: :first
 
       click_on "Cadastrar Prova"
 
       expect(page).to have_content("Prova criada com sucesso")
       expect(Test.count).to eq(1)
+
+      question = Question.first
+
+      expect(question.alternatives.first.option).to eq("A")
+      expect(question.alternatives.second.option).to eq("B")
+      expect(question.alternatives.third.option).to eq("C")
+      expect(question.alternatives.fourth.option).to eq("D")
+      expect(question.alternatives.fifth.option).to eq("E")
     end
   end
 
@@ -48,9 +76,12 @@ RSpec.describe "School Tests CRUD" do
                                   test_date: "Fri, 31 Dec 2027".to_date,
                                   value: 10)
 
+      create(:question, body: "Question", test:)
+
       visit edit_test_path(id: test.id)
 
-      fill_in "Nome da prova", with: ""
+      fill_in "Nome", with: ""
+      fill_in "Enunciado", with: ""
 
       select "Second Class", from: "Turma"
 
@@ -58,13 +89,15 @@ RSpec.describe "School Tests CRUD" do
       select "dezembro", from: "test_test_date_2i"
       select "2027", from: "test_test_date_1i"
 
-      fill_in "Valor da prova", with: "10"
+      fill_in "Valor", with: "10"
 
       click_button "Atualizar Prova"
 
-      expect(page).to have_content("Nome da prova não pode ficar em branco")
+      expect(page).to have_content("Nome não pode ficar em branco")
+      expect(page).to have_content("Enunciado não pode ficar em branco")
 
-      fill_in "Nome da prova", with: "Math Test"
+      fill_in "Nome", with: "Math Test"
+      fill_in "Enunciado", with: "Example question"
 
       click_button "Atualizar Prova"
 
@@ -76,6 +109,7 @@ RSpec.describe "School Tests CRUD" do
       expect(test.reload.school_class).to eq(second_class)
       expect(test.reload.test_date).to eq("Thu, 30 Dec 2027".to_date)
       expect(test.reload.value).to eq(10)
+      expect(test.reload.questions.first.body).to eq("Example question")
     end
   end
 
@@ -83,7 +117,7 @@ RSpec.describe "School Tests CRUD" do
     it "successfully deletes a Test" do
       test = create(:school_test, user:)
       visit edit_test_path(id: test.id)
-      click_on "Remover"
+      click_on "Excluir prova"
 
       expect(page).to have_content("Prova removida com sucesso")
       expect(Test.count).to eq(0)
@@ -107,9 +141,6 @@ RSpec.describe "School Tests CRUD" do
 
       expect(page).not_to have_content("Other User's Test")
       expect(page).not_to have_content("Other Class")
-
-      expect(page).to have_link("Gerenciar questões", href: test_questions_path(test_id: first_test.id))
-      expect(page).to have_link("Gerenciar questões", href: test_questions_path(test_id: second_test.id))
 
       expect(page).to have_link("Adicionar", href: new_test_path)
     end

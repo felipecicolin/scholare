@@ -53,6 +53,19 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(:name, :test_date, :value, :school_class_id).with_defaults(user: current_user)
+    params.require(:test).permit(
+      :name,
+      :test_date,
+      :value,
+      :school_class_id,
+      questions_attributes: [
+        :_destroy,
+        :id,
+        :body,
+        :value,
+        :test_id,
+        { alternatives_attributes: %i[id body correct option] }
+      ]
+    ).with_defaults(user: current_user)
   end
 end
