@@ -1,0 +1,5 @@
+pt-BR:
+  tests:
+    new:
+      new_question: "Nova questão"
+      destroy_test: "Excluir prova"

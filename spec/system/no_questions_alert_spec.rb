@@ -1,6 +1,6 @@
 RSpec.describe "No questions alert" do
   it do
-    user = create(:user, students: [create(:student)])
+    user = create(:user, students: create_list(:student, 1))
     test = create(:school_test, user:)
 
     sign_in test.user

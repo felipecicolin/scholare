@@ -12,7 +12,10 @@ class Question < ApplicationRecord
   validate :at_least_one_correct_alternative_is_required
   validate :only_one_correct_alternative_is_permitted
 
+  before_validation :set_user
+
   before_create :set_number
+
   after_destroy :normalize_test_questions_numbers
 
   accepts_nested_attributes_for :alternatives
@@ -23,6 +26,10 @@ class Question < ApplicationRecord
 
   def set_number
     self.number = test.questions.count + 1
+  end
+
+  def set_user
+    self.user = test.user
   end
 
   def normalize_test_questions_numbers

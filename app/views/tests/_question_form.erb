@@ -1,0 +1,30 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <h4 class="text-center"><%= t("activerecord.models.question") %></h3>
+
+  <%= f.input :body, required: false %>
+  <%= f.input :value, required: false %>
+
+  <h4 class="text-center"><%= t("activerecord.models.alternative").pluralize %></h3>
+
+  <% %w[A B C D E].each_with_index do |option, i| %>
+    <%= f.simple_fields_for :alternatives, f.object.alternatives[i] || f.object.alternatives.build do |alternative| %>
+      <div class="row align-items-center">
+        <div class="col-10">
+          <%= alternative.input :body, required: false, label: option %>
+        </div>
+        <div class="col-1 mt-4">
+          <%= alternative.input :correct, as: :boolean, required: false %>
+        </div>
+      </div>
+      <%= alternative.hidden_field :option, value: option %>
+    <% end %>
+  <% end %>
+
+  <button class="btn btn-danger mb-3" type="button" data-action="nested-form#remove">
+    <i class="bi bi-x-lg"></i>
+  </button>
+
+  <%= f.hidden_field :_destroy %>
+</div>

@@ -1,4 +1,4 @@
-<%= render CenterContent::Component.new(width: 10) do %>
+<%= render CenterContent::Component.new(width: 9) do %>
   <h1 class="mb-3 text-center"><%= t("activerecord.models.test").pluralize %></h1>
 
   <div class="col-md-5 mb-3">
@@ -14,7 +14,7 @@
 
       <thead>
         <tr>
-          <th class="text-center" scope="col"><%= t("activerecord.attributes.test.name") %></th>
+          <th scope="col"><%= t("activerecord.attributes.test.name") %></th>
           <th class="text-center" scope="col"><%= t("activerecord.attributes.test.test_date") %></th>
           <th class="text-center" scope="col"><%= t("activerecord.attributes.test.school_class") %></th>
           <th class="text-center" scope="col"><%= t("activerecord.attributes.test.value") %></th>
@@ -43,9 +43,6 @@
             </td>
 
             <td class="text-center d-flex justify-content-end align-items-center flex-nowrap">
-
-              <%= link_to t("tests.index.manage_questions"), test_questions_path(test_id: test.id),
-                                                                                 class: "text-primary text-decoration-none mx-2" %>
 
               <%= link_to t("tests.index.generate_test"), pdf_tests_path(test_id: test.id),
                                                                          class: "text-primary text-decoration-none mx-2",
