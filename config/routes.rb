@@ -19,5 +19,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :test_grades, only: :create
+
+    post "/mobile_login", to: "mobile_sessions#create"
+    get "/is_user_logged_in", to: "mobile_sessions#show"
+    delete "/mobile_logout", to: "mobile_sessions#destroy"
   end
 end

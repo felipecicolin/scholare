@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.4"
+ruby "3.2.2"
 
 gem "devise"
 gem "goldiloader"
@@ -15,6 +15,7 @@ gem "rack-cors"
 gem "rails"
 gem "ransack"
 gem "rqrcode"
+gem "sassc"
 gem "simple_form"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
