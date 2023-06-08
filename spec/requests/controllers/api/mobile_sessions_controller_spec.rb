@@ -17,6 +17,11 @@ RSpec.describe Api::MobileSessionsController do
 
         expect(response).to have_http_status(:unauthorized)
         expect(response.body).to eq({ error: "Invalid email or password" }.to_json)
+
+        post api_mobile_login_path, params: { email: "wrong_email", password: user.password }
+
+        expect(response).to have_http_status(:unauthorized)
+        expect(response.body).to eq({ error: "Invalid email or password" }.to_json)
       end
     end
 
