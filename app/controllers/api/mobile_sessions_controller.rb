@@ -9,9 +9,9 @@ module Api
       user = User.find_by(email: params[:email], auth_token: params[:auth_token])
 
       if user.present?
-        render json: { message: "User is logged in" }
+        render json: { message: I18n.t("api.mobile_sessions.user_is_logged_in") }
       else
-        render json: { error: "Invalid email or auth token" }, status: :unauthorized
+        render json: { error: I18n.t("api.mobile_sessions.invalid_email_or_auth_token") }, status: :unauthorized
       end
     end
 
@@ -22,7 +22,7 @@ module Api
         user.regenerate_auth_token
         render json: { auth_token: user.auth_token }
       else
-        render json: { error: "Invalid email or password" }, status: :unauthorized
+        render json: { error: I18n.t("api.mobile_sessions.invalid_email_or_password") }, status: :unauthorized
       end
     end
 
@@ -31,9 +31,9 @@ module Api
 
       if user.present?
         user.update(auth_token: nil)
-        render json: { message: "Logout successful" }
+        render json: { message: I18n.t("api.mobile_sessions.logout_successfull") }
       else
-        render json: { error: "Invalid email or auth token" }, status: :unauthorized
+        render json: { error: I18n.t("api.mobile_sessions.invalid_email_or_auth_token") }, status: :unauthorized
       end
     end
 
@@ -42,13 +42,13 @@ module Api
     def ensure_email_and_password_are_present
       return if params[:email] && params[:password]
 
-      render json: { error: "E-mail and password are required" }, status: :bad_request
+      render json: { error: I18n.t("api.mobile_sessions.email_and_password_are_required") }, status: :bad_request
     end
 
     def ensure_email_and_auth_token_are_present
       return if params[:email] && params[:auth_token]
 
-      render json: { error: "Email and auth token are required" }, status: :bad_request
+      render json: { error: I18n.t("api.mobile_sessions.email_and_auth_token_are_required") }, status: :bad_request
     end
   end
 end
