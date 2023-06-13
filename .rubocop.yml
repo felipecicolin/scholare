@@ -34,6 +34,7 @@ RSpec/MessageSpies:
 RSpec/MultipleExpectations:
   Exclude:
     - spec/system/**/*.rb
+    - spec/requests/**/*.rb
 
 RSpec/ExampleLength:
   CountAsOne: ['array', 'hash', 'heredoc']

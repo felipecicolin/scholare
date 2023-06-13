@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable,
          :validatable
 
+  has_secure_token :auth_token, length: 36
+
   has_many :tests, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :school_classes, dependent: :destroy
