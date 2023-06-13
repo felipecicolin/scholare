@@ -37,10 +37,10 @@ RSpec.describe Api::MobileSessionsController do
     end
   end
 
-  describe "get #show" do
+  describe "post #show" do
     context "with valid auth token" do
       it do
-        get api_is_user_logged_in_path, params: { email: user.email, auth_token: user.auth_token }
+        post api_is_user_logged_in_path, params: { email: user.email, auth_token: user.auth_token }
 
         expect(response).to be_successful
         expect(response.body).to eq({ message: "User is logged in" }.to_json)
@@ -49,14 +49,14 @@ RSpec.describe Api::MobileSessionsController do
 
     context "with invalid auth token" do
       it "returns an unauthorized response with an invalid auth token" do
-        get api_is_user_logged_in_path, params: { email: user.email, auth_token: "wrong_auth_token" }
+        post api_is_user_logged_in_path, params: { email: user.email, auth_token: "wrong_auth_token" }
 
         expect(response).to have_http_status(:unauthorized)
         expect(response.body).to eq({ error: "Invalid email or auth token" }.to_json)
       end
 
       it "returns an unauthorized response with an invalid email" do
-        get api_is_user_logged_in_path, params: { email: "wrong_email", auth_token: user.auth_token }
+        post api_is_user_logged_in_path, params: { email: "wrong_email", auth_token: user.auth_token }
 
         expect(response).to have_http_status(:unauthorized)
         expect(response.body).to eq({ error: "Invalid email or auth token" }.to_json)
@@ -65,7 +65,7 @@ RSpec.describe Api::MobileSessionsController do
 
     context "without all required params" do
       it "returns a bad request response" do
-        get api_is_user_logged_in_path
+        post api_is_user_logged_in_path
 
         expect(response).to have_http_status(:bad_request)
         expect(response.body).to eq({ error: "Email and auth token are required" }.to_json)
