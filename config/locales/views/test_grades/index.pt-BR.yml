@@ -2,6 +2,6 @@ pt-BR:
   test_grades:
     index:
       search_field_cannot_be_blank: "O campo de busca não pode ficar em branco"
-      type_the_identifier_to_see_your_grades: "Digite o identificador para visualizar suas notas"
+      type_the_identifier_to_see_your_grades: "Digite o identificador para visualizar as notas"
       no_grades_found: "Nenhuma nota foi encontrada"
       no_student_found_with_this_identifier_found: "Nenhum aluno com o identificador %{identifier} foi encontrado"

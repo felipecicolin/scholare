@@ -6,6 +6,7 @@
   <% end %>
 
   <%= form_with url: test_grades_path, method: :get do |f| %>
+    <%= f.label :identifier, t("activerecord.attributes.student.identifier"), class: "form-label" %>
     <div class="input-group mb-3">
       <%= f.search_field :identifier, class: "form-control",
           placeholder: t("test_grades.index.type_the_identifier_to_see_your_grades"), value: params[:identifier] %>
