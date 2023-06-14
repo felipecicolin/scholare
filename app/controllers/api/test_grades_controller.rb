@@ -3,19 +3,13 @@
 module Api
   class TestGradesController < ApplicationApiController
     def create
-      test_grade = TestGrade.new(test_grade_params)
+      test_grade = TestGrade.new(grade: params[:grade], test_id: params[:test_id], student_id: params[:student_id])
 
       if test_grade.save
-        render json: test_grade, status: :created
+        render json: { test_grade: test_grade.grade }, status: :created
       else
-        render json: test_grade.errors, status: :unprocessable_entity
+        render json: { errors: test_grade.errors.full_messages }, status: :unprocessable_entity
       end
-    end
-
-    private
-
-    def test_grade_params
-      params.require(:test_grade).permit(:grade, :test_id, :student_id)
     end
   end
 end
