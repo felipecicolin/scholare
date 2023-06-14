@@ -1,0 +1,55 @@
+<%= render CenterContent::Component.new(width: 6) do %>
+  <% if params[:identifier]&.empty? %>
+    <div class="alert alert-danger">
+      <%= t("test_grades.index.search_field_cannot_be_blank") %>
+    </div>
+  <% end %>
+
+  <%= form_with url: test_grades_path, method: :get do |f| %>
+    <div class="input-group mb-3">
+      <%= f.search_field :identifier, class: "form-control",
+          placeholder: t("test_grades.index.type_the_identifier_to_see_your_grades"), value: params[:identifier] %>
+      <%= f.submit t("shared.buttons.search"), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <% if @student.present? %>
+    <% if @test_grades.present? %>
+      <% @test_grades.each do |test_grade| %>
+        <table class="table table-hover table-responsive">
+          <thead>
+            <tr>
+              <th scope="col"><%= t("activerecord.models.student") %></th>
+              <th scope="col"><%= t("activerecord.models.test") %></th>
+              <th scope="col"><%= t("activerecord.models.test_grade") %></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr class="align-middle">
+              <td>
+                <%= test_grade.student.name %>
+              </td>
+
+              <td>
+                <%= test_grade.test.name %>
+              </td>
+
+              <td>
+                <%= test_grade.grade %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    <% else %>
+      <div class="alert alert-info">
+        <%= t("test_grades.index.no_grades_found") %>
+      </div>
+    <% end %>
+  <% elsif params[:identifier].present? %>
+    <div class="alert alert-info">
+      <%= t("test_grades.index.no_student_found_with_this_identifier_found", identifier: params[:identifier]) %>
+    </div>
+  <% end %>
+<% end %>

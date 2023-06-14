@@ -8,6 +8,7 @@ pt-BR:
       add: "Adicionar"
       back: "Voltar"
       view_and_edit: "Visualizar/Editar"
+      search: "Pesquisar"
 
     titles:
       new: "Cadastrar %{model}"
