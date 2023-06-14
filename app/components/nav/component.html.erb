@@ -31,14 +31,13 @@
         <% else %>
 
           <div class="ms-auto">
+            <%= link_to t("nav.check_your_grades"), test_grades_path, class: "text-decoration-none" %>
             <%= link_to t("nav.sign_in"), new_user_session_path, class: "btn mx-1" %>
             <%= link_to t("nav.sign_up"), new_user_registration_path, class: "btn btn-primary" %>
           </div>
 
         <% end %>
-
       </div>
     </div>
   </nav>
 </div>
-

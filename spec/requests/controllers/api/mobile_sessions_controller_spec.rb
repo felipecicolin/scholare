@@ -16,14 +16,14 @@ RSpec.describe Api::MobileSessionsController do
         post api_mobile_login_path, params: { email: user.email, password: "wrong_password" }
 
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to eq({ error: "Invalid email or password" }.to_json)
+        expect(response.body).to eq({ error: "E-mail ou senha inválidos." }.to_json)
       end
 
       it "returns an unauthorized response with an invalid email" do
         post api_mobile_login_path, params: { email: "wrong_email", password: user.password }
 
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to eq({ error: "Invalid email or password" }.to_json)
+        expect(response.body).to eq({ error: "E-mail ou senha inválidos." }.to_json)
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe Api::MobileSessionsController do
         post api_mobile_login_path, params: { email: user.email }
 
         expect(response).to have_http_status(:bad_request)
-        expect(response.body).to eq({ error: "E-mail and password are required" }.to_json)
+        expect(response.body).to eq({ error: "E-mail e senha são obrigatórios." }.to_json)
       end
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe Api::MobileSessionsController do
         post api_is_user_logged_in_path, params: { email: user.email, auth_token: user.auth_token }
 
         expect(response).to be_successful
-        expect(response.body).to eq({ message: "User is logged in" }.to_json)
+        expect(response.body).to eq({ message: "O usuário está logado." }.to_json)
       end
     end
 
@@ -52,14 +52,14 @@ RSpec.describe Api::MobileSessionsController do
         post api_is_user_logged_in_path, params: { email: user.email, auth_token: "wrong_auth_token" }
 
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to eq({ error: "Invalid email or auth token" }.to_json)
+        expect(response.body).to eq({ error: "E-mail ou token de autenticação inválidos." }.to_json)
       end
 
       it "returns an unauthorized response with an invalid email" do
         post api_is_user_logged_in_path, params: { email: "wrong_email", auth_token: user.auth_token }
 
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to eq({ error: "Invalid email or auth token" }.to_json)
+        expect(response.body).to eq({ error: "E-mail ou token de autenticação inválidos." }.to_json)
       end
     end
 
@@ -68,7 +68,7 @@ RSpec.describe Api::MobileSessionsController do
         post api_is_user_logged_in_path
 
         expect(response).to have_http_status(:bad_request)
-        expect(response.body).to eq({ error: "Email and auth token are required" }.to_json)
+        expect(response.body).to eq({ error: "E-mail e token de autenticação são obrigatórios." }.to_json)
       end
     end
   end
@@ -79,7 +79,7 @@ RSpec.describe Api::MobileSessionsController do
         delete api_mobile_logout_path, params: { email: user.email, auth_token: user.auth_token }
 
         expect(response).to be_successful
-        expect(response.body).to eq({ message: "Logout successful" }.to_json)
+        expect(response.body).to eq({ message: "Logout realizado com sucesso." }.to_json)
       end
     end
 
@@ -88,7 +88,7 @@ RSpec.describe Api::MobileSessionsController do
         delete api_mobile_logout_path, params: { email: user.email, auth_token: "wrong_auth_token" }
 
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to eq({ error: "Invalid email or auth token" }.to_json)
+        expect(response.body).to eq({ error: "E-mail ou token de autenticação inválidos." }.to_json)
       end
     end
 
@@ -97,7 +97,7 @@ RSpec.describe Api::MobileSessionsController do
         delete api_mobile_logout_path, params: { email: "wrong_email", auth_token: user.auth_token }
 
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to eq({ error: "Invalid email or auth token" }.to_json)
+        expect(response.body).to eq({ error: "E-mail ou token de autenticação inválidos." }.to_json)
       end
     end
 
@@ -106,7 +106,7 @@ RSpec.describe Api::MobileSessionsController do
         delete api_mobile_logout_path
 
         expect(response).to have_http_status(:bad_request)
-        expect(response.body).to eq({ error: "Email and auth token are required" }.to_json)
+        expect(response.body).to eq({ error: "E-mail e token de autenticação são obrigatórios." }.to_json)
       end
     end
   end

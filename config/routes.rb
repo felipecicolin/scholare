@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :students, except: :show
 
   resources :tests, except: :show
+  resources :test_grades, only: :index
 
   namespace :pdf do
     resources :tests, only: :index

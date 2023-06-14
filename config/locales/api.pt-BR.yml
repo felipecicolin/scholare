@@ -1,0 +1,9 @@
+pt-BR:
+  api:
+    mobile_sessions:
+      user_is_logged_in: O usuário está logado.
+      invalid_email_or_password: E-mail ou senha inválidos.
+      invalid_email_or_auth_token: E-mail ou token de autenticação inválidos.
+      logout_successfull: Logout realizado com sucesso.
+      email_and_password_are_required: E-mail e senha são obrigatórios.
+      email_and_auth_token_are_required: E-mail e token de autenticação são obrigatórios.
