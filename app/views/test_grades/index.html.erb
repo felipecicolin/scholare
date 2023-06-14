@@ -15,23 +15,19 @@
   <% end %>
 
   <% if @student.present? %>
+    <h6 class="text-center my-5"><%= "#{t('activerecord.models.student')}: #{@student.name}" %></h6>
+
     <% if @test_grades.present? %>
-      <% @test_grades.each do |test_grade| %>
-        <table class="table table-hover table-responsive">
-          <thead>
-            <tr>
-              <th scope="col"><%= t("activerecord.models.student") %></th>
-              <th scope="col"><%= t("activerecord.models.test") %></th>
-              <th scope="col"><%= t("activerecord.models.test_grade") %></th>
-            </tr>
-          </thead>
-
-          <tbody>
+      <table class="table table-hover table-responsive">
+        <thead>
+          <tr>
+            <th scope="col"><%= t("activerecord.models.test") %></th>
+            <th scope="col"><%= t("activerecord.models.test_grade") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @test_grades.each do |test_grade| %>
             <tr class="align-middle">
-              <td>
-                <%= test_grade.student.name %>
-              </td>
-
               <td>
                 <%= test_grade.test.name %>
               </td>
@@ -40,16 +36,16 @@
                 <%= test_grade.grade %>
               </td>
             </tr>
-          </tbody>
-        </table>
-      <% end %>
+          <% end %>
+        </tbody>
+      </table>
     <% else %>
       <div class="alert alert-info">
         <%= t("test_grades.index.no_grades_found") %>
       </div>
     <% end %>
   <% elsif params[:identifier].present? %>
-    <div class="alert alert-info">
+    <div class="alert alert-danger">
       <%= t("test_grades.index.no_student_found_with_this_identifier_found", identifier: params[:identifier]) %>
     </div>
   <% end %>

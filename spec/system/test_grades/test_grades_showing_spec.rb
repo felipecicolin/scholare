@@ -5,20 +5,21 @@ RSpec.describe "Test Grades Showing" do
 
   it do
     create(:test_grade, student:, test: create(:school_test, name: "Example Test"), grade: 10.0)
+    create(:test_grade, student:, test: create(:school_test, name: "Example Test 2"), grade: 5.0)
 
     find_by_id("identifier").fill_in(with: "123456789")
 
     click_button "Pesquisar"
 
-    expect(page).to have_content("Example Student")
+    expect(page).to have_content("Example Student", count: 1)
     expect(page).to have_content("10.0")
+    expect(page).to have_content("5.0")
     expect(page).to have_content("Example Test")
+    expect(page).to have_content("Example Test 2")
   end
 
   context "when there are no test grades" do
     it do
-      click_button "Pesquisar"
-
       find_by_id("identifier").fill_in(with: "123456789")
 
       click_button "Pesquisar"
