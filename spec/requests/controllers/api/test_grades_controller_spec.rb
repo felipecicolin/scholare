@@ -10,11 +10,25 @@ RSpec.describe Api::TestGradesController do
     it { expect(TestGrade.count).to eq(1) }
   end
 
-  it "renders unprocessable entity" do
-    post api_test_grades_path, params: { grade: "abc", test_id: test.id, student_id: student.id }
+  context "with invalid params" do
+    it "renders unprocessable entity" do
+      post api_test_grades_path, params: { grade: "abc", test_id: test.id, student_id: student.id }
 
-    expect(response).to have_http_status(:unprocessable_entity)
-    expect(response.body).to eq({ errors: ["Nota não é um número"] }.to_json)
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.body).to eq({ errors: ["Nota não é um número"] }.to_json)
+      expect(TestGrade.count).to eq(0)
+    end
+  end
+
+  context "when test grade already exists" do
+    before do
+      create(:test_grade, test:, student:, grade: 10)
+      post api_test_grades_path, params: { grade: 10, test_id: test.id, student_id: student.id }
+    end
+
+    it { expect(response).to have_http_status(:created) }
+    it { expect(response.body).to eq({ test_grade: 10.0 }.to_json) }
+    it { expect(TestGrade.count).to eq(1) }
   end
 
   context "with missing params" do

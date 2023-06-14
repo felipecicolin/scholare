@@ -5,7 +5,8 @@ module Api
     before_action :ensure_test_grade_params_are_present, only: :create
 
     def create
-      test_grade = TestGrade.new(grade: params[:grade], test_id: params[:test_id], student_id: params[:student_id])
+      test_grade = TestGrade.find_or_initialize_by(test_id: params[:test_id], student_id: params[:student_id])
+      test_grade.grade = params[:grade]
 
       if test_grade.save
         render json: { test_grade: test_grade.grade }, status: :created
