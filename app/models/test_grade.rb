@@ -4,5 +4,5 @@ class TestGrade < ApplicationRecord
   belongs_to :test
   belongs_to :student
 
-  validates :grade, presence: true
+  validates :grade, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end

@@ -2,6 +2,8 @@
 
 module Api
   class TestGradesController < ApplicationApiController
+    before_action :ensure_test_grade_params_are_present, only: :create
+
     def create
       test_grade = TestGrade.new(grade: params[:grade], test_id: params[:test_id], student_id: params[:student_id])
 
@@ -10,6 +12,14 @@ module Api
       else
         render json: { errors: test_grade.errors.full_messages }, status: :unprocessable_entity
       end
+    end
+
+    private
+
+    def ensure_test_grade_params_are_present
+      return if params[:grade].present? && params[:test_id].present? && params[:student_id].present?
+
+      render json: { errors: I18n.t("api.test_grades.missing_params") }, status: :bad_request
     end
   end
 end
