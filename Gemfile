@@ -15,7 +15,6 @@ gem "rack-cors"
 gem "rails"
 gem "ransack"
 gem "rqrcode"
-gem "sassc"
 gem "simple_form"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
