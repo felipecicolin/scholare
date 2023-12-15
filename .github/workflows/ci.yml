@@ -60,14 +60,14 @@ jobs:
 
       - name: Upload simplecov results
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage/
 
       - name: Upload capybara artifacts
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: capybara
           path: tmp/capybara
