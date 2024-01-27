@@ -32,7 +32,7 @@ jobs:
           bundler-cache: true
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
           cache: 'npm'
@@ -60,14 +60,14 @@ jobs:
 
       - name: Upload simplecov results
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage/
 
       - name: Upload capybara artifacts
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: capybara
           path: tmp/capybara

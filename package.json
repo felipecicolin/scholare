@@ -1,12 +1,12 @@
 {
   "devDependencies": {
-    "vite": "^4.4.9",
+    "vite": "^4.5.2",
     "vite-plugin-ruby": "^3.2.2"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
-    "sass": "^1.68.0",
+    "sass": "^1.70.0",
     "stimulus-rails-nested-form": "^4.1.0"
   }
 }
