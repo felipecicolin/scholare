@@ -6,7 +6,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.13",
-    "sass": "^1.86.1",
+    "sass": "^1.86.2",
     "stimulus-rails-nested-form": "^4.1.0"
   }
 }
